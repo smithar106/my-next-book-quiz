@@ -1,0 +1,154 @@
+import { ImageResponse } from 'next/og'
+import { getResultContent } from '@/lib/resultContent'
+
+export const runtime = 'edge'
+
+const ARCHETYPE_EMOJI: Record<string, string> = {
+  emotional:     '💔',
+  cozy:          '☕',
+  dark:          '🕯️',
+  fast:          '⚡',
+  romance:       '🌸',
+  escapist:      '🌌',
+  thinker:       '🧠',
+  thriller:      '🔦',
+  fantasy:       '🗺️',
+  slump_short:   '📖',
+  slump_comfort: '🌿',
+  literary:      '✍️',
+  mystery:       '🔍',
+  memoir:        '📝',
+}
+
+const ARCHETYPE_COLOR: Record<string, { accent: string; glow: string }> = {
+  emotional:     { accent: '#F0A0C8', glow: 'rgba(240,160,200,0.25)' },
+  cozy:          { accent: '#FFD090', glow: 'rgba(255,208,144,0.25)' },
+  dark:          { accent: '#9090C8', glow: 'rgba(144,144,200,0.25)' },
+  fast:          { accent: '#80D8D0', glow: 'rgba(128,216,208,0.25)' },
+  romance:       { accent: '#F0A0C8', glow: 'rgba(240,160,200,0.25)' },
+  escapist:      { accent: '#C8B0FF', glow: 'rgba(200,176,255,0.25)' },
+  thinker:       { accent: '#F0C060', glow: 'rgba(240,192,96,0.25)' },
+  thriller:      { accent: '#FF9090', glow: 'rgba(255,144,144,0.25)' },
+  fantasy:       { accent: '#C8B0FF', glow: 'rgba(200,176,255,0.25)' },
+  slump_short:   { accent: '#80D8D0', glow: 'rgba(128,216,208,0.25)' },
+  slump_comfort: { accent: '#80D890', glow: 'rgba(128,216,144,0.25)' },
+  literary:      { accent: '#F0C060', glow: 'rgba(240,192,96,0.25)' },
+  mystery:       { accent: '#9090C8', glow: 'rgba(144,144,200,0.25)' },
+  memoir:        { accent: '#FFD090', glow: 'rgba(255,208,144,0.25)' },
+}
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const resultId = searchParams.get('result') ?? 'emotional'
+  const quizTitle = searchParams.get('quiz') ?? 'My Next Book Quiz'
+
+  const content = getResultContent(resultId)
+  const emoji = ARCHETYPE_EMOJI[resultId] ?? '📚'
+  const colors = ARCHETYPE_COLOR[resultId] ?? { accent: '#C8B0FF', glow: 'rgba(200,176,255,0.25)' }
+
+  const archetypeName = content?.archetypeName ?? 'Your Reader Type'
+  const subtitle = content?.archetypeSubtitle ?? 'Find your next perfect read.'
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '1200px',
+          height: '630px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#12101E',
+          position: 'relative',
+          overflow: 'hidden',
+          fontFamily: 'sans-serif',
+        }}
+      >
+        {/* Background glow */}
+        <div style={{
+          position: 'absolute',
+          top: '-80px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '700px',
+          height: '500px',
+          background: `radial-gradient(ellipse, ${colors.glow} 0%, transparent 70%)`,
+        }} />
+
+        {/* Border card */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: `1.5px solid ${colors.accent}44`,
+          borderRadius: '32px',
+          padding: '52px 72px',
+          width: '960px',
+          background: 'rgba(255,255,255,0.03)',
+          position: 'relative',
+        }}>
+          {/* Top label */}
+          <div style={{
+            display: 'flex',
+            fontSize: '13px',
+            fontWeight: 800,
+            letterSpacing: '2px',
+            color: colors.accent,
+            textTransform: 'uppercase',
+            marginBottom: '24px',
+          }}>
+            MY NEXT BOOK · {quizTitle.toUpperCase()}
+          </div>
+
+          {/* Emoji */}
+          <div style={{ fontSize: '80px', marginBottom: '24px', lineHeight: 1 }}>
+            {emoji}
+          </div>
+
+          {/* Archetype name */}
+          <div style={{
+            fontSize: '52px',
+            fontWeight: 900,
+            color: '#FFFFFF',
+            textAlign: 'center',
+            lineHeight: 1.1,
+            letterSpacing: '-1.5px',
+            marginBottom: '16px',
+          }}>
+            {archetypeName}
+          </div>
+
+          {/* Subtitle */}
+          <div style={{
+            fontSize: '20px',
+            fontWeight: 500,
+            color: 'rgba(255,255,255,0.6)',
+            textAlign: 'center',
+            lineHeight: 1.4,
+            maxWidth: '640px',
+          }}>
+            {subtitle}
+          </div>
+
+          {/* Bottom CTA pill */}
+          <div style={{
+            display: 'flex',
+            marginTop: '36px',
+            background: `${colors.accent}22`,
+            border: `1px solid ${colors.accent}55`,
+            borderRadius: '100px',
+            padding: '10px 24px',
+            fontSize: '15px',
+            fontWeight: 700,
+            color: colors.accent,
+          }}>
+            Find your reader type → quiz.mynextbook.me
+          </div>
+        </div>
+      </div>
+    ),
+    { width: 1200, height: 630 }
+  )
+}

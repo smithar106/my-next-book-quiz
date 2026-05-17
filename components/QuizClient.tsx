@@ -257,10 +257,11 @@ export function QuizClient({ slug, rawParams }: Props) {
           )}
 
           {/* Share */}
-          {content && (
+          {content && result && (
             <ShareResultButton
               archetypeName={content.archetypeName}
               shareText={content.shareText}
+              resultId={result.id}
             />
           )}
 
@@ -448,11 +449,12 @@ function ReadingContinuationSection({ features }: { features: string[] }) {
   )
 }
 
-function ShareResultButton({ archetypeName, shareText }: { archetypeName: string; shareText: string }) {
+function ShareResultButton({ archetypeName, shareText, resultId }: { archetypeName: string; shareText: string; resultId: string }) {
   const [copied, setCopied] = useState(false)
 
   async function handleShare() {
-    const url = typeof window !== 'undefined' ? window.location.href : ''
+    const base = typeof window !== 'undefined' ? window.location.href.split('?')[0] : ''
+    const url = `${base}?result=${resultId}`
     const fullText = `${shareText} ${url}`
     if (navigator.share) {
       try {

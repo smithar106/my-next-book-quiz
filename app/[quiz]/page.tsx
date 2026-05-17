@@ -1,22 +1,49 @@
 import { notFound } from 'next/navigation'
 import { getQuiz } from '@/lib/quizzes'
+import { getResultContent } from '@/lib/resultContent'
 import { QuizClient } from '@/components/QuizClient'
 import type { Metadata } from 'next'
+
+const SITE_URL = 'https://quiz.mynextbook.me'
 
 interface Props {
   params: Promise<{ quiz: string }>
   searchParams: Promise<Record<string, string>>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { quiz: slug } = await params
+  const sp = await searchParams
   const config = getQuiz(slug)
   if (!config) return {}
+
+  const resultId = sp.result
+  const content = resultId ? getResultContent(resultId) : null
+
+  const title = content
+    ? `I'm "${content.archetypeName}" — My Next Book Quiz`
+    : `${config.title} — My Next Book`
+  const description = content
+    ? content.archetypeSubtitle
+    : config.hook
+  const ogImageUrl = resultId
+    ? `${SITE_URL}/api/og?result=${resultId}&quiz=${encodeURIComponent(config.title)}`
+    : `${SITE_URL}/api/og?result=emotional&quiz=${encodeURIComponent(config.title)}`
+
   return {
-    title: `${config.title} — My Next Book`,
-    description: config.hook,
-    openGraph: { title: `${config.title} — My Next Book`, description: config.hook },
-    twitter: { card: 'summary_large_image' },
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
+    },
   }
 }
 
