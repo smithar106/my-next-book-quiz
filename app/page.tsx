@@ -7,8 +7,8 @@ export default function Home() {
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <div style={{
             display: 'inline-block',
-            background: 'rgba(182,156,255,0.12)',
-            border: '1px solid rgba(182,156,255,0.32)',
+            background: 'rgba(200,176,255,0.16)',
+            border: '1px solid rgba(200,176,255,0.42)',
             color: 'var(--purple)',
             fontSize: 11,
             fontWeight: 800,

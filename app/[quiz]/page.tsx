@@ -25,8 +25,6 @@ export default async function QuizPage({ params, searchParams }: Props) {
   const rawParams = await searchParams
   const config = getQuiz(slug)
   if (!config) notFound()
-
-  // Pass only serializable data — client imports quizzes directly
   return <QuizClient slug={slug} rawParams={rawParams} />
 }
 

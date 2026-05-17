@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { dbInsert } from './supabase'
 import type { Attribution } from '@/types/quiz'
 
 export type EventName =
@@ -10,74 +10,48 @@ export type EventName =
   | 'email_submitted'
   | 'app_store_clicked'
 
-export async function trackEvent(
+export function trackEvent(
   sessionId: string,
   event: EventName,
   quizId: string,
   properties?: Record<string, unknown>,
 ) {
-  if (!supabase) return
-  try {
-    await supabase.from('funnel_events').insert({
-      session_id: sessionId,
-      quiz_id: quizId,
-      event_name: event,
-      properties: properties ?? {},
-      created_at: new Date().toISOString(),
-    })
-  } catch {
-    // never block user flow on tracking failure
-  }
+  dbInsert('funnel_events', {
+    session_id: sessionId,
+    quiz_id: quizId,
+    event_name: event,
+    properties: properties ?? {},
+    created_at: new Date().toISOString(),
+  })
 }
 
-export async function createSession(
-  sessionId: string,
-  quizId: string,
-  attr: Attribution,
-) {
-  if (!supabase) return
-  try {
-    await supabase.from('quiz_sessions').insert({
-      id: sessionId,
-      quiz_id: quizId,
-      attribution: attr,
-      created_at: new Date().toISOString(),
-    })
-  } catch {}
+export function createSession(sessionId: string, quizId: string, attr: Attribution) {
+  dbInsert('quiz_sessions', {
+    id: sessionId,
+    quiz_id: quizId,
+    attribution: attr,
+    created_at: new Date().toISOString(),
+  })
 }
 
-export async function saveAnswers(
-  sessionId: string,
-  quizId: string,
-  answers: Record<string, string>,
-) {
-  if (!supabase) return
-  try {
-    const rows = Object.entries(answers).map(([questionId, optionId]) => ({
-      session_id: sessionId,
-      quiz_id: quizId,
-      question_id: questionId,
-      option_id: optionId,
-      created_at: new Date().toISOString(),
-    }))
-    await supabase.from('quiz_answers').insert(rows)
-  } catch {}
+export function saveAnswers(sessionId: string, quizId: string, answers: Record<string, string>) {
+  const rows = Object.entries(answers).map(([questionId, optionId]) => ({
+    session_id: sessionId,
+    quiz_id: quizId,
+    question_id: questionId,
+    option_id: optionId,
+    created_at: new Date().toISOString(),
+  }))
+  dbInsert('quiz_answers', rows)
 }
 
-export async function saveResult(
-  sessionId: string,
-  quizId: string,
-  resultId: string,
-) {
-  if (!supabase) return
-  try {
-    await supabase.from('quiz_results').insert({
-      session_id: sessionId,
-      quiz_id: quizId,
-      result_id: resultId,
-      created_at: new Date().toISOString(),
-    })
-  } catch {}
+export function saveResult(sessionId: string, quizId: string, resultId: string) {
+  dbInsert('quiz_results', {
+    session_id: sessionId,
+    quiz_id: quizId,
+    result_id: resultId,
+    created_at: new Date().toISOString(),
+  })
 }
 
 export async function captureEmail(
@@ -87,17 +61,14 @@ export async function captureEmail(
   resultId: string,
   attr: Attribution,
 ) {
-  if (!supabase) return
-  try {
-    await supabase.from('email_leads').insert({
-      session_id: sessionId,
-      quiz_id: quizId,
-      email,
-      result_id: resultId,
-      attribution: attr,
-      created_at: new Date().toISOString(),
-    })
-  } catch {}
+  await dbInsert('email_leads', {
+    session_id: sessionId,
+    quiz_id: quizId,
+    email,
+    result_id: resultId,
+    attribution: attr,
+    created_at: new Date().toISOString(),
+  })
 }
 
 export function genSessionId(): string {
