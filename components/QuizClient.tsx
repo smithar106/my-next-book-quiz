@@ -85,8 +85,21 @@ export function QuizClient({ slug, rawParams }: Props) {
     setEmailLoading(true)
     const result = computeResult(config!, answers)
     if (result) {
+      const rc = getResultContent(result.id)
       await captureEmail(sessionId.current, config!.id, email, result.id, attr.current)
       trackEvent(sessionId.current, 'email_submitted', config!.id, { result_id: result.id })
+      fetch('/api/send-result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          archetypeName: rc?.archetypeName ?? result.title,
+          archetypeSubtitle: rc?.archetypeSubtitle ?? result.tagline,
+          microcopy: rc?.microcopy ?? result.description,
+          similarBooks: rc?.similarBooks ?? [],
+          quizTitle: config!.title,
+        }),
+      }).catch(() => {})
     }
     setEmailSent(true)
     setEmailLoading(false)
