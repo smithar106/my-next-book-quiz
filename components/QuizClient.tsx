@@ -100,7 +100,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const result = phase === 'result' ? computeResult(config, answers) : null
   const content = result ? getResultContent(result.id) : null
   const question = config.questions[currentQ]
-  const progress = (currentQ / config.questions.length) * 100
+  const progress = ((currentQ + 1) / config.questions.length) * 100
 
   if (phase === 'landing') {
     return (
@@ -199,7 +199,7 @@ export function QuizClient({ slug, rawParams }: Props) {
       <main style={s.page}>
         <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Download Free</a>} />
 
-        <div style={{ maxWidth: 580, margin: '80px auto 0', padding: '0 20px 120px' }}>
+        <div style={{ maxWidth: 580, margin: '0 auto 0', padding: '120px 20px 120px' }}>
           {/* Hero result card */}
           <ResultHeroCard result={result} content={content} />
 
@@ -536,7 +536,7 @@ const s: Record<string, React.CSSProperties> = {
     background: 'var(--purple-btn)', color: '#120F1C',
     padding: '9px 18px', borderRadius: 100, fontSize: 13, fontWeight: 800,
   },
-  landingInner: { maxWidth: 520, margin: '120px auto 0', padding: '0 20px 80px', textAlign: 'center' },
+  landingInner: { maxWidth: 520, margin: '0 auto 0', padding: '120px 20px 80px', textAlign: 'center' },
   badge: {
     display: 'inline-block',
     background: 'rgba(200,176,255,0.16)', border: '1px solid rgba(200,176,255,0.42)',
