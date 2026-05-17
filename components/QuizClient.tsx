@@ -110,14 +110,52 @@ export function QuizClient({ slug, rawParams }: Props) {
           <div style={s.badge}>BOOK QUIZ</div>
           <h1 style={s.h1}>{config.hook}</h1>
           <p style={s.subtitle}>{config.description}</p>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 28, flexWrap: 'wrap' }}>
             <span style={s.pill}>📖 {config.questions.length} questions</span>
-            <span style={s.pill}>⚡ 2 minutes</span>
+            <span style={s.pill}>⚡ 30 seconds</span>
             <span style={s.pill}>🎯 Personalized results</span>
           </div>
           <button onClick={startQuiz} style={s.primaryBtn}>Start the quiz →</button>
           <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Free · No sign-up required</p>
-          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 10, fontStyle: 'italic' }}>Built for readers who care how books feel.</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>Built for readers who care how books feel.</p>
+
+          {/* Archetype preview */}
+          <div style={{ marginTop: 52, textAlign: 'left' }}>
+            <p style={{ ...s.cardLabel, textAlign: 'center', marginBottom: 18 }}>YOUR READER TYPE</p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              {ARCHETYPE_PREVIEWS.map((a) => (
+                <div key={a.name} style={{
+                  background: `linear-gradient(135deg, ${a.from} 0%, ${a.to} 100%)`,
+                  border: `1px solid ${a.border}`,
+                  borderRadius: 16, padding: '16px 16px',
+                }}>
+                  <span style={{ fontSize: 22, display: 'block', marginBottom: 8 }}>{a.emoji}</span>
+                  <p style={{ fontSize: 13, fontWeight: 800, color: a.color, lineHeight: 1.3 }}>{a.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* What you get */}
+          <div style={{
+            marginTop: 32,
+            background: 'rgba(212,188,255,0.07)',
+            border: '1px solid rgba(212,188,255,0.18)',
+            borderRadius: 20, padding: '22px 20px',
+            textAlign: 'left',
+          }}>
+            <p style={{ ...s.cardLabel, marginBottom: 14 }}>WHAT YOU GET</p>
+            {[
+              'Your reader type — named and defined',
+              'Books that match your exact emotional taste',
+              'A personalized app feed built around your result',
+            ].map((line, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: i < 2 ? 10 : 0 }}>
+                <span style={{ color: 'var(--purple)', fontWeight: 800, fontSize: 13, marginTop: 1 }}>✦</span>
+                <span style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.5 }}>{line}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     )
@@ -162,10 +200,6 @@ export function QuizClient({ slug, rawParams }: Props) {
         <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Download Free</a>} />
 
         <div style={{ maxWidth: 580, margin: '80px auto 0', padding: '0 20px 120px' }}>
-          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginBottom: 20, letterSpacing: '0.5px' }}>
-            YOUR READING ARCHETYPE
-          </p>
-
           {/* Hero result card */}
           <ResultHeroCard result={result} content={content} />
 
@@ -221,7 +255,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             <div style={s.card}>
               <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your result</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Get your reading archetype by email — optional.
+                Get your result by email — optional.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
@@ -280,14 +314,6 @@ function ResultHeroCard({ result, content }: {
       <span style={{ fontSize: 56, display: 'block', marginBottom: 20 }}>{result.emoji}</span>
       {content ? (
         <>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(200,176,255,0.12)', border: '1px solid rgba(200,176,255,0.30)',
-            color: 'var(--purple)', fontSize: 10, fontWeight: 800, letterSpacing: '2px',
-            padding: '4px 12px', borderRadius: 100, marginBottom: 14, textTransform: 'uppercase',
-          }}>
-            YOUR ARCHETYPE
-          </div>
           <h1 style={{ fontSize: 'clamp(26px,5vw,38px)', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.1, marginBottom: 10 }}>
             {content.archetypeName}
           </h1>
@@ -440,7 +466,7 @@ function ShareResultButton({ archetypeName, shareText }: { archetypeName: string
         color: 'var(--text)', fontSize: 14, fontWeight: 700, cursor: 'pointer',
       }}>
         <span style={{ fontSize: 16 }}>{copied ? '✓' : '↗'}</span>
-        {copied ? 'Copied to clipboard!' : `Share my reading archetype`}
+        {copied ? 'Copied to clipboard!' : `Share my reader type`}
       </button>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, textAlign: 'center', marginTop: 8, fontStyle: 'italic' }}>
         "{archetypeName}"
@@ -471,6 +497,13 @@ function StickyCTA({ visible, ctaCopy, onClick }: { visible: boolean; ctaCopy: s
     </div>
   )
 }
+
+const ARCHETYPE_PREVIEWS = [
+  { name: 'The Heartbreak Collector', emoji: '💔', from: '#221228', to: '#130A18', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
+  { name: 'The Beautifully Damaged Intellectual', emoji: '🕯️', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
+  { name: 'The Obsessive Escapist', emoji: '🌌', from: '#1E1638', to: '#120F22', color: '#C8B0FF', border: 'rgba(200,176,255,0.22)' },
+  { name: 'The Morally Grey Romantic', emoji: '🌹', from: '#221018', to: '#140A10', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
+]
 
 function Nav({ right }: { right: React.ReactNode }) {
   return (
@@ -530,7 +563,7 @@ const s: Record<string, React.CSSProperties> = {
     color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer',
     transition: 'border-color 0.15s, background 0.15s',
   },
-  optionBtnSelected: { borderColor: 'var(--purple)', background: 'rgba(200,176,255,0.10)' },
+  optionBtnSelected: { border: '1.5px solid var(--purple)', background: 'rgba(200,176,255,0.10)' },
   optionDot: {
     width: 20, height: 20, borderRadius: '50%', border: '2px solid rgba(200,176,255,0.55)',
     flexShrink: 0, display: 'block', transition: 'background 0.15s, border-color 0.15s',
