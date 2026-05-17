@@ -1,0 +1,48 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --purple: #B69CFF;
+  --purple-dark: #7B5FD4;
+  --purple-btn: #9B7AFF;
+  --bg: #0B0A12;
+  --bg2: #100B1D;
+  --surface: #171426;
+  --surface2: #1D1930;
+  --border: rgba(182,156,255,0.14);
+  --border-strong: rgba(182,156,255,0.30);
+  --text: #F7F4FF;
+  --text-muted: #AFA6C6;
+  --text-dim: #6F6880;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
