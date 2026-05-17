@@ -177,12 +177,13 @@ export function QuizClient({ slug, rawParams }: Props) {
   if (phase === 'quiz' && question) {
     return (
       <main style={s.page}>
-        <Nav right={<span style={{ color: 'var(--text-dim)', fontSize: 13 }}>{currentQ + 1} / {config.questions.length}</span>} />
+        <Nav right={null} />
         <div style={{ maxWidth: 560, margin: '100px auto 0', padding: '0 20px 60px' }}>
           <div style={s.progressBar}>
             <div style={{ ...s.progressFill, width: `${progress}%` }} />
           </div>
-          <p style={s.quizLabel}>{config.title}</p>
+          <p style={s.quizLabel}>Question {currentQ + 1} of {config.questions.length}</p>
+          <p style={s.quizTagline}>{getProgressTagline(currentQ, config.questions.length)}</p>
           <h2 style={s.questionText}>{question.text}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {question.options.map((opt) => (
@@ -511,6 +512,14 @@ function StickyCTA({ visible, ctaCopy, onClick }: { visible: boolean; ctaCopy: s
   )
 }
 
+function getProgressTagline(index: number, total: number): string {
+  const pct = index / total
+  if (pct < 0.25) return 'Just getting started...'
+  if (pct < 0.5) return 'Getting clearer on your vibe...'
+  if (pct < 0.75) return 'Almost there...'
+  return 'Last one — almost done!'
+}
+
 const ARCHETYPE_PREVIEWS = [
   { name: 'The Heartbreak Collector', emoji: '💔', from: '#221228', to: '#130A18', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
   { name: 'The Beautifully Damaged Intellectual', emoji: '🕯️', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
@@ -568,7 +577,8 @@ const s: Record<string, React.CSSProperties> = {
   },
   progressBar: { height: 4, background: 'var(--surface2)', borderRadius: 4, marginBottom: 32, overflow: 'hidden' },
   progressFill: { height: '100%', background: 'var(--purple)', borderRadius: 4, transition: 'width 0.3s ease' },
-  quizLabel: { color: 'var(--purple)', fontSize: 11, fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 24 },
+  quizLabel: { color: 'var(--text)', fontSize: 22, fontWeight: 900, letterSpacing: '-0.5px', marginBottom: 4 },
+  quizTagline: { color: 'var(--text-muted)', fontSize: 15, fontWeight: 500, marginBottom: 28 },
   questionText: { fontSize: 'clamp(22px,4vw,30px)', fontWeight: 800, letterSpacing: '-0.5px', lineHeight: 1.25, marginBottom: 28 },
   optionBtn: {
     width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)',
