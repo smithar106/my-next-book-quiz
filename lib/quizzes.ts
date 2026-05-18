@@ -587,12 +587,134 @@ const GENRE_MATCH: QuizConfig = {
   },
 }
 
+const READING_PERSONALITY: QuizConfig = {
+  id: 'reading-personality',
+  slug: 'reading-personality',
+  title: 'Reading Personality Quiz',
+  hook: 'What does the way you read say about you?',
+  description: 'Not what genre you like — who you actually are as a reader.',
+  questions: [
+    {
+      id: 'rp-q1',
+      text: 'It\'s 11pm. You\'re tired but you open a book anyway. Why?',
+      options: [
+        { id: 'a', text: 'I need to escape whatever today was', scores: { escapist: 3, dreamer: 1 } },
+        { id: 'b', text: 'I\'m chasing a feeling I can\'t get anywhere else', scores: { feeler: 3, escapist: 1 } },
+        { id: 'c', text: 'My brain won\'t turn off and reading is the only thing that works', scores: { thinker: 3 } },
+        { id: 'd', text: 'I just need to find out what happens', scores: { addict: 3, feeler: 1 } },
+      ],
+    },
+    {
+      id: 'rp-q2',
+      text: 'A book wrecked you emotionally. Your first instinct is:',
+      options: [
+        { id: 'a', text: 'Sit quietly with it — I need to process alone', scores: { dreamer: 3, feeler: 1 } },
+        { id: 'b', text: 'Text someone immediately — they need to read this', scores: { feeler: 3, addict: 1 } },
+        { id: 'c', text: 'Write something — a note, a review, anything', scores: { thinker: 3 } },
+        { id: 'd', text: 'Start the next book — I need the feeling to continue', scores: { addict: 3, escapist: 1 } },
+      ],
+    },
+    {
+      id: 'rp-q3',
+      text: 'The last book you couldn\'t put down — what made it that way?',
+      options: [
+        { id: 'a', text: 'I had to know how it ended — the plot had me hostage', scores: { addict: 3 } },
+        { id: 'b', text: 'I was so deep in the world I forgot I was reading', scores: { escapist: 3, dreamer: 1 } },
+        { id: 'c', text: 'The characters felt more real than most people I know', scores: { feeler: 3, thinker: 1 } },
+        { id: 'd', text: 'The writing itself — every sentence was doing something', scores: { thinker: 3 } },
+      ],
+    },
+    {
+      id: 'rp-q4',
+      text: 'Be honest: how do you feel about a slow-burn book?',
+      options: [
+        { id: 'a', text: 'Love it — atmosphere and depth are the whole point', scores: { dreamer: 3, thinker: 1 } },
+        { id: 'b', text: 'Fine, as long as the emotional payoff eventually arrives', scores: { feeler: 3 } },
+        { id: 'c', text: 'Depends — I need to be in the right mood', scores: { escapist: 2, dreamer: 1 } },
+        { id: 'd', text: 'I lose patience — I need things to keep happening', scores: { addict: 3 } },
+      ],
+    },
+    {
+      id: 'rp-q5',
+      text: 'What does reading actually give you that nothing else does?',
+      options: [
+        { id: 'a', text: 'A way to feel things safely — big emotions without consequences', scores: { feeler: 3, dreamer: 1 } },
+        { id: 'b', text: 'A way out — another world when this one is too much', scores: { escapist: 3 } },
+        { id: 'c', text: 'A way to understand — myself, other people, everything', scores: { thinker: 3, feeler: 1 } },
+        { id: 'd', text: 'A way to feel alive — the narrative rush is like nothing else', scores: { addict: 3, escapist: 1 } },
+      ],
+    },
+    {
+      id: 'rp-q6',
+      text: 'Someone asks what kind of books you read. You say:',
+      options: [
+        { id: 'a', text: '"Whatever makes me feel something"', scores: { feeler: 3 } },
+        { id: 'b', text: '"Anything that pulls me completely out of my head"', scores: { escapist: 3, addict: 1 } },
+        { id: 'c', text: '"Good writing — I care more about prose than plot"', scores: { thinker: 3, dreamer: 1 } },
+        { id: 'd', text: '"I don\'t really have a type — I just always have a book"', scores: { addict: 2, escapist: 1, dreamer: 1 } },
+      ],
+    },
+  ],
+  results: [
+    {
+      id: 'feeler',
+      title: 'The Feeler',
+      emoji: '🫀',
+      tagline: 'You don\'t just read books. You live inside them.',
+      description: 'You read for emotional truth. The books that stay with you aren\'t the ones with the cleverest plots — they\'re the ones that cracked something open. You cry at fiction because you\'re paying attention. You finish a book and feel genuinely changed. That\'s not ordinary. Most people never let stories get that close.',
+      readingDirections: ['Character-driven literary fiction with devastating emotional honesty', 'Contemporary stories about love, grief, and the things we can\'t say out loud', 'Quiet, precise books that reward being fully present'],
+      whyAppHelps: 'My Next Book maps emotional resonance as its own dimension — your feed will be full of books that actually get to you, not just books that are technically good.',
+    },
+    {
+      id: 'escapist',
+      title: 'The Escape Artist',
+      emoji: '🌌',
+      tagline: 'You read to disappear completely. And you\'re good at it.',
+      description: 'You have a rare ability — you can fully enter a book and leave everything else behind. You\'re not using fiction to avoid your life. You\'re using it to remember there are other ones. The best books you\'ve ever read left you genuinely disoriented when you resurfaced, like waking from a vivid, better dream.',
+      readingDirections: ['Immersive fantasy and speculative fiction with worlds that feel lived-in', 'Atmospheric literary fiction where place becomes character', 'Epic stories with a cast large enough to disappear into'],
+      whyAppHelps: 'My Next Book tracks immersion depth and world-building richness separately — so your feed is always stocked with books capable of the real disappearing act.',
+    },
+    {
+      id: 'thinker',
+      title: 'The Slow Reader',
+      emoji: '🧠',
+      tagline: 'You read to understand things. Most people just read to finish.',
+      description: 'You underline sentences. You reread paragraphs. You close the book and stare at the ceiling because something just rearranged itself in your head. You\'re not a slow reader because you\'re slow — you\'re slow because you\'re extracting everything. The books that matter most to you are the ones that changed how you think about something real.',
+      readingDirections: ['Literary fiction and essays where the prose itself is the point', 'Ambitious non-fiction narrative that reads like the best novels', 'Translated literature from voices and worlds you haven\'t encountered yet'],
+      whyAppHelps: 'My Next Book tracks intellectual complexity, prose ambition, and idea density as real taste signals — your feed will challenge you the way you actually want to be challenged.',
+    },
+    {
+      id: 'addict',
+      title: 'The Book Addict',
+      emoji: '📚',
+      tagline: 'You\'re not reading a book. You\'re always reading a book.',
+      description: 'You have a book in every room. You read in lines, between meetings, while the pasta boils. You\'ve read a whole novel in a day when a plot had you completely. For you, reading isn\'t a hobby — it\'s just part of how you function. The question is never whether you\'re reading something, it\'s whether what you\'re reading is good enough.',
+      readingDirections: ['Propulsive fiction that respects your time and doesn\'t let you down', 'Series with satisfying installments so the feeling never has to end', 'Short story collections for when you have twenty minutes and need a full experience'],
+      whyAppHelps: 'My Next Book learns your reading pace and how you respond to different structures — so there\'s always something worthy waiting when you inevitably finish the current one.',
+    },
+    {
+      id: 'dreamer',
+      title: 'The Slow Burn Reader',
+      emoji: '🕯️',
+      tagline: 'You don\'t rush books. You let them arrive.',
+      description: 'You carry a book for weeks sometimes. You\'re not distracted — you\'re savoring. You read three pages, set it down, think about it for two days, then come back. The books you love most aren\'t the ones you raced through — they\'re the ones that existed alongside your actual life for a while. You have a more intimate relationship with stories than most readers ever will.',
+      readingDirections: ['Atmospheric, lyrical fiction where mood matters as much as plot', 'Books with beautiful sentences worth returning to', 'Short novels and novellas where length matches the intimacy you prefer'],
+      whyAppHelps: 'My Next Book tracks reading pace preference and atmospheric density as separate signals — your feed will always have something worth savoring, never something that demands to be rushed.',
+    },
+  ],
+  resultLogic: (scores) => {
+    const order = ['feeler', 'escapist', 'thinker', 'addict', 'dreamer']
+    return order.reduce((a, b) => (scores[a] ?? 0) >= (scores[b] ?? 0) ? a : b)
+  },
+}
+
 export const QUIZZES: Record<string, QuizConfig> = {
   'what-should-i-read-next': WHAT_NEXT,
   'book-personality': BOOK_PERSONALITY,
   'booktok-recommendations': BOOKTOK,
   'reading-slump': SLUMP,
   'genre-match': GENRE_MATCH,
+  'reading-personality': READING_PERSONALITY,
 }
 
 export function getQuiz(slug: string): QuizConfig | null {
