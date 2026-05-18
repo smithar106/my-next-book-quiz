@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { getQuiz, computeResult } from '@/lib/quizzes'
 import { getResultContent } from '@/lib/resultContent'
-import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl } from '@/lib/attribution'
+import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl, persistResult } from '@/lib/attribution'
 import {
   trackEvent, createSession, saveAnswers, saveResult, captureEmail, genSessionId,
 } from '@/lib/tracking'
@@ -75,6 +75,8 @@ export function QuizClient({ slug, rawParams }: Props) {
       saveResult(sessionId.current, config!.id, result.id)
       trackEvent(sessionId.current, 'quiz_completed', config!.id, { result_id: result.id })
       trackEvent(sessionId.current, 'result_viewed', config!.id, { result_id: result.id })
+      const rc = getResultContent(result.id)
+      persistResult(result.id, rc?.archetypeName ?? result.title, config!.id)
     }
     setPhase('result')
   }
@@ -106,8 +108,38 @@ export function QuizClient({ slug, rawParams }: Props) {
   }
 
   function handleAppStoreClick(source = 'result_cta') {
-    trackEvent(sessionId.current, 'app_store_clicked', config!.id, { source })
-    window.open(buildAppStoreUrl(APP_STORE_URL, attr.current), '_blank', 'noopener')
+    const archetypeName = content?.archetypeName ?? result?.title ?? ''
+    trackEvent(sessionId.current, 'app_store_clicked', config!.id, {
+      source,
+      result_id: result?.id,
+      archetype_name: archetypeName,
+      ...attr.current,
+    })
+    window.open(
+      buildAppStoreUrl(APP_STORE_URL, attr.current, {
+        result_id: result?.id,
+        archetype_name: archetypeName,
+        quiz_id: config!.id,
+      }),
+      '_blank', 'noopener',
+    )
+  }
+
+  function handleStickyCtaClick() {
+    const archetypeName = content?.archetypeName ?? result?.title ?? ''
+    trackEvent(sessionId.current, 'sticky_cta_clicked', config!.id, {
+      result_id: result?.id,
+      archetype_name: archetypeName,
+      ...attr.current,
+    })
+    window.open(
+      buildAppStoreUrl(APP_STORE_URL, attr.current, {
+        result_id: result?.id,
+        archetype_name: archetypeName,
+        quiz_id: config!.id,
+      }),
+      '_blank', 'noopener',
+    )
   }
 
   const result = phase === 'result' ? computeResult(config, answers) : null
@@ -243,6 +275,32 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Similar books */}
           {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} />}
 
+          {/* Email (above App CTA) */}
+          {!emailSent ? (
+            <div style={s.card}>
+              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Get your full reading identity breakdown</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
+                Your archetype, the books that match it, and what it says about how you read — delivered to your inbox.
+              </p>
+              <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                <input
+                  type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com" required style={s.emailInput}
+                />
+                <button type="submit" disabled={emailLoading} style={s.emailBtn}>
+                  {emailLoading ? '...' : 'Save →'}
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div style={{ ...s.card, textAlign: 'center' }}>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Now continue in the app.</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 8 }}>
+                Your feed will be tuned to {content?.archetypeName ?? 'your result'} from the moment you open it.
+              </p>
+            </div>
+          )}
+
           {/* App CTA */}
           <AppCtaSection
             result={result}
@@ -262,30 +320,9 @@ export function QuizClient({ slug, rawParams }: Props) {
               archetypeName={content.archetypeName}
               shareText={content.shareText}
               resultId={result.id}
+              sessionId={sessionId.current}
+              quizId={config!.id}
             />
-          )}
-
-          {/* Email */}
-          {!emailSent ? (
-            <div style={s.card}>
-              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your result</p>
-              <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Get your result by email — optional.
-              </p>
-              <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <input
-                  type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com" required style={s.emailInput}
-                />
-                <button type="submit" disabled={emailLoading} style={s.emailBtn}>
-                  {emailLoading ? '...' : 'Save →'}
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div style={{ ...s.card, textAlign: 'center' }}>
-              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ Saved. Now download the app.</p>
-            </div>
           )}
 
           <div style={{ textAlign: 'center', marginTop: 32 }}>
@@ -297,7 +334,7 @@ export function QuizClient({ slug, rawParams }: Props) {
         <StickyCTA
           visible={stickyCta}
           ctaCopy={ctaCopy}
-          onClick={() => handleAppStoreClick('sticky_cta')}
+          onClick={handleStickyCtaClick}
         />
       </main>
     )
@@ -449,16 +486,21 @@ function ReadingContinuationSection({ features }: { features: string[] }) {
   )
 }
 
-function ShareResultButton({ archetypeName, shareText, resultId }: { archetypeName: string; shareText: string; resultId: string }) {
+function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quizId }: { archetypeName: string; shareText: string; resultId: string; sessionId: string; quizId: string }) {
   const [copied, setCopied] = useState(false)
 
   async function handleShare() {
+    trackEvent(sessionId, 'share_clicked', quizId, {
+      result_id: resultId,
+      archetype_name: archetypeName,
+    })
     const base = typeof window !== 'undefined' ? window.location.href.split('?')[0] : ''
     const url = `${base}?result=${resultId}`
-    const fullText = `${shareText} ${url}`
+    const updatedShareText = `I got ${archetypeName} on My Next Book — find out your reader type:`
+    const fullText = `${updatedShareText} ${url}`
     if (navigator.share) {
       try {
-        await navigator.share({ title: `I'm "${archetypeName}"`, text: shareText, url })
+        await navigator.share({ title: `I'm "${archetypeName}"`, text: updatedShareText, url })
         return
       } catch {
         // fall through to clipboard

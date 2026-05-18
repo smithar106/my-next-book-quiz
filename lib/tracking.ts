@@ -9,6 +9,8 @@ export type EventName =
   | 'result_viewed'
   | 'email_submitted'
   | 'app_store_clicked'
+  | 'sticky_cta_clicked'
+  | 'share_clicked'
 
 export function trackEvent(
   sessionId: string,
