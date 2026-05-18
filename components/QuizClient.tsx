@@ -304,7 +304,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             <div style={s.card}>
               <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Get your full reading identity breakdown</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Your archetype, the books that match it, and what it says about how you read — delivered to your inbox.
+                Your reader type, the books that match it, and what it says about how you read — delivered to your inbox.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
