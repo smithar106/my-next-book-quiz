@@ -275,7 +275,31 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Similar books */}
           {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} />}
 
-          {/* Email (above App CTA) */}
+          {/* App CTA — primary action at emotional peak */}
+          <AppCtaSection
+            result={result}
+            content={content}
+            ctaCopy={ctaCopy}
+            onCtaClick={() => handleAppStoreClick('result_main_cta')}
+          />
+
+          {/* Continuation features */}
+          {content?.continuationFeatures && (
+            <ReadingContinuationSection features={content.continuationFeatures} />
+          )}
+
+          {/* Share */}
+          {content && result && (
+            <ShareResultButton
+              archetypeName={content.archetypeName}
+              shareText={content.shareText}
+              resultId={result.id}
+              sessionId={sessionId.current}
+              quizId={config!.id}
+            />
+          )}
+
+          {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
             <div style={s.card}>
               <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Get your full reading identity breakdown</p>
@@ -299,30 +323,6 @@ export function QuizClient({ slug, rawParams }: Props) {
                 Your feed will be tuned to {content?.archetypeName ?? 'your result'} from the moment you open it.
               </p>
             </div>
-          )}
-
-          {/* App CTA */}
-          <AppCtaSection
-            result={result}
-            content={content}
-            ctaCopy={ctaCopy}
-            onCtaClick={() => handleAppStoreClick('result_main_cta')}
-          />
-
-          {/* Continuation features */}
-          {content?.continuationFeatures && (
-            <ReadingContinuationSection features={content.continuationFeatures} />
-          )}
-
-          {/* Share */}
-          {content && result && (
-            <ShareResultButton
-              archetypeName={content.archetypeName}
-              shareText={content.shareText}
-              resultId={result.id}
-              sessionId={sessionId.current}
-              quizId={config!.id}
-            />
           )}
 
           <div style={{ textAlign: 'center', marginTop: 32 }}>
