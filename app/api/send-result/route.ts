@@ -1,7 +1,7 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const getResend = () => new Resend(process.env.RESEND_API_KEY)
 
 const NOTIFY_EMAIL = 'smithar106@gmail.com'
 const FROM_EMAIL = 'My Next Book <quiz@mynextbook.me>'
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     `).join('') ?? ''
 
     // Send result to user
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_EMAIL,
       to: email,
       subject: `Your reader type: ${archetypeName}`,
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     })
 
     // Notify owner
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_EMAIL,
       to: NOTIFY_EMAIL,
       subject: `New quiz signup: ${archetypeName}`,
