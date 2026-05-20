@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
 
                 <!-- CTA -->
                 <tr><td style="padding-top:32px;text-align:center">
-                  <a href="https://apps.apple.com/app/id6743767654" style="display:inline-block;background:#B89AFF;color:#120F1C;font-size:16px;font-weight:800;padding:16px 40px;border-radius:14px;text-decoration:none">
+                  <a href="https://apps.apple.com/app/id6763831526" style="display:inline-block;background:#B89AFF;color:#120F1C;font-size:16px;font-weight:800;padding:16px 40px;border-radius:14px;text-decoration:none">
                     Download My Next Book →
                   </a>
                   <p style="margin:12px 0 0;font-size:12px;color:#A097C0">Free · 7-day Pro trial · No credit card</p>
