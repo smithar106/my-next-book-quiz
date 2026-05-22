@@ -482,7 +482,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
         {ctaCopy}
       </button>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12, textAlign: 'center' }}>
-        Free to start · 7-day Pro trial · No credit card
+        Free to start · 14-day free trial · No credit card
       </p>
     </div>
   )
