@@ -398,9 +398,14 @@ function MoodBoard({ tiles }: { tiles: import('@/lib/resultContent').MoodTile[] 
             background: `linear-gradient(135deg, ${tile.from} 0%, ${tile.to} 100%)`,
             border: `1px solid ${tile.borderColor}`,
             borderRadius: 18, padding: '20px 18px',
-            display: 'flex', flexDirection: 'column', gap: 4,
+            display: 'flex', flexDirection: 'column', gap: 6,
           }}>
-            <span style={{ fontSize: 20, fontWeight: 900, letterSpacing: '-0.5px', color: tile.textColor, lineHeight: 1 }}>
+            {tile.icon && (
+              <span style={{ fontSize: 16, color: tile.subColor, lineHeight: 1, marginBottom: 2 }}>
+                {tile.icon}
+              </span>
+            )}
+            <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.5px', color: tile.textColor, lineHeight: 1 }}>
               {tile.word}
             </span>
             <span style={{ fontSize: 12, fontWeight: 600, color: tile.subColor, textTransform: 'uppercase', letterSpacing: '1px' }}>
@@ -421,13 +426,24 @@ function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').S
         {books.map((book, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
             <div style={{
-              width: 36, height: 48, borderRadius: 6, flexShrink: 0,
+              width: 36, height: 52, borderRadius: 6, flexShrink: 0,
               background: `hsl(${250 + i * 30}, 40%, 22%)`,
               border: '1px solid rgba(200,176,255,0.18)',
+              overflow: 'hidden',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 16,
             }}>
-              📖
+              {book.isbn ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-S.jpg`}
+                  alt={book.title}
+                  width={36}
+                  height={52}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              ) : '📖'}
             </div>
             <div>
               <p style={{ fontWeight: 800, fontSize: 14, marginBottom: 2 }}>{book.title}</p>

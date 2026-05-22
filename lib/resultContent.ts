@@ -4,6 +4,7 @@
 export interface MoodTile {
   word: string
   sub: string
+  icon?: string
   from: string
   to: string
   textColor: string
@@ -15,6 +16,7 @@ export interface SimilarBook {
   title: string
   author: string
   note: string
+  isbn?: string
 }
 
 export interface ResultContent {
@@ -30,43 +32,43 @@ export interface ResultContent {
 
 const T = {
   // reusable tile factories
-  purple: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  purple: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#1E1638', to: '#120F22',
     textColor: '#C8B0FF', subColor: '#7A6A9A', borderColor: 'rgba(200,176,255,0.22)',
   }),
-  rose: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  rose: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#221228', to: '#130A18',
     textColor: '#F0A0C8', subColor: '#8A6080', borderColor: 'rgba(240,160,200,0.22)',
   }),
-  amber: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  amber: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#201A10', to: '#130F08',
     textColor: '#FFD090', subColor: '#8A7050', borderColor: 'rgba(255,208,144,0.22)',
   }),
-  teal: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  teal: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#0E1E22', to: '#081418',
     textColor: '#80D8D0', subColor: '#407878', borderColor: 'rgba(128,216,208,0.22)',
   }),
-  crimson: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  crimson: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#221010', to: '#140808',
     textColor: '#FF9090', subColor: '#7A4040', borderColor: 'rgba(255,144,144,0.22)',
   }),
-  slate: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  slate: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#141824', to: '#0C1018',
     textColor: '#9090C8', subColor: '#505070', borderColor: 'rgba(144,144,200,0.22)',
   }),
-  gold: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  gold: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#1E1808', to: '#130F04',
     textColor: '#F0C060', subColor: '#806830', borderColor: 'rgba(240,192,96,0.22)',
   }),
-  green: (word: string, sub: string): MoodTile => ({
-    word, sub,
+  green: (word: string, sub: string, icon?: string): MoodTile => ({
+    word, sub, icon,
     from: '#0E1E14', to: '#08140C',
     textColor: '#80D890', subColor: '#407848', borderColor: 'rgba(128,216,144,0.22)',
   }),
@@ -80,15 +82,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Heartbreak Collector" on My Next Book 📚 Apparently I only want books that emotionally devastate me. Find yours:',
     ctaCopy: 'Build My Reading Feed',
     moodTiles: [
-      T.rose('FELT', 'deeply'),
-      T.purple('STAYED', 'with me'),
-      T.rose('ACHED', 'beautifully'),
-      T.purple('TRUE', 'and hard'),
+      T.rose('FELT', 'deeply', '♥'),
+      T.purple('STAYED', 'with me', '◆'),
+      T.rose('ACHED', 'beautifully', '♥'),
+      T.purple('TRUE', 'and hard', '◆'),
     ],
     similarBooks: [
-      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Your kind of devastating.' },
-      { title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin', note: 'Hits differently.' },
-      { title: 'Lessons in Chemistry', author: 'Bonnie Garmus', note: 'Emotionally precise.' },
+      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Your kind of devastating.', isbn: '9780804172707' },
+      { title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin', note: 'Hits differently.', isbn: '9780593321201' },
+      { title: 'Lessons in Chemistry', author: 'Bonnie Garmus', note: 'Emotionally precise.', isbn: '9780385547353' },
     ],
     continuationFeatures: [
       'Emotional intensity tracked across every swipe',
@@ -105,15 +107,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Atmospheric Dreamer" on My Next Book 📚 I read to escape into worlds that feel like home. Find yours:',
     ctaCopy: 'Open My Reading Profile',
     moodTiles: [
-      T.amber('WARM', 'and still'),
-      T.green('SOFT', 'landing'),
-      T.amber('SAFE', 'worlds'),
-      T.green('LINGER', 'here'),
+      T.amber('WARM', 'and still', '○'),
+      T.green('SOFT', 'landing', '✦'),
+      T.amber('SAFE', 'worlds', '○'),
+      T.green('LINGER', 'here', '✦'),
     ],
     similarBooks: [
-      { title: 'The Thursday Murder Club', author: 'Richard Osman', note: 'Clever and warm.' },
-      { title: 'Remarkably Bright Creatures', author: 'Shelby Van Pelt', note: 'Exactly this vibe.' },
-      { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.' },
+      { title: 'The Thursday Murder Club', author: 'Richard Osman', note: 'Clever and warm.', isbn: '9781984880963' },
+      { title: 'Remarkably Bright Creatures', author: 'Shelby Van Pelt', note: 'Exactly this vibe.', isbn: '9780778386261' },
+      { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906' },
     ],
     continuationFeatures: [
       'Comfort level tracked — so no dark surprises',
@@ -130,15 +132,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Beautifully Damaged Intellectual" on My Next Book 📚 Apparently I only want beautifully haunted books. Find yours:',
     ctaCopy: 'Unlock My Next Obsession',
     moodTiles: [
-      T.slate('HAUNTED', 'perfectly'),
-      T.purple('COMPLEX', 'morality'),
-      T.slate('SHADOW', 'beautiful'),
-      T.purple('GOTHIC', 'depth'),
+      T.slate('HAUNTED', 'perfectly', '◆'),
+      T.purple('COMPLEX', 'morality', '✦'),
+      T.slate('SHADOW', 'beautiful', '◆'),
+      T.purple('GOTHIC', 'depth', '✦'),
     ],
     similarBooks: [
-      { title: 'The Secret History', author: 'Donna Tartt', note: 'The original.' },
-      { title: 'Piranesi', author: 'Susanna Clarke', note: 'Beautifully strange.' },
-      { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Unapologetically dark.' },
+      { title: 'The Secret History', author: 'Donna Tartt', note: 'The original.', isbn: '9781400031702' },
+      { title: 'Piranesi', author: 'Susanna Clarke', note: 'Beautifully strange.', isbn: '9781635575637' },
+      { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Unapologetically dark.', isbn: '9780525522133' },
     ],
     continuationFeatures: [
       'Darkness level tracked separately from violence',
@@ -155,15 +157,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Obsessive Completionist" on My Next Book 📚 I literally cannot put books down. Find your reading type:',
     ctaCopy: 'Get My Personalized Library',
     moodTiles: [
-      T.teal('HOOKED', 'instantly'),
-      T.crimson('RACING', 'pulse'),
-      T.teal('CAN\'T', 'stop'),
-      T.crimson('TWIST', 'coming'),
+      T.teal('HOOKED', 'instantly', '⚡'),
+      T.crimson('RACING', 'pulse', '◈'),
+      T.teal('CAN\'T', 'stop', '⚡'),
+      T.crimson('TWIST', 'coming', '◈'),
     ],
     similarBooks: [
-      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Set the standard.' },
-      { title: 'Verity', author: 'Colleen Hoover', note: 'Couldn\'t look away.' },
-      { title: 'The Silent Patient', author: 'Alex Michaelides', note: 'Finished in a day.' },
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Set the standard.', isbn: '9780307588371' },
+      { title: 'Verity', author: 'Colleen Hoover', note: 'Couldn\'t look away.', isbn: '9781538724736' },
+      { title: 'The Silent Patient', author: 'Alex Michaelides', note: 'Finished in a day.', isbn: '9781250301697' },
     ],
     continuationFeatures: [
       'Pacing tracked as its own taste dimension',
@@ -180,15 +182,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Morally Grey Romantic" on My Next Book 📚 I need enemies-to-lovers and I\'m not embarrassed. Find yours:',
     ctaCopy: 'Continue My Reading Journey',
     moodTiles: [
-      T.rose('LONGING', 'slow burn'),
-      T.purple('ELECTRIC', 'tension'),
-      T.rose('EARNED', 'feeling'),
-      T.purple('FINALLY', 'yes'),
+      T.rose('LONGING', 'slow burn', '♥'),
+      T.purple('ELECTRIC', 'tension', '✦'),
+      T.rose('EARNED', 'feeling', '♥'),
+      T.purple('FINALLY', 'yes', '✦'),
     ],
     similarBooks: [
-      { title: 'Beach Read', author: 'Emily Henry', note: 'Sharp, witty, warm.' },
-      { title: 'The Hating Game', author: 'Sally Thorne', note: 'Slow burn perfection.' },
-      { title: 'People We Meet on Vacation', author: 'Emily Henry', note: 'Earned every page.' },
+      { title: 'Beach Read', author: 'Emily Henry', note: 'Sharp, witty, warm.', isbn: '9781250790750' },
+      { title: 'The Hating Game', author: 'Sally Thorne', note: 'Slow burn perfection.', isbn: '9780062439598' },
+      { title: 'People We Meet on Vacation', author: 'Emily Henry', note: 'Earned every page.', isbn: '9781250776181' },
     ],
     continuationFeatures: [
       'Tropes tracked: slow burn, enemies-to-lovers, forced proximity',
@@ -205,15 +207,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Obsessive Escapist" on My Next Book 📚 I read to completely vanish. Find your reader type:',
     ctaCopy: 'Build My Reading Feed',
     moodTiles: [
-      T.purple('LOST', 'in it'),
-      T.rose('LIVED', 'fully'),
-      T.purple('MISSED', 'like home'),
-      T.rose('PORTAL', 'open'),
+      T.purple('LOST', 'in it', '✦'),
+      T.rose('LIVED', 'fully', '◆'),
+      T.purple('MISSED', 'like home', '✦'),
+      T.rose('PORTAL', 'open', '◆'),
     ],
     similarBooks: [
-      { title: 'The God of Small Things', author: 'Arundhati Roy', note: 'Never leaves you.' },
-      { title: 'Normal People', author: 'Sally Rooney', note: 'Completely transported.' },
-      { title: 'Intermezzo', author: 'Sally Rooney', note: 'Fully lived in.' },
+      { title: 'The God of Small Things', author: 'Arundhati Roy', note: 'Never leaves you.', isbn: '9780812979657' },
+      { title: 'Normal People', author: 'Sally Rooney', note: 'Completely transported.', isbn: '9780571334650' },
+      { title: 'Intermezzo', author: 'Sally Rooney', note: 'Fully lived in.', isbn: '9780374614997' },
     ],
     continuationFeatures: [
       'Immersion depth tracked as a real signal',
@@ -230,15 +232,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Literary Overthinker" on My Next Book 📚 I genuinely annotate fiction and I stand by it. Find yours:',
     ctaCopy: 'Open My Reading Profile',
     moodTiles: [
-      T.gold('PRECISE', 'language'),
-      T.slate('LAYERED', 'meaning'),
-      T.gold('REREAD', 'this line'),
-      T.slate('CHANGED', 'something'),
+      T.gold('PRECISE', 'language', '◎'),
+      T.slate('LAYERED', 'meaning', '◆'),
+      T.gold('REREAD', 'this line', '◎'),
+      T.slate('CHANGED', 'something', '◆'),
     ],
     similarBooks: [
-      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.' },
-      { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.' },
-      { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.', isbn: '9780679731726' },
+      { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.', isbn: '9780385350570' },
+      { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.', isbn: '9781590171714' },
     ],
     continuationFeatures: [
       'Prose complexity tracked as a taste dimension',
@@ -255,15 +257,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Tension Addict" on My Next Book 📚 I have read entire books just to find out who did it. Find yours:',
     ctaCopy: 'Unlock My Next Obsession',
     moodTiles: [
-      T.crimson('SUSPECT', 'everyone'),
-      T.slate('SHADOWS', 'everywhere'),
-      T.crimson('MIDNIGHT', 'reading'),
-      T.slate('TWIST', 'earned'),
+      T.crimson('SUSPECT', 'everyone', '◈'),
+      T.slate('SHADOWS', 'everywhere', '◆'),
+      T.crimson('MIDNIGHT', 'reading', '◈'),
+      T.slate('TWIST', 'earned', '◆'),
     ],
     similarBooks: [
-      { title: 'Behind Closed Doors', author: 'B.A. Paris', note: 'Can\'t breathe reading it.' },
-      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.' },
-      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.' },
+      { title: 'Behind Closed Doors', author: 'B.A. Paris', note: 'Can\'t breathe reading it.', isbn: '9781250122940' },
+      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492' },
+      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734' },
     ],
     continuationFeatures: [
       'Tension curve tracked across your reading history',
@@ -280,15 +282,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The World-Lost Wanderer" on My Next Book 📚 I miss fictional worlds like real places. Find yours:',
     ctaCopy: 'Get My Personalized Library',
     moodTiles: [
-      T.purple('WORLDS', 'complete'),
-      T.teal('MAGIC', 'systems'),
-      T.purple('LORE', 'deep'),
-      T.teal('MAPS', 'studied'),
+      T.purple('WORLDS', 'complete', '✦'),
+      T.teal('MAGIC', 'systems', '◎'),
+      T.purple('LORE', 'deep', '✦'),
+      T.teal('MAPS', 'studied', '◎'),
     ],
     similarBooks: [
-      { title: 'The Name of the Wind', author: 'Patrick Rothfuss', note: 'Lives rent-free in your head.' },
-      { title: 'Ninth House', author: 'Leigh Bardugo', note: 'Dark academia meets fantasy.' },
-      { title: 'Piranesi', author: 'Susanna Clarke', note: 'A world unlike any other.' },
+      { title: 'The Name of the Wind', author: 'Patrick Rothfuss', note: 'Lives rent-free in your head.', isbn: '9780756404741' },
+      { title: 'Ninth House', author: 'Leigh Bardugo', note: 'Dark academia meets fantasy.', isbn: '9781250313072' },
+      { title: 'Piranesi', author: 'Susanna Clarke', note: 'A world unlike any other.', isbn: '9781635575637' },
     ],
     continuationFeatures: [
       'World-building depth tracked as its own dimension',
@@ -305,15 +307,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Reluctant Returner" on My Next Book 📚 I\'m in a reading slump and this is my slump-breaker type. Find yours:',
     ctaCopy: 'Find My Way Back',
     moodTiles: [
-      T.teal('SHORT', 'and whole'),
-      T.green('DONE', 'in one sit'),
-      T.teal('EASY', 'entry'),
-      T.green('BACK', 'in it'),
+      T.teal('SHORT', 'and whole', '⚡'),
+      T.green('DONE', 'in one sit', '○'),
+      T.teal('EASY', 'entry', '⚡'),
+      T.green('BACK', 'in it', '○'),
     ],
     similarBooks: [
-      { title: 'Giovanni\'s Room', author: 'James Baldwin', note: '88 pages. Unforgettable.' },
-      { title: 'The Vegetarian', author: 'Han Kang', note: 'Short, strange, stays with you.' },
-      { title: 'Of Mice and Men', author: 'John Steinbeck', note: 'Read it in one sitting.' },
+      { title: 'Giovanni\'s Room', author: 'James Baldwin', note: '88 pages. Unforgettable.', isbn: '9780385333573' },
+      { title: 'The Vegetarian', author: 'Han Kang', note: 'Short, strange, stays with you.', isbn: '9781101906118' },
+      { title: 'Of Mice and Men', author: 'John Steinbeck', note: 'Read it in one sitting.', isbn: '9780140177398' },
     ],
     continuationFeatures: [
       'Length preference tracked and respected',
@@ -330,15 +332,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Cozy Emotionalist" on My Next Book 📚 I\'m in a reading slump and I need safe warm books. Find yours:',
     ctaCopy: 'Build My Reading Feed',
     moodTiles: [
-      T.amber('SAFE', 'here'),
-      T.green('WARM', 'always'),
-      T.amber('GENTLE', 'pacing'),
-      T.green('REST', 'now'),
+      T.amber('SAFE', 'here', '○'),
+      T.green('WARM', 'always', '✦'),
+      T.amber('GENTLE', 'pacing', '○'),
+      T.green('REST', 'now', '✦'),
     ],
     similarBooks: [
-      { title: 'Eleanor Oliphant is Completely Fine', author: 'Gail Honeyman', note: 'Cozy emotional reset.' },
-      { title: 'The Rosie Project', author: 'Graeme Simsion', note: 'Zero stress, full heart.' },
-      { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.' },
+      { title: 'Eleanor Oliphant is Completely Fine', author: 'Gail Honeyman', note: 'Cozy emotional reset.', isbn: '9780735220683' },
+      { title: 'The Rosie Project', author: 'Graeme Simsion', note: 'Zero stress, full heart.', isbn: '9781476729084' },
+      { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906' },
     ],
     continuationFeatures: [
       'Stress level tracked — dark twists filtered out',
@@ -355,15 +357,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Quiet Depth Seeker" on My Next Book 📚 I want literary fiction that genuinely moves me. Find yours:',
     ctaCopy: 'Open My Reading Profile',
     moodTiles: [
-      T.gold('PRECISE', 'and true'),
-      T.slate('QUIET', 'depth'),
-      T.gold('OBSERVES', 'clearly'),
-      T.slate('LINGERS', 'after'),
+      T.gold('PRECISE', 'and true', '◎'),
+      T.slate('QUIET', 'depth', '◆'),
+      T.gold('OBSERVES', 'clearly', '◎'),
+      T.slate('LINGERS', 'after', '◆'),
     ],
     similarBooks: [
-      { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.' },
-      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Demands full attention.' },
-      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.' },
+      { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.', isbn: '9780812971835' },
+      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Demands full attention.', isbn: '9780063251311' },
+      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405' },
     ],
     continuationFeatures: [
       'Literary sub-genre precision tracked over time',
@@ -380,15 +382,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Pattern Hunter" on My Next Book 📚 I\'m a mystery reader who actually figures it out early. Find yours:',
     ctaCopy: 'Unlock My Next Obsession',
     moodTiles: [
-      T.slate('CLUES', 'scattered'),
-      T.teal('PATTERN', 'found'),
-      T.slate('SUSPECT', 'noted'),
-      T.teal('SOLVED', 'almost'),
+      T.slate('CLUES', 'scattered', '◈'),
+      T.teal('PATTERN', 'found', '✦'),
+      T.slate('SUSPECT', 'noted', '◈'),
+      T.teal('SOLVED', 'almost', '✦'),
     ],
     similarBooks: [
-      { title: 'And Then There Were None', author: 'Agatha Christie', note: 'Still the best.' },
-      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.' },
-      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.' },
+      { title: 'And Then There Were None', author: 'Agatha Christie', note: 'Still the best.', isbn: '9780062073488' },
+      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492' },
+      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734' },
     ],
     continuationFeatures: [
       'Cozy vs. dark mystery split calibrated',
@@ -405,15 +407,15 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     shareText: 'I got "The Lived-Life Collector" on My Next Book 📚 I\'m a memoir reader who wants real lives that expand mine. Find yours:',
     ctaCopy: 'Continue My Reading Journey',
     moodTiles: [
-      T.gold('REAL', 'and earned'),
-      T.amber('LIVED', 'fully'),
-      T.gold('HONEST', 'always'),
-      T.amber('EXPANDED', 'me'),
+      T.gold('REAL', 'and earned', '◎'),
+      T.amber('LIVED', 'fully', '○'),
+      T.gold('HONEST', 'always', '◎'),
+      T.amber('EXPANDED', 'me', '○'),
     ],
     similarBooks: [
-      { title: 'Educated', author: 'Tara Westover', note: 'Jaw-dropping real life.' },
-      { title: 'The Anthropocene Reviewed', author: 'John Green', note: 'Essays that expand you.' },
-      { title: 'Know My Name', author: 'Chanel Miller', note: 'Important. Beautiful.' },
+      { title: 'Educated', author: 'Tara Westover', note: 'Jaw-dropping real life.', isbn: '9780399590504' },
+      { title: 'The Anthropocene Reviewed', author: 'John Green', note: 'Essays that expand you.', isbn: '9780525555216' },
+      { title: 'Know My Name', author: 'Chanel Miller', note: 'Important. Beautiful.', isbn: '9780735223707' },
     ],
     continuationFeatures: [
       'Memoir sub-type tracked (trauma, nature, essays, humor)',
