@@ -430,20 +430,22 @@ function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').S
               background: `hsl(${250 + i * 30}, 40%, 22%)`,
               border: '1px solid rgba(200,176,255,0.18)',
               overflow: 'hidden',
+              position: 'relative',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 16,
             }}>
-              {book.isbn ? (
+              <span>📖</span>
+              {book.isbn && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-S.jpg`}
                   alt={book.title}
                   width={36}
                   height={52}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                 />
-              ) : '📖'}
+              )}
             </div>
             <div>
               <p style={{ fontWeight: 800, fontSize: 14, marginBottom: 2 }}>{book.title}</p>
