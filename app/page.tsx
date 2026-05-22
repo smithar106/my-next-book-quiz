@@ -24,7 +24,7 @@ export default function Home() {
             Find your next<br /><span style={{ color: 'var(--purple)' }}>perfect read.</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Take a quick quiz. Get personalized recommendations. Download the app.
+            Take a quick quiz. Find out who you are as a reader. Download the app.
           </p>
         </div>
 
