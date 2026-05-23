@@ -583,10 +583,14 @@ function getProgressTagline(index: number, total: number): string {
 }
 
 const ARCHETYPE_PREVIEWS = [
-  { name: 'The Heartbreak Collector', emoji: '💔', from: '#221228', to: '#130A18', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
-  { name: 'The Beautifully Damaged Intellectual', emoji: '🕯️', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
-  { name: 'The Obsessive Escapist', emoji: '🌌', from: '#1E1638', to: '#120F22', color: '#C8B0FF', border: 'rgba(200,176,255,0.22)' },
-  { name: 'The Morally Grey Romantic', emoji: '🌹', from: '#221018', to: '#140A10', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
+  { name: 'Dark Cerebral Reader', emoji: '🖤', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
+  { name: 'Momentum Reader', emoji: '⚡', from: '#0E1E22', to: '#081418', color: '#80D8D0', border: 'rgba(128,216,208,0.22)' },
+  { name: 'Literary Escapist', emoji: '🌙', from: '#1E1638', to: '#120F22', color: '#C8B0FF', border: 'rgba(200,176,255,0.22)' },
+  { name: 'Emotional Realist', emoji: '💧', from: '#221228', to: '#130A18', color: '#F0A0C8', border: 'rgba(240,160,200,0.22)' },
+  { name: 'Speculative Thinker', emoji: '🔭', from: '#0E1E14', to: '#08140C', color: '#80D890', border: 'rgba(128,216,144,0.22)' },
+  { name: 'Quiet Intellectual', emoji: '📐', from: '#1E1808', to: '#130F04', color: '#F0C060', border: 'rgba(240,192,96,0.22)' },
+  { name: 'Chaos Reader', emoji: '🌀', from: '#1E1638', to: '#120F22', color: '#C8B0FF', border: 'rgba(200,176,255,0.22)' },
+  { name: 'Atmospheric Explorer', emoji: '🌫️', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
 ]
 
 function Nav({ right }: { right: React.ReactNode }) {

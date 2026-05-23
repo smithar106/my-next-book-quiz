@@ -21,10 +21,10 @@ export default function Home() {
             My Next Book
           </div>
           <h1 style={{ fontSize: 'clamp(32px,7vw,52px)', fontWeight: 900, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16 }}>
-            Find your next<br /><span style={{ color: 'var(--purple)' }}>perfect read.</span>
+            Discover your<br /><span style={{ color: 'var(--purple)' }}>reading identity.</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Take a quick quiz. Find out who you are as a reader. Download the app.
+            Take a 60-second quiz. Get matched to one of 8 Reading DNA archetypes — and find books written exactly for you.
           </p>
         </div>
 

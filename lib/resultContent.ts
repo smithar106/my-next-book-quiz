@@ -75,6 +75,206 @@ const T = {
 }
 
 const RESULT_CONTENT: Record<string, ResultContent> = {
+  dark_cerebral: {
+    archetypeName: 'The Dark Cerebral Reader',
+    archetypeSubtitle: 'You read to feel intellectually alive — dark enough to stay with you, precise enough to trust.',
+    microcopy: 'You don\'t read for comfort. You read for books that disturb you in productive ways.',
+    shareText: 'I got "The Dark Cerebral Reader" on My Next Book 📚 Apparently I only want books that disturb me in intellectually precise ways. What\'s your reading identity?',
+    ctaCopy: 'Reveal my Reading DNA',
+    moodTiles: [
+      T.slate('DARK', 'and precise', '🖤'),
+      T.purple('CEREBRAL', 'intensity', '◆'),
+      T.slate('HAUNTED', 'perfectly', '◆'),
+      T.purple('TRUSTED', 'disturbing', '✦'),
+    ],
+    similarBooks: [
+      { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Dark and cerebral — exactly your speed', isbn: '9780525522119' },
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Psychologically sharp, morally uncomfortable', isbn: '9780307588364' },
+      { title: 'The Secret History', author: 'Donna Tartt', note: 'Cerebral, dark, and impossible to shake', isbn: '9781400031702' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your emotional intensity preference and surfaces books that match your exact cerebral-dark threshold.',
+      'Every save and dismiss sharpens your Reading DNA across 14 dimensions.',
+      'Your archetype evolves as you read more — the app observes, interprets, and reflects back who you\'re becoming.',
+      'Weekly Taste Pulse shows how your reading identity shifts over time.',
+    ],
+  },
+
+  momentum: {
+    archetypeName: 'The Momentum Reader',
+    archetypeSubtitle: 'You read to be pulled forward. The best books make you miss your stop.',
+    microcopy: 'You have no patience for slow burns. You want to be inside the story immediately and unable to leave.',
+    shareText: 'I got "The Momentum Reader" on My Next Book 📚 Apparently I need books that make me miss my stop. What\'s your reading identity?',
+    ctaCopy: 'Find my next page-turner',
+    moodTiles: [
+      T.teal('HOOKED', 'instantly', '⚡'),
+      T.crimson('RACING', 'forward', '◈'),
+      T.teal('CAN\'T', 'stop', '⚡'),
+      T.crimson('NEXT', 'page now', '◈'),
+    ],
+    similarBooks: [
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Propulsive from page one', isbn: '9780307588364' },
+      { title: 'The Girl with the Dragon Tattoo', author: 'Stieg Larsson', note: 'Can\'t-stop-reading energy', isbn: '9780307949486' },
+      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Fast, sharp, addictive', isbn: '9780399167065' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your pace preference and filters out slow-burn books from your feed.',
+      'Every dismiss of a slow opener signals the algorithm — your feed gets faster.',
+      'Your Reading DNA records your pacing tolerance across 14 dimensions.',
+      'Weekly Taste Pulse shows which direction your momentum is heading.',
+    ],
+  },
+
+  literary_escapist: {
+    archetypeName: 'The Literary Escapist',
+    archetypeSubtitle: 'You read to disappear into worlds so fully realized they feel more real than your own.',
+    microcopy: 'Atmosphere is everything. The right sentence can transport you.',
+    shareText: 'I got "The Literary Escapist" on My Next Book 📚 Apparently I just want to disappear into beautifully realized worlds. What\'s your reading identity?',
+    ctaCopy: 'Find my escape',
+    moodTiles: [
+      T.purple('LOST', 'in it', '🌙'),
+      T.rose('VIVID', 'elsewhere', '◆'),
+      T.purple('MISSED', 'like home', '✦'),
+      T.rose('PORTAL', 'open', '◆'),
+    ],
+    similarBooks: [
+      { title: 'The Shadow of the Wind', author: 'Carlos Ruiz Zafón', note: 'A world you never want to leave', isbn: '9780143034902' },
+      { title: 'Pachinko', author: 'Min Jin Lee', note: 'Immersive across decades and generations', isbn: '9781455563906' },
+      { title: 'A Gentleman in Moscow', author: 'Amor Towles', note: 'Atmospheric and deeply realized', isbn: '9780670026190' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your worldbuilding preference and surfaces immersive, atmospheric fiction.',
+      'Every save of an atmospheric book sharpens your Reading DNA.',
+      'Your escapist threshold is tracked — the app knows when you want to disappear vs. engage.',
+      'Weekly Taste Pulse shows how your immersion appetite evolves.',
+    ],
+  },
+
+  emotional_realist: {
+    archetypeName: 'The Emotional Realist',
+    archetypeSubtitle: 'You read to feel understood. The books that stay with you get human experience exactly right.',
+    microcopy: 'The mess, the grief, the quietly devastating moments — you prefer truth over comfort.',
+    shareText: 'I got "The Emotional Realist" on My Next Book 📚 Apparently I only want books that get human experience exactly right. What\'s your reading identity?',
+    ctaCopy: 'Find books that understand me',
+    moodTiles: [
+      T.rose('FELT', 'deeply', '💧'),
+      T.amber('TRUE', 'and hard', '○'),
+      T.rose('ACHED', 'beautifully', '♥'),
+      T.amber('STAYED', 'with me', '○'),
+    ],
+    similarBooks: [
+      { title: 'Normal People', author: 'Sally Rooney', note: 'Painfully, precisely human', isbn: '9781984822185' },
+      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Emotionally devastating and true', isbn: '9780804172448' },
+      { title: 'Shuggie Bain', author: 'Douglas Stuart', note: 'Love and grief rendered exactly right', isbn: '9780802148506' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your emotional intensity preference and surfaces books that hit you where it counts.',
+      'Every save of a character-driven book sharpens your Reading DNA.',
+      'Your emotional realism threshold is tracked — the app knows how raw you want it.',
+      'Weekly Taste Pulse shows how your emotional appetite is shifting.',
+    ],
+  },
+
+  speculative_thinker: {
+    archetypeName: 'The Speculative Thinker',
+    archetypeSubtitle: 'You read to have your assumptions challenged. Fiction that extrapolates, questions, and builds new systems of meaning.',
+    microcopy: 'You prefer books that make you think about the real world differently.',
+    shareText: 'I got "The Speculative Thinker" on My Next Book 📚 Apparently I need books that make me see the real world differently. What\'s your reading identity?',
+    ctaCopy: 'Find books that challenge me',
+    moodTiles: [
+      T.teal('SYSTEM', 'rebuilt', '🔭'),
+      T.green('ASSUMED', 'wrong', '◎'),
+      T.teal('REAL', 'reframed', '◎'),
+      T.green('FUTURE', 'now', '✦'),
+    ],
+    similarBooks: [
+      { title: 'Klara and the Sun', author: 'Kazuo Ishiguro', note: 'Quietly devastating speculative fiction', isbn: '9780593311295' },
+      { title: 'Station Eleven', author: 'Emily St. John Mandel', note: 'Speculative and deeply human', isbn: '9780385353304' },
+      { title: 'Never Let Me Go', author: 'Kazuo Ishiguro', note: 'Assumptions dismantled slowly and precisely', isbn: '9781400078776' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your speculative preference and surfaces idea-driven fiction that rewires how you think.',
+      'Every save of a speculative book sharpens your Reading DNA.',
+      'Your intellectual depth is tracked across 14 dimensions — the app knows how deep you want to go.',
+      'Weekly Taste Pulse shows whether your speculative appetite is growing.',
+    ],
+  },
+
+  quiet_intellectual: {
+    archetypeName: 'The Quiet Intellectual',
+    archetypeSubtitle: 'You read slowly and deliberately. Dense prose, layered meaning, ideas that unfold over time.',
+    microcopy: 'You\'re not chasing pace. You\'re chasing precision.',
+    shareText: 'I got "The Quiet Intellectual" on My Next Book 📚 Apparently I want books that reward slow, deliberate reading. What\'s your reading identity?',
+    ctaCopy: 'Find books worth reading slowly',
+    moodTiles: [
+      T.gold('PRECISE', 'language', '📐'),
+      T.slate('LAYERED', 'meaning', '◆'),
+      T.gold('REREAD', 'this line', '◎'),
+      T.slate('SLOW', 'and earned', '◆'),
+    ],
+    similarBooks: [
+      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984' },
+      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Layered and intellectually precise', isbn: '9780812995343' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your prose density preference and filters out shallow writing from your feed.',
+      'Every dismiss of a generic book signals the algorithm — your feed gets more precise.',
+      'Your prose style preference is tracked across 14 dimensions.',
+      'Weekly Taste Pulse shows how your intellectual appetite is evolving.',
+    ],
+  },
+
+  chaos: {
+    archetypeName: 'The Chaos Reader',
+    archetypeSubtitle: 'You read to be surprised. Predictability is the only thing that can lose you.',
+    microcopy: 'You want books that break their own rules, shift beneath your feet, and end somewhere you never expected.',
+    shareText: 'I got "The Chaos Reader" on My Next Book 📚 Apparently I need books that break their own rules. What\'s your reading identity?',
+    ctaCopy: 'Find books that surprise me',
+    moodTiles: [
+      T.purple('STRANGE', 'and true', '🌀'),
+      T.crimson('RULES', 'broken', '◈'),
+      T.purple('SHIFTED', 'under me', '✦'),
+      T.crimson('NEVER', 'saw it', '◈'),
+    ],
+    similarBooks: [
+      { title: 'House of Leaves', author: 'Mark Z. Danielewski', note: 'Structurally mind-bending', isbn: '9780375703768' },
+      { title: 'Piranesi', author: 'Susanna Clarke', note: 'Strange, surprising, unforgettable', isbn: '9781635575637' },
+      { title: 'If on a winter\'s night a traveler', author: 'Italo Calvino', note: 'Rules broken from page one', isbn: '9780156439619' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your weirdness and unpredictability preference — and surfaces books that subvert expectations.',
+      'Every save of a structurally surprising book sharpens your Reading DNA.',
+      'Your chaos threshold is tracked — the app knows how strange you want it.',
+      'Weekly Taste Pulse shows which direction your unpredictability appetite is heading.',
+    ],
+  },
+
+  atmospheric_explorer: {
+    archetypeName: 'The Atmospheric Explorer',
+    archetypeSubtitle: 'You read for feeling more than plot. The best books leave you with a mood that lingers for days.',
+    microcopy: 'Atmosphere is the story. A specific texture of light, a sense of place, a tone you can\'t fully name.',
+    shareText: 'I got "The Atmospheric Explorer" on My Next Book 📚 Apparently I need books that leave a mood that lingers for days. What\'s your reading identity?',
+    ctaCopy: 'Find books that leave a mood',
+    moodTiles: [
+      T.slate('MOOD', 'lingers', '🌫️'),
+      T.teal('LIGHT', 'specific', '◎'),
+      T.slate('PLACE', 'texture', '◆'),
+      T.teal('TONE', 'unnamed', '◎'),
+    ],
+    similarBooks: [
+      { title: 'Rebecca', author: 'Daphne du Maurier', note: 'Atmospheric and unforgettable', isbn: '9780380730407' },
+      { title: 'The Haunting of Hill House', author: 'Shirley Jackson', note: 'Mood as architecture', isbn: '9780143039983' },
+      { title: 'Mexican Gothic', author: 'Silvia Moreno-Garcia', note: 'Gothic atmosphere, lingers for days', isbn: '9780525620785' },
+    ],
+    continuationFeatures: [
+      'My Next Book tracks your atmosphere and mood preference — and surfaces books that linger.',
+      'Every save of an atmospheric book sharpens your Reading DNA.',
+      'Your emotional residue threshold is tracked — the app knows how much mood you want.',
+      'Weekly Taste Pulse shows how your atmospheric appetite evolves.',
+    ],
+  },
+
   emotional: {
     archetypeName: 'The Heartbreak Collector',
     archetypeSubtitle: 'You read to feel things you couldn\'t feel otherwise.',
