@@ -21,10 +21,10 @@ export default function Home() {
             My Next Book
           </div>
           <h1 style={{ fontSize: 'clamp(32px,7vw,52px)', fontWeight: 900, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16 }}>
-            Discover your<br /><span style={{ color: 'var(--purple)' }}>reading identity.</span>
+            The books you love<br /><span style={{ color: 'var(--purple)' }}>aren't random.</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Take a 30-second quiz. Discover your Reading DNA identity — and find books written exactly for you.
+            Answer a few questions and discover the emotional patterns behind your reading taste.
           </p>
         </div>
 
