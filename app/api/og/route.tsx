@@ -144,8 +144,8 @@ export async function GET(request: Request) {
             {/* "I'm" label */}
             <div style={{
               fontSize: '36px',
-              fontWeight: 500,
-              color: 'rgba(255,255,255,0.45)',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.70)',
               marginBottom: '16px',
               letterSpacing: '1px',
             }}>
@@ -168,11 +168,11 @@ export async function GET(request: Request) {
             {/* Accent line */}
             <div style={{
               width: '80px',
-              height: '3px',
+              height: '4px',
               background: colors.accent,
               borderRadius: '2px',
               marginBottom: '36px',
-              opacity: 0.7,
+              opacity: 1,
             }} />
 
             {/* Subtitle */}
@@ -212,8 +212,8 @@ export async function GET(request: Request) {
             </div>
             <div style={{
               fontSize: '18px',
-              fontWeight: 600,
-              color: 'rgba(255,255,255,0.25)',
+              fontWeight: 700,
+              color: 'rgba(255,255,255,0.55)',
               letterSpacing: '1px',
             }}>
               My Next Book
