@@ -152,21 +152,16 @@ export function QuizClient({ slug, rawParams }: Props) {
       <main style={s.page}>
         <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Download Free</a>} />
         <div style={s.landingInner}>
-          <div style={s.badge}>BOOK QUIZ</div>
+          <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
           <p style={s.subtitle}>{config.description}</p>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 28, flexWrap: 'wrap' }}>
-            <span style={s.pill}>📖 {config.questions.length} questions</span>
-            <span style={s.pill}>⚡ 30 seconds</span>
-            <span style={s.pill}>🎯 Personalized results</span>
-          </div>
-          <button onClick={startQuiz} style={s.primaryBtn}>Start the quiz →</button>
+          <button onClick={startQuiz} style={s.primaryBtn}>Find my reading identity →</button>
           <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Free · No sign-up required</p>
           <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>Built for readers who care how books feel.</p>
 
-          {/* Archetype preview */}
+          {/* Identity preview grid */}
           <div style={{ marginTop: 52, textAlign: 'left' }}>
-            <p style={{ ...s.cardLabel, textAlign: 'center', marginBottom: 18 }}>YOUR READER TYPE</p>
+            <p style={{ ...s.cardLabel, textAlign: 'center', marginBottom: 18 }}>YOUR RESULT MIGHT BE</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               {ARCHETYPE_PREVIEWS.map((a) => (
                 <div key={a.name} style={{
@@ -181,7 +176,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             </div>
           </div>
 
-          {/* What you get */}
+          {/* What you discover */}
           <div style={{
             marginTop: 32,
             background: 'rgba(212,188,255,0.07)',
@@ -189,11 +184,11 @@ export function QuizClient({ slug, rawParams }: Props) {
             borderRadius: 20, padding: '22px 20px',
             textAlign: 'left',
           }}>
-            <p style={{ ...s.cardLabel, marginBottom: 14 }}>WHAT YOU GET</p>
+            <p style={{ ...s.cardLabel, marginBottom: 14 }}>WHAT YOU DISCOVER</p>
             {[
-              'Your reader type — named and defined',
-              'Books that match your exact emotional taste',
-              'A personalized app feed built around your result',
+              'The emotional patterns behind your reading taste',
+              'Books that match how you actually want to feel',
+              'A precise name for the kind of reader you already are',
             ].map((line, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: i < 2 ? 10 : 0 }}>
                 <span style={{ color: 'var(--purple)', fontWeight: 800, fontSize: 13, marginTop: 1 }}>✦</span>

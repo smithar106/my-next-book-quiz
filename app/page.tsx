@@ -18,7 +18,7 @@ export default function Home() {
             marginBottom: 24,
             textTransform: 'uppercase',
           }}>
-            My Next Book
+            Reading Identity
           </div>
           <h1 style={{ fontSize: 'clamp(32px,7vw,52px)', fontWeight: 900, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16 }}>
             The books you love<br /><span style={{ color: 'var(--purple)' }}>aren't random.</span>
