@@ -501,6 +501,36 @@ function ReadingContinuationSection({ features }: { features: string[] }) {
 
 function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quizId }: { archetypeName: string; shareText: string; resultId: string; sessionId: string; quizId: string }) {
   const [copied, setCopied] = useState(false)
+  const [cardSaving, setCardSaving] = useState(false)
+
+  async function handleSaveCard() {
+    trackEvent(sessionId, 'save_card_clicked', quizId, {
+      result_id: resultId,
+      archetype_name: archetypeName,
+    })
+    setCardSaving(true)
+    try {
+      const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : ''
+      const imageUrl = `${base}/api/og?result=${encodeURIComponent(resultId)}&format=story`
+      // Fetch the image as a blob so we can trigger a real download
+      const res = await fetch(imageUrl)
+      const blob = await res.blob()
+      const objectUrl = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = objectUrl
+      a.download = `my-reading-identity-${resultId}.jpg`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(objectUrl)
+    } catch {
+      // Fallback: open in new tab so user can long-press to save (iOS Safari)
+      const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : ''
+      window.open(`${base}/api/og?result=${encodeURIComponent(resultId)}&format=story`, '_blank', 'noopener')
+    } finally {
+      setCardSaving(false)
+    }
+  }
 
   async function handleShare() {
     trackEvent(sessionId, 'share_clicked', quizId, {
@@ -509,7 +539,7 @@ function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quiz
     })
     const base = typeof window !== 'undefined' ? window.location.href.split('?')[0] : ''
     const url = `${base}?result=${resultId}`
-    const updatedShareText = `I got ${archetypeName} on My Next Book — find out your reading identity:`
+    const updatedShareText = `I got "${archetypeName}" on My Next Book — find out your reading identity:`
     const fullText = `${updatedShareText} ${url}`
     if (navigator.share) {
       try {
@@ -527,21 +557,36 @@ function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quiz
   }
 
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ marginBottom: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {/* Primary: save the story card */}
+      <button onClick={handleSaveCard} disabled={cardSaving} style={{
+        width: '100%',
+        background: 'rgba(200,176,255,0.14)',
+        border: '1.5px solid rgba(200,176,255,0.40)',
+        borderRadius: 14, padding: '17px 20px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+        color: 'var(--text)', fontSize: 15, fontWeight: 800, cursor: cardSaving ? 'wait' : 'pointer',
+        opacity: cardSaving ? 0.7 : 1,
+      }}>
+        <span style={{ fontSize: 17 }}>{cardSaving ? '⏳' : '⬇'}</span>
+        {cardSaving ? 'Saving...' : 'Save my result card'}
+      </button>
+      <p style={{ color: 'var(--text-dim)', fontSize: 12, textAlign: 'center', margin: '-4px 0 0', fontStyle: 'italic' }}>
+        Post to TikTok, Instagram, or Stories
+      </p>
+
+      {/* Secondary: share the link */}
       <button onClick={handleShare} style={{
         width: '100%',
-        background: 'rgba(200,176,255,0.10)',
-        border: '1px solid rgba(200,176,255,0.30)',
-        borderRadius: 14, padding: '16px 20px',
+        background: 'rgba(255,255,255,0.04)',
+        border: '1px solid rgba(255,255,255,0.10)',
+        borderRadius: 14, padding: '14px 20px',
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-        color: 'var(--text)', fontSize: 14, fontWeight: 700, cursor: 'pointer',
+        color: 'var(--text-muted)', fontSize: 14, fontWeight: 600, cursor: 'pointer',
       }}>
-        <span style={{ fontSize: 16 }}>{copied ? '✓' : '↗'}</span>
-        {copied ? 'Copied to clipboard!' : `Share my reading identity`}
+        <span style={{ fontSize: 15 }}>{copied ? '✓' : '↗'}</span>
+        {copied ? 'Link copied!' : 'Share the quiz link'}
       </button>
-      <p style={{ color: 'var(--text-dim)', fontSize: 12, textAlign: 'center', marginTop: 8, fontStyle: 'italic' }}>
-        "{archetypeName}"
-      </p>
     </div>
   )
 }

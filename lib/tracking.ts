@@ -11,6 +11,7 @@ export type EventName =
   | 'app_store_clicked'
   | 'sticky_cta_clicked'
   | 'share_clicked'
+  | 'save_card_clicked'
 
 export function trackEvent(
   sessionId: string,
