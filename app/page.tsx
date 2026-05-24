@@ -24,7 +24,7 @@ export default function Home() {
             The books you love<br /><span style={{ color: 'var(--purple)' }}>aren't random.</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Answer a few questions and discover the emotional patterns behind your reading taste.
+            Pick a quiz below. Discover who you are as a reader.
           </p>
         </div>
 

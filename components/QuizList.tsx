@@ -3,11 +3,11 @@
 import Link from 'next/link'
 
 const QUIZ_META: Record<string, { emoji: string; color: string; title: string; hook: string }> = {
-  'what-should-i-read-next': { emoji: '📚', color: '#B69CFF', title: 'What Should I Read Next?', hook: 'Find your next perfect book.' },
-  'book-personality': { emoji: '✨', color: '#FF9B9B', title: 'Book Personality Quiz', hook: 'Find your reader personality.' },
-  'booktok-recommendations': { emoji: '🎵', color: '#FF6B9B', title: 'BookTok Recommendation Quiz', hook: 'Find the BookTok book you\'ll actually love.' },
-  'reading-slump': { emoji: '🌿', color: '#6BCFB0', title: 'Reading Slump Fixer', hook: 'Find the book that will get you out of a reading slump.' },
-  'genre-match': { emoji: '🌙', color: '#FFB86C', title: 'Genre Match Quiz', hook: 'Find the genre that matches your current mood.' },
+  'what-should-i-read-next': { emoji: '📚', color: '#B69CFF', title: 'What Should I Read Next?', hook: 'Discover the emotional patterns behind your reading taste.' },
+  'book-personality': { emoji: '✨', color: '#FF9B9B', title: 'Book Personality Quiz', hook: 'Your taste says more about you than you think.' },
+  'booktok-recommendations': { emoji: '🎵', color: '#FF6B9B', title: 'BookTok Recommendation Quiz', hook: 'Find the BookTok book that will actually stay with you.' },
+  'reading-slump': { emoji: '🌿', color: '#6BCFB0', title: 'Reading Slump Fixer', hook: 'Find the book that remembers what reading feels like.' },
+  'genre-match': { emoji: '🌙', color: '#FFB86C', title: 'Genre Match Quiz', hook: 'Discover which emotional territory you\'re actually drawn to.' },
 }
 
 export function QuizList() {
