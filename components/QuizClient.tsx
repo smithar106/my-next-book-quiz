@@ -256,7 +256,7 @@ export function QuizClient({ slug, rawParams }: Props) {
 
           {/* Reading directions */}
           <div style={s.card}>
-            <p style={s.cardLabel}>Your reading directions</p>
+            <p style={s.cardLabel}>Books that call to you</p>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
               {result.readingDirections.map((dir, i) => (
                 <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -297,9 +297,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
             <div style={s.card}>
-              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Get your full reading identity breakdown</p>
+              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your result</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Your reader type, the books that match it, and what it says about how you read — delivered to your inbox.
+                Get your reading identity, the books that match it, and what your taste reveals — sent to your inbox.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
@@ -416,7 +416,7 @@ function MoodBoard({ tiles }: { tiles: import('@/lib/resultContent').MoodTile[] 
 function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').SimilarBook[] }) {
   return (
     <div style={{ ...s.card, marginBottom: 20 }}>
-      <p style={s.cardLabel}>Readers like you obsess over</p>
+      <p style={s.cardLabel}>Books that stay with readers like you</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {books.map((book, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -467,7 +467,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
       borderRadius: 24, padding: '28px 24px', marginBottom: 20,
     }}>
       <p style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, lineHeight: 1.25, letterSpacing: '-0.5px' }}>
-        Your feed, tuned to exactly this.
+        The app that keeps reading you.
       </p>
       <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 24, lineHeight: 1.6 }}>
         {result.whyAppHelps}
@@ -486,7 +486,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
 function ReadingContinuationSection({ features }: { features: string[] }) {
   return (
     <div style={{ ...s.card, marginBottom: 20 }}>
-      <p style={s.cardLabel}>Inside My Next Book</p>
+      <p style={s.cardLabel}>How the app reads you</p>
       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {features.map((f, i) => (
           <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -571,10 +571,10 @@ function StickyCTA({ visible, ctaCopy, onClick }: { visible: boolean; ctaCopy: s
 
 function getProgressTagline(index: number, total: number): string {
   const pct = index / total
-  if (pct < 0.25) return 'Just getting started...'
-  if (pct < 0.5) return 'Getting clearer on your vibe...'
-  if (pct < 0.75) return 'Almost there...'
-  return 'Last one — almost done!'
+  if (pct < 0.25) return 'Mapping your emotional instincts...'
+  if (pct < 0.5) return 'Getting more precise...'
+  if (pct < 0.75) return 'The pattern is forming...'
+  return 'Almost there...'
 }
 
 const ARCHETYPE_PREVIEWS = [
