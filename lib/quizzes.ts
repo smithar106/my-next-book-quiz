@@ -379,8 +379,8 @@ const BOOKTOK: QuizConfig = {
   id: 'booktok-recommendations',
   slug: 'booktok-recommendations',
   title: 'BookTok Recommendation Quiz',
-  hook: 'Find the BookTok book you\'ll actually love.',
-  description: 'Cut through the hype. Find the viral book that matches YOUR taste.',
+  hook: 'You don\'t just want viral books. You want the ones that will actually stay with you.',
+  description: 'Cut through the noise. Find the BookTok book that matches how you actually read.',
   questions: [
     {
       id: 'q1',
@@ -490,8 +490,8 @@ const SLUMP: QuizConfig = {
   id: 'reading-slump',
   slug: 'reading-slump',
   title: 'Reading Slump Fixer',
-  hook: 'Find the book that will get you out of a reading slump.',
-  description: 'Let\'s diagnose your slump and fix it with the right book.',
+  hook: 'The right book is the one that remembers what reading feels like.',
+  description: 'Answer a few questions. Get out of your slump with a book that matches your exact emotional state right now.',
   questions: [
     {
       id: 'q1',
@@ -601,8 +601,8 @@ const GENRE_MATCH: QuizConfig = {
   id: 'genre-match',
   slug: 'genre-match',
   title: 'Genre Match Quiz',
-  hook: 'Find the genre that matches your current mood.',
-  description: 'Your mood right now points to a specific genre. Let\'s find it.',
+  hook: 'Genre is just a starting point.',
+  description: 'Discover which emotional territory you\'re actually drawn to — and the books that live there.',
   questions: [
     {
       id: 'q1',
@@ -722,8 +722,8 @@ const READING_PERSONALITY: QuizConfig = {
   id: 'reading-personality',
   slug: 'reading-personality',
   title: 'Reading Personality Quiz',
-  hook: 'What does the way you read say about you?',
-  description: 'Not what genre you like — what your Reading DNA identity actually is.',
+  hook: 'You don\'t read for plot alone.',
+  description: 'Discover the emotional and intellectual patterns behind your reading taste.',
   questions: [
     {
       id: 'rp-q1',
