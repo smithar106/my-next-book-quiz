@@ -24,7 +24,7 @@ export default function Home() {
             Discover your<br /><span style={{ color: 'var(--purple)' }}>reading identity.</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Take a 60-second quiz. Get matched to one of 8 Reading DNA archetypes — and find books written exactly for you.
+            Take a 30-second quiz. Discover your Reading DNA identity — and find books written exactly for you.
           </p>
         </div>
 

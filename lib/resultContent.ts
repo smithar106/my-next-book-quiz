@@ -95,7 +95,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks your emotional intensity preference and surfaces books that match your exact cerebral-dark threshold.',
       'Every save and dismiss sharpens your Reading DNA across 14 dimensions.',
-      'Your archetype evolves as you read more — the app observes, interprets, and reflects back who you\'re becoming.',
+      'Your reading identity evolves as you read more — the app observes, interprets, and reflects back who you\'re becoming.',
       'Weekly Taste Pulse shows how your reading identity shifts over time.',
     ],
   },

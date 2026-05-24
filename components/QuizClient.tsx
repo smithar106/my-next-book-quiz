@@ -320,7 +320,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             <div style={{ ...s.card, textAlign: 'center' }}>
               <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Now continue in the app.</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 8 }}>
-                Your feed will be tuned to {content?.archetypeName ?? 'your result'} from the moment you open it.
+                Your feed will be tuned to your identity from the moment you open it.
               </p>
             </div>
           )}
@@ -379,11 +379,11 @@ function ResultHeroCard({ result, content }: {
             {result.title}
           </h1>
           <p style={{ color: 'var(--purple)', fontWeight: 700, fontSize: 15, marginBottom: 20 }}>{result.tagline}</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.65, textAlign: 'left' }}>
+            {result.description}
+          </p>
         </>
       )}
-      <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.65, textAlign: 'left' }}>
-        {result.description}
-      </p>
     </div>
   )
 }
@@ -514,11 +514,11 @@ function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quiz
     })
     const base = typeof window !== 'undefined' ? window.location.href.split('?')[0] : ''
     const url = `${base}?result=${resultId}`
-    const updatedShareText = `I got ${archetypeName} on My Next Book — find out your reader type:`
+    const updatedShareText = `I got ${archetypeName} on My Next Book — find out your reading identity:`
     const fullText = `${updatedShareText} ${url}`
     if (navigator.share) {
       try {
-        await navigator.share({ title: `I'm "${archetypeName}"`, text: updatedShareText, url })
+        await navigator.share({ title: `My reading identity: "${archetypeName}"`, text: updatedShareText, url })
         return
       } catch {
         // fall through to clipboard
@@ -542,7 +542,7 @@ function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quiz
         color: 'var(--text)', fontSize: 14, fontWeight: 700, cursor: 'pointer',
       }}>
         <span style={{ fontSize: 16 }}>{copied ? '✓' : '↗'}</span>
-        {copied ? 'Copied to clipboard!' : `Share my reader type`}
+        {copied ? 'Copied to clipboard!' : `Share my reading identity`}
       </button>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, textAlign: 'center', marginTop: 8, fontStyle: 'italic' }}>
         "{archetypeName}"

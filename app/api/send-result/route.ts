@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     await getResend().emails.send({
       from: FROM_EMAIL,
       to: email,
-      subject: `Your reader type: ${archetypeName}`,
+      subject: `Your reading identity: ${archetypeName}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -83,12 +83,12 @@ export async function POST(req: NextRequest) {
     await getResend().emails.send({
       from: FROM_EMAIL,
       to: NOTIFY_EMAIL,
-      subject: `New quiz signup: ${archetypeName}`,
+      subject: `New quiz result: ${archetypeName}`,
       html: `
         <p style="font-family:sans-serif;font-size:15px">
           New signup on My Next Book Quiz:<br><br>
           <strong>Email:</strong> ${email}<br>
-          <strong>Reader type:</strong> ${archetypeName}<br>
+          <strong>Reading identity:</strong> ${archetypeName}<br>
           <strong>Quiz:</strong> ${quizTitle}<br>
         </p>
       `,

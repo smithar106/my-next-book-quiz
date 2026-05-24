@@ -8,7 +8,7 @@ const WHAT_NEXT: QuizConfig = {
   slug: 'what-should-i-read-next',
   title: 'What Should I Read Next?',
   hook: 'Discover your reading identity.',
-  description: 'Take a 60-second quiz. Get matched to one of 8 Reading DNA archetypes — and find books written exactly for you.',
+  description: 'Take a 30-second quiz. Discover your Reading DNA identity — and find books written exactly for you.',
   questions: [
     {
       id: 'feel',
@@ -86,7 +86,7 @@ const WHAT_NEXT: QuizConfig = {
       title: 'Momentum Reader',
       emoji: '⚡',
       tagline: 'You read to be pulled forward. The best books make you miss your stop.',
-      description: 'You read to be pulled forward. You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
+      description: 'You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
       readingDirections: ['Thrillers that start fast and never let up', 'Propulsive fiction with relentless forward momentum', 'Crime novels that keep you guessing until the last page'],
       whyAppHelps: 'My Next Book learns how fast you need books to move — and filters your entire feed to match.',
     },
@@ -156,7 +156,7 @@ const BOOK_PERSONALITY: QuizConfig = {
   slug: 'book-personality',
   title: 'Book Personality Quiz',
   hook: 'Find your reading identity.',
-  description: 'Discover the reader you really are — matched to one of 8 Reading DNA archetypes.',
+  description: 'Discover the reader you really are — and unlock your Reading DNA identity.',
   questions: [
     {
       id: 'bp-q1',
@@ -234,7 +234,7 @@ const BOOK_PERSONALITY: QuizConfig = {
       title: 'Momentum Reader',
       emoji: '⚡',
       tagline: 'You read to be pulled forward. The best books make you miss your stop.',
-      description: 'You read to be pulled forward. You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
+      description: 'You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
       readingDirections: ['Thrillers that start fast and never let up', 'Propulsive fiction with relentless forward momentum', 'Crime novels that keep you guessing until the last page'],
       whyAppHelps: 'My Next Book learns how fast you need books to move — and filters your entire feed to match.',
     },
@@ -647,7 +647,7 @@ const READING_PERSONALITY: QuizConfig = {
   slug: 'reading-personality',
   title: 'Reading Personality Quiz',
   hook: 'What does the way you read say about you?',
-  description: 'Not what genre you like — which of the 8 Reading DNA archetypes you actually are.',
+  description: 'Not what genre you like — what your Reading DNA identity actually is.',
   questions: [
     {
       id: 'rp-q1',
@@ -725,7 +725,7 @@ const READING_PERSONALITY: QuizConfig = {
       title: 'Momentum Reader',
       emoji: '⚡',
       tagline: 'You read to be pulled forward. The best books make you miss your stop.',
-      description: 'You read to be pulled forward. You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
+      description: 'You have no patience for slow burns — you want to be inside the story immediately and unable to leave.',
       readingDirections: ['Thrillers that start fast and never let up', 'Propulsive fiction with relentless forward momentum', 'Crime novels that keep you guessing until the last page'],
       whyAppHelps: 'My Next Book learns how fast you need books to move — and filters your entire feed to match.',
     },
