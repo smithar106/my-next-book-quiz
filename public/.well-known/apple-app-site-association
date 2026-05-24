@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "5P86NF93AJ.com.mynextbook.app",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
