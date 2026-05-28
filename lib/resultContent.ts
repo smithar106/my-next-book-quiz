@@ -214,9 +214,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('SLOW', 'and earned', '◆'),
     ],
     similarBooks: [
-      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984', coverUrl: 'https://covers.openlibrary.org/b/id/13157605-L.jpg' },
+      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984' },
       { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Layered and intellectually precise', isbn: '9780812995343', coverUrl: 'https://covers.openlibrary.org/b/id/7909378-L.jpg' },
-      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726', coverUrl: 'https://covers.openlibrary.org/b/id/420075-L.jpg' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726' },
     ],
     continuationFeatures: [
       'My Next Book tracks your preference for depth and deliberate prose — learning what level of density you find rewarding vs. exhausting.',
@@ -439,7 +439,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('CHANGED', 'something', '◆'),
     ],
     similarBooks: [
-      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.', isbn: '9780679731726', coverUrl: 'https://covers.openlibrary.org/b/id/420075-L.jpg' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.', isbn: '9780679731726' },
       { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.', isbn: '9780385350570', coverUrl: 'https://covers.openlibrary.org/b/id/14570516-L.jpg' },
       { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.', isbn: '9781590171714', coverUrl: 'https://covers.openlibrary.org/b/id/859193-L.jpg' },
     ],
@@ -566,7 +566,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     similarBooks: [
       { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.', isbn: '9780812971835', coverUrl: 'https://covers.openlibrary.org/b/id/6455275-L.jpg' },
       { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Demands full attention.', isbn: '9780063251311' },
-      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405', coverUrl: 'https://covers.openlibrary.org/b/id/10360665-L.jpg' },
+      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405' },
     ],
     continuationFeatures: [
       'My Next Book reads the depth and precision you respond to — learning what you mean by "good writing" as distinct from what anyone else means.',
