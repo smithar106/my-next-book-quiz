@@ -17,6 +17,7 @@ export interface SimilarBook {
   author: string
   note: string
   isbn?: string
+  coverUrl?: string
 }
 
 export interface ResultContent {
@@ -89,8 +90,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     ],
     similarBooks: [
       { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Dark and cerebral — exactly your speed', isbn: '9780525522119' },
-      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Psychologically sharp, morally uncomfortable', isbn: '9780307588364' },
-      { title: 'The Secret History', author: 'Donna Tartt', note: 'Cerebral, dark, and impossible to shake', isbn: '9781400031702' },
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Psychologically sharp, morally uncomfortable', isbn: '9780307588364', coverUrl: 'https://covers.openlibrary.org/b/id/12498395-L.jpg' },
+      { title: 'The Secret History', author: 'Donna Tartt', note: 'Cerebral, dark, and impossible to shake', isbn: '9781400031702', coverUrl: 'https://covers.openlibrary.org/b/id/7891406-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks the emotional intensity patterns behind what you save — learning your exact cerebral-dark threshold.',
@@ -113,9 +114,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.crimson('NEXT', 'page now', '◈'),
     ],
     similarBooks: [
-      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Propulsive from page one', isbn: '9780307588364' },
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Propulsive from page one', isbn: '9780307588364', coverUrl: 'https://covers.openlibrary.org/b/id/12498395-L.jpg' },
       { title: 'The Girl with the Dragon Tattoo', author: 'Stieg Larsson', note: 'Can\'t-stop-reading energy', isbn: '9780307949486' },
-      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Fast, sharp, addictive', isbn: '9780399167065' },
+      { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Fast, sharp, addictive', isbn: '9780399167065', coverUrl: 'https://covers.openlibrary.org/b/id/7352410-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks your pacing instincts — and filters out books that lose momentum before they find it.',
@@ -138,7 +139,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.rose('PORTAL', 'open', '◆'),
     ],
     similarBooks: [
-      { title: 'The Shadow of the Wind', author: 'Carlos Ruiz Zafón', note: 'A world you never want to leave', isbn: '9780143034902' },
+      { title: 'The Shadow of the Wind', author: 'Carlos Ruiz Zafón', note: 'A world you never want to leave', isbn: '9780143034902', coverUrl: 'https://covers.openlibrary.org/b/id/10107706-L.jpg' },
       { title: 'Pachinko', author: 'Min Jin Lee', note: 'Immersive across decades and generations', isbn: '9781455563906' },
       { title: 'A Gentleman in Moscow', author: 'Amor Towles', note: 'Atmospheric and deeply realized', isbn: '9780670026190' },
     ],
@@ -163,9 +164,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.amber('STAYED', 'with me', '○'),
     ],
     similarBooks: [
-      { title: 'Normal People', author: 'Sally Rooney', note: 'Painfully, precisely human', isbn: '9781984822185' },
-      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Emotionally devastating and true', isbn: '9780804172448' },
-      { title: 'Shuggie Bain', author: 'Douglas Stuart', note: 'Love and grief rendered exactly right', isbn: '9780802148506' },
+      { title: 'Normal People', author: 'Sally Rooney', note: 'Painfully, precisely human', isbn: '9781984822185', coverUrl: 'https://covers.openlibrary.org/b/id/9854488-L.jpg' },
+      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Emotionally devastating and true', isbn: '9780804172448', coverUrl: 'https://covers.openlibrary.org/b/id/7369961-L.jpg' },
+      { title: 'Shuggie Bain', author: 'Douglas Stuart', note: 'Love and grief rendered exactly right', isbn: '9780802148506', coverUrl: 'https://covers.openlibrary.org/b/id/10583497-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks your sensitivity to emotional truth — learning what kinds of human experience you respond to most.',
@@ -189,8 +190,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     ],
     similarBooks: [
       { title: 'Klara and the Sun', author: 'Kazuo Ishiguro', note: 'Quietly devastating speculative fiction', isbn: '9780593311295' },
-      { title: 'Station Eleven', author: 'Emily St. John Mandel', note: 'Speculative and deeply human', isbn: '9780385353304' },
-      { title: 'Never Let Me Go', author: 'Kazuo Ishiguro', note: 'Assumptions dismantled slowly and precisely', isbn: '9781400078776' },
+      { title: 'Station Eleven', author: 'Emily St. John Mandel', note: 'Speculative and deeply human', isbn: '9780385353304', coverUrl: 'https://covers.openlibrary.org/b/id/9352504-L.jpg' },
+      { title: 'Never Let Me Go', author: 'Kazuo Ishiguro', note: 'Assumptions dismantled slowly and precisely', isbn: '9781400078776', coverUrl: 'https://covers.openlibrary.org/b/id/13160732-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks your appetite for idea-driven fiction — learning what kinds of premises change how you think.',
@@ -213,9 +214,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('SLOW', 'and earned', '◆'),
     ],
     similarBooks: [
-      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984' },
-      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Layered and intellectually precise', isbn: '9780812995343' },
-      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726' },
+      { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984', coverUrl: 'https://covers.openlibrary.org/b/id/13157605-L.jpg' },
+      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Layered and intellectually precise', isbn: '9780812995343', coverUrl: 'https://covers.openlibrary.org/b/id/7909378-L.jpg' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726', coverUrl: 'https://covers.openlibrary.org/b/id/420075-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks your preference for depth and deliberate prose — learning what level of density you find rewarding vs. exhausting.',
@@ -238,9 +239,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.crimson('NEVER', 'saw it', '◈'),
     ],
     similarBooks: [
-      { title: 'House of Leaves', author: 'Mark Z. Danielewski', note: 'Structurally mind-bending', isbn: '9780375703768' },
+      { title: 'House of Leaves', author: 'Mark Z. Danielewski', note: 'Structurally mind-bending', isbn: '9780375703768', coverUrl: 'https://covers.openlibrary.org/b/id/228503-L.jpg' },
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'Strange, surprising, unforgettable', isbn: '9781635575637' },
-      { title: 'If on a winter\'s night a traveler', author: 'Italo Calvino', note: 'Rules broken from page one', isbn: '9780156439619' },
+      { title: 'If on a winter\'s night a traveler', author: 'Italo Calvino', note: 'Rules broken from page one', isbn: '9780156439619', coverUrl: 'https://covers.openlibrary.org/b/id/12455054-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks your response to the unexpected — learning what kinds of structural surprises feel thrilling vs. cheap.',
@@ -263,9 +264,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.teal('TONE', 'unnamed', '◎'),
     ],
     similarBooks: [
-      { title: 'Rebecca', author: 'Daphne du Maurier', note: 'Atmospheric and unforgettable', isbn: '9780380730407' },
-      { title: 'The Haunting of Hill House', author: 'Shirley Jackson', note: 'Mood as architecture', isbn: '9780143039983' },
-      { title: 'Mexican Gothic', author: 'Silvia Moreno-Garcia', note: 'Gothic atmosphere, lingers for days', isbn: '9780525620785' },
+      { title: 'Rebecca', author: 'Daphne du Maurier', note: 'Atmospheric and unforgettable', isbn: '9780380730407', coverUrl: 'https://covers.openlibrary.org/b/id/8765889-L.jpg' },
+      { title: 'The Haunting of Hill House', author: 'Shirley Jackson', note: 'Mood as architecture', isbn: '9780143039983', coverUrl: 'https://covers.openlibrary.org/b/id/13147201-L.jpg' },
+      { title: 'Mexican Gothic', author: 'Silvia Moreno-Garcia', note: 'Gothic atmosphere, lingers for days', isbn: '9780525620785', coverUrl: 'https://covers.openlibrary.org/b/id/10239163-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book tracks the atmospheric qualities you respond to — building a map of what kind of feeling you\'re chasing.',
@@ -288,8 +289,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.purple('TRUE', 'and hard', '◆'),
     ],
     similarBooks: [
-      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Your kind of devastating.', isbn: '9780804172707' },
-      { title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin', note: 'Hits differently.', isbn: '9780593321201' },
+      { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Your kind of devastating.', isbn: '9780804172707', coverUrl: 'https://covers.openlibrary.org/b/id/8144904-L.jpg' },
+      { title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin', note: 'Hits differently.', isbn: '9780593321201', coverUrl: 'https://covers.openlibrary.org/b/id/12816990-L.jpg' },
       { title: 'Lessons in Chemistry', author: 'Bonnie Garmus', note: 'Emotionally precise.', isbn: '9780385547353' },
     ],
     continuationFeatures: [
@@ -313,7 +314,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.green('LINGER', 'here', '✦'),
     ],
     similarBooks: [
-      { title: 'The Thursday Murder Club', author: 'Richard Osman', note: 'Clever and warm.', isbn: '9781984880963' },
+      { title: 'The Thursday Murder Club', author: 'Richard Osman', note: 'Clever and warm.', isbn: '9781984880963', coverUrl: 'https://covers.openlibrary.org/b/id/10201431-L.jpg' },
       { title: 'Remarkably Bright Creatures', author: 'Shelby Van Pelt', note: 'Exactly this vibe.', isbn: '9780778386261' },
       { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906' },
     ],
@@ -338,9 +339,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.purple('GOTHIC', 'depth', '✦'),
     ],
     similarBooks: [
-      { title: 'The Secret History', author: 'Donna Tartt', note: 'The original.', isbn: '9781400031702' },
+      { title: 'The Secret History', author: 'Donna Tartt', note: 'The original.', isbn: '9781400031702', coverUrl: 'https://covers.openlibrary.org/b/id/7891406-L.jpg' },
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'Beautifully strange.', isbn: '9781635575637' },
-      { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Unapologetically dark.', isbn: '9780525522133' },
+      { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Unapologetically dark.', isbn: '9780525522133', coverUrl: 'https://covers.openlibrary.org/b/id/10286313-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads the darkness and moral complexity you respond to — building a portrait of the specific shadow aesthetic you\'re drawn to.',
@@ -363,9 +364,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.crimson('TWIST', 'coming', '◈'),
     ],
     similarBooks: [
-      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Set the standard.', isbn: '9780307588371' },
-      { title: 'Verity', author: 'Colleen Hoover', note: 'Couldn\'t look away.', isbn: '9781538724736' },
-      { title: 'The Silent Patient', author: 'Alex Michaelides', note: 'Finished in a day.', isbn: '9781250301697' },
+      { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Set the standard.', isbn: '9780307588371', coverUrl: 'https://covers.openlibrary.org/b/id/11568078-L.jpg' },
+      { title: 'Verity', author: 'Colleen Hoover', note: 'Couldn\'t look away.', isbn: '9781538724736', coverUrl: 'https://covers.openlibrary.org/b/id/15128483-L.jpg' },
+      { title: 'The Silent Patient', author: 'Alex Michaelides', note: 'Finished in a day.', isbn: '9781250301697', coverUrl: 'https://covers.openlibrary.org/b/id/8415060-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads your pacing instinct — understanding how fast a book needs to move before you\'re hooked.',
@@ -388,8 +389,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.purple('FINALLY', 'yes', '✦'),
     ],
     similarBooks: [
-      { title: 'Beach Read', author: 'Emily Henry', note: 'Sharp, witty, warm.', isbn: '9781250790750' },
-      { title: 'The Hating Game', author: 'Sally Thorne', note: 'Slow burn perfection.', isbn: '9780062439598' },
+      { title: 'Beach Read', author: 'Emily Henry', note: 'Sharp, witty, warm.', isbn: '9781250790750', coverUrl: 'https://covers.openlibrary.org/b/id/12720775-L.jpg' },
+      { title: 'The Hating Game', author: 'Sally Thorne', note: 'Slow burn perfection.', isbn: '9780062439598', coverUrl: 'https://covers.openlibrary.org/b/id/15206889-L.jpg' },
       { title: 'People We Meet on Vacation', author: 'Emily Henry', note: 'Earned every page.', isbn: '9781250776181' },
     ],
     continuationFeatures: [
@@ -413,8 +414,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.rose('PORTAL', 'open', '◆'),
     ],
     similarBooks: [
-      { title: 'The God of Small Things', author: 'Arundhati Roy', note: 'Never leaves you.', isbn: '9780812979657' },
-      { title: 'Normal People', author: 'Sally Rooney', note: 'Completely transported.', isbn: '9780571334650' },
+      { title: 'The God of Small Things', author: 'Arundhati Roy', note: 'Never leaves you.', isbn: '9780812979657', coverUrl: 'https://covers.openlibrary.org/b/id/10585967-L.jpg' },
+      { title: 'Normal People', author: 'Sally Rooney', note: 'Completely transported.', isbn: '9780571334650', coverUrl: 'https://covers.openlibrary.org/b/id/12804580-L.jpg' },
       { title: 'Intermezzo', author: 'Sally Rooney', note: 'Fully lived in.', isbn: '9780374614997' },
     ],
     continuationFeatures: [
@@ -438,9 +439,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('CHANGED', 'something', '◆'),
     ],
     similarBooks: [
-      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.', isbn: '9780679731726' },
-      { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.', isbn: '9780385350570' },
-      { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.', isbn: '9781590171714' },
+      { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Perfect restraint.', isbn: '9780679731726', coverUrl: 'https://covers.openlibrary.org/b/id/420075-L.jpg' },
+      { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.', isbn: '9780385350570', coverUrl: 'https://covers.openlibrary.org/b/id/14570516-L.jpg' },
+      { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.', isbn: '9781590171714', coverUrl: 'https://covers.openlibrary.org/b/id/859193-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads the quality of attention you bring — learning the prose density and intellectual precision you find rewarding rather than exhausting.',
@@ -463,8 +464,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('TWIST', 'earned', '◆'),
     ],
     similarBooks: [
-      { title: 'Behind Closed Doors', author: 'B.A. Paris', note: 'Can\'t breathe reading it.', isbn: '9781250122940' },
-      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492' },
+      { title: 'Behind Closed Doors', author: 'B.A. Paris', note: 'Can\'t breathe reading it.', isbn: '9781250122940', coverUrl: 'https://covers.openlibrary.org/b/id/10318311-L.jpg' },
+      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492', coverUrl: 'https://covers.openlibrary.org/b/id/6458460-L.jpg' },
       { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734' },
     ],
     continuationFeatures: [
@@ -488,8 +489,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.teal('MAPS', 'studied', '◎'),
     ],
     similarBooks: [
-      { title: 'The Name of the Wind', author: 'Patrick Rothfuss', note: 'Lives rent-free in your head.', isbn: '9780756404741' },
-      { title: 'Ninth House', author: 'Leigh Bardugo', note: 'Dark academia meets fantasy.', isbn: '9781250313072' },
+      { title: 'The Name of the Wind', author: 'Patrick Rothfuss', note: 'Lives rent-free in your head.', isbn: '9780756404741', coverUrl: 'https://covers.openlibrary.org/b/id/8259359-L.jpg' },
+      { title: 'Ninth House', author: 'Leigh Bardugo', note: 'Dark academia meets fantasy.', isbn: '9781250313072', coverUrl: 'https://covers.openlibrary.org/b/id/12667414-L.jpg' },
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'A world unlike any other.', isbn: '9781635575637' },
     ],
     continuationFeatures: [
@@ -513,9 +514,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.green('BACK', 'in it', '○'),
     ],
     similarBooks: [
-      { title: 'Giovanni\'s Room', author: 'James Baldwin', note: '88 pages. Unforgettable.', isbn: '9780385333573' },
-      { title: 'The Vegetarian', author: 'Han Kang', note: 'Short, strange, stays with you.', isbn: '9781101906118' },
-      { title: 'Of Mice and Men', author: 'John Steinbeck', note: 'Read it in one sitting.', isbn: '9780140177398' },
+      { title: 'Giovanni\'s Room', author: 'James Baldwin', note: '88 pages. Unforgettable.', isbn: '9780385333573', coverUrl: 'https://covers.openlibrary.org/b/id/4610740-L.jpg' },
+      { title: 'The Vegetarian', author: 'Han Kang', note: 'Short, strange, stays with you.', isbn: '9781101906118', coverUrl: 'https://covers.openlibrary.org/b/id/10226571-L.jpg' },
+      { title: 'Of Mice and Men', author: 'John Steinbeck', note: 'Read it in one sitting.', isbn: '9780140177398', coverUrl: 'https://covers.openlibrary.org/b/id/15153601-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads where you are as a reader right now — not just what you love in theory, but what you can actually finish.',
@@ -538,8 +539,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.green('REST', 'now', '✦'),
     ],
     similarBooks: [
-      { title: 'Eleanor Oliphant is Completely Fine', author: 'Gail Honeyman', note: 'Cozy emotional reset.', isbn: '9780735220683' },
-      { title: 'The Rosie Project', author: 'Graeme Simsion', note: 'Zero stress, full heart.', isbn: '9781476729084' },
+      { title: 'Eleanor Oliphant is Completely Fine', author: 'Gail Honeyman', note: 'Cozy emotional reset.', isbn: '9780735220683', coverUrl: 'https://covers.openlibrary.org/b/id/8415055-L.jpg' },
+      { title: 'The Rosie Project', author: 'Graeme Simsion', note: 'Zero stress, full heart.', isbn: '9781476729084', coverUrl: 'https://covers.openlibrary.org/b/id/12602975-L.jpg' },
       { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906' },
     ],
     continuationFeatures: [
@@ -563,9 +564,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.slate('LINGERS', 'after', '◆'),
     ],
     similarBooks: [
-      { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.', isbn: '9780812971835' },
+      { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.', isbn: '9780812971835', coverUrl: 'https://covers.openlibrary.org/b/id/6455275-L.jpg' },
       { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Demands full attention.', isbn: '9780063251311' },
-      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405' },
+      { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405', coverUrl: 'https://covers.openlibrary.org/b/id/10360665-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads the depth and precision you respond to — learning what you mean by "good writing" as distinct from what anyone else means.',
@@ -588,8 +589,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.teal('SOLVED', 'almost', '✦'),
     ],
     similarBooks: [
-      { title: 'And Then There Were None', author: 'Agatha Christie', note: 'Still the best.', isbn: '9780062073488' },
-      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492' },
+      { title: 'And Then There Were None', author: 'Agatha Christie', note: 'Still the best.', isbn: '9780062073488', coverUrl: 'https://covers.openlibrary.org/b/id/12854241-L.jpg' },
+      { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492', coverUrl: 'https://covers.openlibrary.org/b/id/6458460-L.jpg' },
       { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734' },
     ],
     continuationFeatures: [
@@ -613,9 +614,9 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       T.amber('EXPANDED', 'me', '○'),
     ],
     similarBooks: [
-      { title: 'Educated', author: 'Tara Westover', note: 'Jaw-dropping real life.', isbn: '9780399590504' },
-      { title: 'The Anthropocene Reviewed', author: 'John Green', note: 'Essays that expand you.', isbn: '9780525555216' },
-      { title: 'Know My Name', author: 'Chanel Miller', note: 'Important. Beautiful.', isbn: '9780735223707' },
+      { title: 'Educated', author: 'Tara Westover', note: 'Jaw-dropping real life.', isbn: '9780399590504', coverUrl: 'https://covers.openlibrary.org/b/id/14832082-L.jpg' },
+      { title: 'The Anthropocene Reviewed', author: 'John Green', note: 'Essays that expand you.', isbn: '9780525555216', coverUrl: 'https://covers.openlibrary.org/b/id/11896674-L.jpg' },
+      { title: 'Know My Name', author: 'Chanel Miller', note: 'Important. Beautiful.', isbn: '9780735223707', coverUrl: 'https://covers.openlibrary.org/b/id/8999829-L.jpg' },
     ],
     continuationFeatures: [
       'My Next Book reads the kind of real life that moves you — learning what separates the memoir that changes you from the one that leaves you cold.',

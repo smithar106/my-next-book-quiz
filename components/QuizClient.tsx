@@ -436,10 +436,10 @@ function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').S
               fontSize: 16,
             }}>
               <span>📖</span>
-              {book.isbn && (
+              {book.coverUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-S.jpg`}
+                  src={book.coverUrl}
                   alt={book.title}
                   width={36}
                   height={52}
