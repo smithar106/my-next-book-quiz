@@ -441,7 +441,7 @@ const BOOKTOK: QuizConfig = {
       tagline: 'The romance BookTok keeps pushing — for good reason.',
       description: 'You need the books people are making 5-minute edits for. Slow burns that pay off, enemies who finally admit everything, couples worth shipping with your whole personality. The best BookTok romance isn\'t just sweet — it\'s electric.',
       readingDirections: ['Slow-burn contemporary romance with sharp, witty banter', 'Romantasy series blending magic and genuine love stories', 'Second-chance and forced proximity tropes with real emotional stakes'],
-      whyAppHelps: 'My Next Book tracks romance tropes, steam level, and tension style — so your feed shows you the romance books that match YOUR exact flavor, not just whatever\'s viral this week.',
+      whyAppHelps: 'My Next Book reads the romantic tension and emotional payoff you respond to — so you find the romance that\'s actually yours, not just whatever\'s going viral this week.',
     },
     {
       id: 'fantasy',
@@ -450,7 +450,7 @@ const BOOKTOK: QuizConfig = {
       tagline: 'The fantasy that makes you miss your own world.',
       description: 'You need a world so complete you\'d move there. The BookTok fantasy that earns its hype isn\'t just surface level — it has lore, magic, politics, and characters you\'d actually follow into battle.',
       readingDirections: ['Epic romantasy series with fully realized magic systems', 'Dark fantasy with morally complex protagonists and genuine stakes', 'Fantasy with strong female characters and world-spanning plots'],
-      whyAppHelps: 'My Next Book tracks fantasy sub-genre, world-building depth, and darkness level — so you find the fantasy that actually lives up to the hype.',
+      whyAppHelps: 'My Next Book reads how deep, dark, and complete you need a world to be — so you find the fantasy that genuinely lives up to the hype rather than just looking good in a TikTok.',
     },
     {
       id: 'emotional',
@@ -459,7 +459,7 @@ const BOOKTOK: QuizConfig = {
       tagline: 'The book that earns every single tear.',
       description: 'You\'re here for the books that wreck you beautifully. The ones you finish at 2am completely emotional and immediately text someone to read. Not manipulative crying — earned, cathartic, meaningful.',
       readingDirections: ['Literary fiction about love, loss, and what it means to stay', 'Contemporary stories about grief, hope, and unexpected connection', 'Character-driven novels with endings that feel both devastating and right'],
-      whyAppHelps: 'My Next Book tracks emotional intensity separately from sadness level — so you always get the books that hit hard in exactly the way you want.',
+      whyAppHelps: 'My Next Book reads the emotional frequency you need — finding books that earn their devastating moments rather than manufacturing them.',
     },
     {
       id: 'dark',
@@ -468,7 +468,7 @@ const BOOKTOK: QuizConfig = {
       tagline: 'Morally complex, hauntingly beautiful, unforgettable.',
       description: 'You want the books that disturb you in a specific way. Dark academia aesthetics, obsessive characters, Gothic atmosphere, elite institutions hiding terrible things. The beautiful and the unsettling intertwined.',
       readingDirections: ['Dark academia with literary ambition and genuine psychological depth', 'Gothic fiction with haunted settings and morally corrupt protagonists', 'Psychological literary fiction that keeps you up at night thinking'],
-      whyAppHelps: 'My Next Book tracks dark atmosphere, moral ambiguity, and prose style as separate dimensions — so your feed stays in the aesthetic without going too extreme.',
+      whyAppHelps: 'My Next Book reads the specific dark aesthetic you\'re drawn to — finding books that haunt beautifully without slipping past your threshold.',
     },
     {
       id: 'thriller',
@@ -477,7 +477,7 @@ const BOOKTOK: QuizConfig = {
       tagline: 'Propulsive, twisty, unputdownable.',
       description: 'You need the BookTok thriller that actually delivers on its 5-star promise. The ones where every chapter reveals something that changes everything. You\'ve read a whole book to find out who did it.',
       readingDirections: ['Psychological thrillers with twists that genuinely surprise', 'Domestic suspense where the ordinary becomes menacing', 'Fast-paced crime fiction that respects your intelligence'],
-      whyAppHelps: 'My Next Book tracks pace, twist frequency, and tension curve — so your thriller feed is filled with books that actually stay gripping start to finish.',
+      whyAppHelps: 'My Next Book reads the quality of tension you need from a thriller — and finds the books that sustain it from page one to the final reveal.',
     },
   ],
   resultLogic: (scores) => {
@@ -552,7 +552,7 @@ const SLUMP: QuizConfig = {
       tagline: 'A quick win that reminds you why you love reading.',
       description: 'Your slump cure is a short book you can actually finish. Under 250 pages, fast-moving, satisfying. The goal isn\'t ambition right now — it\'s remembering what it feels like to close a book with that warmth in your chest.',
       readingDirections: ['Novellas and short novels under 200 pages', 'Short story collections where you can read one story at a time', 'Fast single-POV books with a clear beginning, middle, and end'],
-      whyAppHelps: 'My Next Book lets you filter by length, pacing, and ease of entry — so you can find the exact short read that will get you back in the game.',
+      whyAppHelps: 'My Next Book reads where you are as a reader right now — and knows how to meet you there with the right weight, length, and pace.',
     },
     {
       id: 'emotional',
@@ -561,7 +561,7 @@ const SLUMP: QuizConfig = {
       tagline: 'A book that reminds you why stories matter.',
       description: 'You need a book that cracks you open in the best way. Not demanding — emotionally generous. The kind where you finish it feeling like something shifted. Sometimes a good cry is the cure for a reading slump.',
       readingDirections: ['Quiet literary fiction about love, grief, or starting over', 'Character studies that make you feel genuinely seen', 'Debut novels with fresh perspectives and emotional clarity'],
-      whyAppHelps: 'My Next Book tracks emotional resonance separately from intensity — finding books that move you without overwhelming you.',
+      whyAppHelps: 'My Next Book reads the emotional register you need right now — finding books that move you without asking more than you can give.',
     },
     {
       id: 'slump_comfort',
@@ -570,7 +570,7 @@ const SLUMP: QuizConfig = {
       tagline: 'Safe. Warm. Zero pressure.',
       description: 'Your slump is telling you something: you need rest, not ambition. A cozy read with low stakes, likeable characters, and a world you want to live in for a few hours. No trauma, no twists, just warmth.',
       readingDirections: ['Cozy mystery with charming setting and zero jump scares', 'Contemporary romance with guaranteed happy ending', 'Feel-good fiction where good things happen to good people'],
-      whyAppHelps: 'My Next Book tracks stress level and darkness specifically — so you get books that feel like a vacation, not a workout.',
+      whyAppHelps: 'My Next Book reads how much weight you can carry right now — and finds the books that feel like genuine rest rather than another demand.',
     },
     {
       id: 'fast',
@@ -579,7 +579,7 @@ const SLUMP: QuizConfig = {
       tagline: 'Grips you so hard you forget you were in a slump.',
       description: 'Sometimes the only way out of a slump is a book so gripping you don\'t have time to be bored. A plot-driven thriller that starts at chapter one and never lets up. You\'ll forget you were in a slump by page 30.',
       readingDirections: ['Propulsive commercial thrillers that work as page-turners', 'Fast mysteries with a clear hook and satisfying payoff', 'Suspense novels under 350 pages with tight plotting'],
-      whyAppHelps: 'My Next Book specifically tracks pace and propulsiveness — so your feed surfaces the books that move fastest and hook hardest.',
+      whyAppHelps: 'My Next Book reads the propulsive energy you need from a story — and finds the books where something is always at stake from page one.',
     },
     {
       id: 'romance',
@@ -588,7 +588,7 @@ const SLUMP: QuizConfig = {
       tagline: 'Low stakes, high feelings. You deserve this.',
       description: 'When life is hard, sometimes you just need to believe in love for a few hundred pages. A comfort romance with a guaranteed happy ending and characters worth rooting for — uncomplicated and completely satisfying.',
       readingDirections: ['Light contemporary romance with witty dialogue and zero angst', 'Short romantic comedies that make you laugh out loud', 'Friends-to-lovers or second-chance romance with heartwarming resolution'],
-      whyAppHelps: 'My Next Book tracks angst level and guarantee of happy ending as real data points — so your comfort reads actually comfort you.',
+      whyAppHelps: 'My Next Book reads how much tension you want in a love story right now — and finds the romance that delivers warmth without the anxiety.',
     },
   ],
   resultLogic: (scores) => {
@@ -656,7 +656,7 @@ const GENRE_MATCH: QuizConfig = {
     },
     {
       id: 'q6',
-      text: 'Your current life energy:',
+      text: 'What does reading feel like you need to do right now?',
       options: [
         { id: 'a', text: 'I need to escape completely', scores: { fantasy: 2, romance: 1 } },
         { id: 'b', text: 'I want to understand something', scores: { literary: 2, memoir: 1 } },
@@ -673,7 +673,7 @@ const GENRE_MATCH: QuizConfig = {
       tagline: 'Your mood is calling for another world entirely.',
       description: 'Right now you need more than just a good story — you need a portal. Fantasy gives you that complete transportation: a world with different rules, real stakes, magic, and characters whose problems feel distant enough to be freeing.',
       readingDirections: ['Epic fantasy with immersive world-building and a sweeping cast', 'Romantasy that layers magic onto genuine emotional arcs', 'Standalone fantasy for when you don\'t want a 5-book commitment'],
-      whyAppHelps: 'My Next Book tracks fantasy sub-genre, world complexity, and magic system depth — so you find the exact kind of other world you\'re in the mood for.',
+      whyAppHelps: 'My Next Book reads the world-building depth and tone you need right now — finding the fantasy that actually transports rather than just promising to.',
     },
     {
       id: 'literary',
@@ -682,7 +682,7 @@ const GENRE_MATCH: QuizConfig = {
       tagline: 'Your mood wants depth, beauty, and real truth.',
       description: 'You\'re in a mode where you want to think and feel at the same time. Literary fiction at its best gives you that — sentences worth rereading, characters who feel like people you\'ve met, and a perspective that changes yours.',
       readingDirections: ['Contemporary literary fiction from debut and mid-career authors', 'Character-driven novels about ordinary lives made extraordinary', 'Quiet, precise books that reward slow reading'],
-      whyAppHelps: 'My Next Book tracks prose quality, intellectual depth, and emotional payoff as distinct signals — so your literary feed is genuinely good writing, not just "serious" books.',
+      whyAppHelps: 'My Next Book reads what genuinely good writing means to you specifically — finding literary fiction that thinks and feels, not just literary fiction that looks serious.',
     },
     {
       id: 'romance',
@@ -691,7 +691,7 @@ const GENRE_MATCH: QuizConfig = {
       tagline: 'Your heart needs something tender and true.',
       description: 'You\'re in a romance mood — and that\'s not just okay, it\'s perfect. Romance at its best is emotionally intelligent, deeply human storytelling. You deserve books that make you believe in people and connection.',
       readingDirections: ['Contemporary romance with warmth, humor, and genuine feeling', 'Historical romance with rich atmosphere and emotional tension', 'Romance anthologies for when you want variety'],
-      whyAppHelps: 'My Next Book tracks romance tropes, emotional temperature, and ending guarantee — so you only get the romance books that deliver exactly what you\'re hoping for.',
+      whyAppHelps: 'My Next Book reads the emotional temperature and warmth you need from a love story right now — and finds the romance that genuinely delivers it.',
     },
     {
       id: 'mystery',
@@ -700,7 +700,7 @@ const GENRE_MATCH: QuizConfig = {
       tagline: 'Your brain wants to figure something out.',
       description: 'You\'re in an active, curious mood — you want to engage, theorize, and solve. Mystery fiction gives your mind something to work with: clues to track, characters to suspect, and the deeply satisfying payoff of the reveal.',
       readingDirections: ['Classic-style mysteries with a fair puzzle and satisfying resolution', 'Contemporary crime fiction with sharp social observation', 'Cozy mysteries for when you want puzzle without tension'],
-      whyAppHelps: 'My Next Book tracks mystery sub-type (cozy vs. dark vs. procedural) and puzzle complexity — matching your mood to the right kind of mystery.',
+      whyAppHelps: 'My Next Book reads the kind of puzzle your mind is hungry for right now — matching you to the mystery that satisfies that specific kind of attention.',
     },
     {
       id: 'memoir',
@@ -709,7 +709,7 @@ const GENRE_MATCH: QuizConfig = {
       tagline: 'A real life that expands your sense of what\'s possible.',
       description: 'You want truth right now — specifically the truth of someone else\'s real, fully lived life. Great memoir gives you perspective, company, and the reminder that extraordinary experiences are available to anyone paying attention.',
       readingDirections: ['Memoirs about transformation and starting over', 'Essay collections from writers whose minds you want to spend time in', 'Nature writing and place-based memoir that opens up the world'],
-      whyAppHelps: 'My Next Book tracks non-fiction sub-type and narrative style — so memoir recommendations feel as gripping and personal as the best fiction.',
+      whyAppHelps: 'My Next Book reads the kind of real life that moves you — finding memoir that feels as transporting and personally true as the best fiction.',
     },
   ],
   resultLogic: (scores) => {

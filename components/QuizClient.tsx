@@ -24,6 +24,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const [emailSent, setEmailSent] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [stickyCta, setStickyCta] = useState(false)
+  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
   const sessionId = useRef(genSessionId())
   const attr = useRef<Attribution>({})
 
@@ -39,7 +40,7 @@ export function QuizClient({ slug, rawParams }: Props) {
 
   useEffect(() => {
     if (phase !== 'result') return
-    const handleScroll = () => setStickyCta(window.scrollY > 400)
+    const handleScroll = () => setStickyCta(window.scrollY > 900)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [phase])
@@ -56,10 +57,12 @@ export function QuizClient({ slug, rawParams }: Props) {
   function selectOption(questionId: string, optionId: string) {
     const next = { ...answers, [questionId]: optionId }
     setAnswers(next)
+    setSelectedOptionId(optionId)
     trackEvent(sessionId.current, 'quiz_question_answered', config!.id, {
       question_id: questionId, option_id: optionId, question_index: currentQ,
     })
     setTimeout(() => {
+      setSelectedOptionId(null)
       if (currentQ < config!.questions.length - 1) {
         setCurrentQ((q) => q + 1)
       } else {
@@ -150,14 +153,14 @@ export function QuizClient({ slug, rawParams }: Props) {
   if (phase === 'landing') {
     return (
       <main style={s.page}>
-        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Download Free</a>} />
+        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Open the app</a>} />
         <div style={s.landingInner}>
           <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
           <p style={s.subtitle}>{config.description}</p>
-          <button onClick={startQuiz} style={s.primaryBtn}>Find my reading identity →</button>
-          <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Free · No sign-up required</p>
-          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>Built for readers who care how books feel.</p>
+          <button onClick={startQuiz} style={s.primaryBtn}>Discover who you are as a reader →</button>
+          <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Takes two minutes. Stays with you.</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>For readers who feel books, not just finish them.</p>
 
           {/* Identity preview grid */}
           <div style={{ marginTop: 52, textAlign: 'left' }}>
@@ -213,21 +216,24 @@ export function QuizClient({ slug, rawParams }: Props) {
           <p style={s.quizTagline}>{getProgressTagline(currentQ, config.questions.length)}</p>
           <h2 style={s.questionText}>{question.text}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {question.options.map((opt) => (
-              <button
-                key={opt.id}
-                onClick={() => selectOption(question.id, opt.id)}
-                style={{ ...s.optionBtn, ...(answers[question.id] === opt.id ? s.optionBtnSelected : {}) }}
-              >
-                <span style={{
-                  ...s.optionDot,
-                  ...(answers[question.id] === opt.id ? {
-                    background: 'var(--purple)', border: '2px solid var(--purple)',
-                  } : {}),
-                }} />
-                {opt.text}
-              </button>
-            ))}
+            {question.options.map((opt) => {
+              const isSelected = selectedOptionId === opt.id
+              return (
+                <button
+                  key={opt.id}
+                  onClick={() => selectOption(question.id, opt.id)}
+                  style={{ ...s.optionBtn, ...(isSelected ? s.optionBtnSelected : {}) }}
+                >
+                  <span style={{
+                    ...s.optionDot,
+                    ...(isSelected ? {
+                      background: 'var(--purple)', border: '2px solid var(--purple)',
+                    } : {}),
+                  }} />
+                  {opt.text}
+                </button>
+              )
+            })}
           </div>
         </div>
       </main>
@@ -238,7 +244,7 @@ export function QuizClient({ slug, rawParams }: Props) {
     const ctaCopy = content?.ctaCopy ?? 'Build My Reading Feed'
     return (
       <main style={s.page}>
-        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Download Free</a>} />
+        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Open the app</a>} />
 
         <div style={{ maxWidth: 580, margin: '0 auto 0', padding: '120px 20px 120px' }}>
           {/* Hero result card */}
@@ -297,9 +303,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
             <div style={s.card}>
-              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your result</p>
+              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Keep your reading identity</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Get your reading identity, the books that match it, and what your taste reveals — sent to your inbox.
+                Your archetype, the books that call to it, and what your reading taste reveals — sent to your inbox.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
@@ -313,9 +319,9 @@ export function QuizClient({ slug, rawParams }: Props) {
             </div>
           ) : (
             <div style={{ ...s.card, textAlign: 'center' }}>
-              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Now continue in the app.</p>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Your reading identity, preserved.</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 8 }}>
-                Your feed will be tuned to your identity from the moment you open it.
+                Open the app and your identity is already waiting. Every book you encounter deepens it.
               </p>
             </div>
           )}
@@ -386,7 +392,7 @@ function ResultHeroCard({ result, content }: {
 function MoodBoard({ tiles }: { tiles: import('@/lib/resultContent').MoodTile[] }) {
   return (
     <div style={{ marginBottom: 20 }}>
-      <p style={{ ...s.cardLabel, marginBottom: 12 }}>YOUR READING VIBE</p>
+      <p style={{ ...s.cardLabel, marginBottom: 12 }}>YOUR READING TEXTURE</p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
         {tiles.map((tile, i) => (
           <div key={i} style={{
@@ -477,7 +483,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
         {ctaCopy}
       </button>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12, textAlign: 'center' }}>
-        Free to start · 14-day free trial · No credit card
+        Free to explore · 14 days to go deep · No commitment
       </p>
     </div>
   )
@@ -616,10 +622,10 @@ function StickyCTA({ visible, ctaCopy, onClick }: { visible: boolean; ctaCopy: s
 
 function getProgressTagline(index: number, total: number): string {
   const pct = index / total
-  if (pct < 0.25) return 'Mapping your emotional instincts...'
-  if (pct < 0.5) return 'Getting more precise...'
-  if (pct < 0.75) return 'The pattern is forming...'
-  return 'Almost there...'
+  if (pct < 0.25) return 'Reading your emotional instincts...'
+  if (pct < 0.5) return 'Something is taking shape...'
+  if (pct < 0.75) return 'The portrait is forming...'
+  return 'Almost complete...'
 }
 
 const ARCHETYPE_PREVIEWS = [
