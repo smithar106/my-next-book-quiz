@@ -17,7 +17,7 @@ interface Props { slug: string; rawParams: Record<string, string> }
 
 export function QuizClient({ slug, rawParams }: Props) {
   const config = getQuiz(slug)
-  const [phase, setPhase] = useState<Phase>('landing')
+  const [phase, setPhase] = useState<Phase>(rawParams.start === '1' ? 'quiz' : 'landing')
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [email, setEmail] = useState('')
@@ -38,6 +38,10 @@ export function QuizClient({ slug, rawParams }: Props) {
     attr.current = { ...stored, ...parsed }
     storeAttribution(attr.current)
     trackEvent(sessionId.current, 'page_view', config.id, { quiz_id: config.id, ...attr.current })
+    if (rawParams.start === '1') {
+      createSession(sessionId.current, config.id, attr.current)
+      trackEvent(sessionId.current, 'quiz_started', config.id)
+    }
   }, [config, rawParams])
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export function QuizList() {
 
 function QuizCard({ slug, meta }: { slug: string; meta: typeof QUIZ_META[string] }) {
   return (
-    <Link href={`/${slug}`} style={{ display: 'block' }}>
+    <Link href={`/${slug}?start=1`} style={{ display: 'block' }}>
       <div
         style={{
           background: 'var(--surface)',
