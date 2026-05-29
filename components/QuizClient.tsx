@@ -313,7 +313,6 @@ export function QuizClient({ slug, rawParams }: Props) {
           {content && result && (
             <ShareResultButton
               archetypeName={content.archetypeName}
-              shareText={content.shareText}
               resultId={result.id}
               sessionId={sessionId.current}
               quizId={config!.id}
@@ -588,7 +587,7 @@ function ReadingContinuationSection({ features }: { features: string[] }) {
   )
 }
 
-function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quizId }: { archetypeName: string; shareText: string; resultId: string; sessionId: string; quizId: string }) {
+function ShareResultButton({ archetypeName, resultId, sessionId, quizId }: { archetypeName: string; resultId: string; sessionId: string; quizId: string }) {
   const [copied, setCopied] = useState(false)
   const [cardSaving, setCardSaving] = useState(false)
 
@@ -769,10 +768,6 @@ const s: Record<string, React.CSSProperties> = {
   },
   h1: { fontSize: 'clamp(36px,8vw,60px)', fontWeight: 900, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 20 },
   subtitle: { color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6, marginBottom: 28 },
-  pill: {
-    background: 'rgba(200,176,255,0.12)', border: '1px solid rgba(200,176,255,0.30)',
-    color: 'var(--text-muted)', fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 100,
-  },
   primaryBtn: {
     background: 'var(--purple-btn)', color: '#120F1C', fontSize: 17, fontWeight: 800,
     padding: '16px 40px', borderRadius: 14, display: 'inline-block', marginTop: 8, cursor: 'pointer',
