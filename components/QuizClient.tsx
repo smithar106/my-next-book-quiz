@@ -9,7 +9,7 @@ import {
 } from '@/lib/tracking'
 import type { Attribution } from '@/types/quiz'
 
-const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? 'https://apps.apple.com/app/id6763831526'
+const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? 'https://apps.apple.com/us/app/my-next-book-what-to-read/id6763831526'
 
 type Phase = 'landing' | 'quiz' | 'calculating' | 'result'
 
