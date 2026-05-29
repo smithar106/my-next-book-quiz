@@ -12,6 +12,8 @@ export type EventName =
   | 'sticky_cta_clicked'
   | 'share_clicked'
   | 'save_card_clicked'
+  | 'email_form_shown'
+  | 'email_form_skipped'
 
 export function trackEvent(
   sessionId: string,

@@ -1,0 +1,52 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]: My Next Book
+      - link "Open the app" [ref=e5] [cursor=pointer]:
+        - /url: https://apps.apple.com/app/id6763831526
+    - generic [ref=e6]:
+      - generic [ref=e7]: Reading Identity
+      - heading "The books you love aren't random." [level=1] [ref=e8]
+      - paragraph [ref=e9]: Answer a few questions and discover the emotional patterns behind your reading taste.
+      - button "Discover who you are as a reader →" [ref=e10] [cursor=pointer]
+      - paragraph [ref=e11]: Takes two minutes. Stays with you.
+      - paragraph [ref=e12]: For readers who feel books, not just finish them.
+      - generic [ref=e13]:
+        - paragraph [ref=e14]: YOUR RESULT MIGHT BE
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: 🖤
+            - paragraph [ref=e18]: Dark Cerebral Reader
+          - generic [ref=e19]:
+            - generic [ref=e20]: ⚡
+            - paragraph [ref=e21]: Momentum Reader
+          - generic [ref=e22]:
+            - generic [ref=e23]: 🌙
+            - paragraph [ref=e24]: Literary Escapist
+          - generic [ref=e25]:
+            - generic [ref=e26]: 💧
+            - paragraph [ref=e27]: Emotional Realist
+          - generic [ref=e28]:
+            - generic [ref=e29]: 🔭
+            - paragraph [ref=e30]: Speculative Thinker
+          - generic [ref=e31]:
+            - generic [ref=e32]: 📐
+            - paragraph [ref=e33]: Quiet Intellectual
+          - generic [ref=e34]:
+            - generic [ref=e35]: 🌀
+            - paragraph [ref=e36]: Chaos Reader
+          - generic [ref=e37]:
+            - generic [ref=e38]: 🌫️
+            - paragraph [ref=e39]: Atmospheric Explorer
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: WHAT YOU DISCOVER
+        - generic [ref=e42]:
+          - generic [ref=e43]: ✦
+          - generic [ref=e44]: The emotional patterns behind your reading taste
+        - generic [ref=e45]:
+          - generic [ref=e46]: ✦
+          - generic [ref=e47]: Books that match how you actually want to feel
+        - generic [ref=e48]:
+          - generic [ref=e49]: ✦
+          - generic [ref=e50]: A precise name for the kind of reader you already are
+  - alert [ref=e51]

@@ -1,0 +1,18 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]: My Next Book
+    - generic [ref=e6]:
+      - paragraph [ref=e62]: Question 2 of 6
+      - paragraph [ref=e9]: Reading your emotional instincts...
+      - heading "What usually ruins a book for you?" [level=2] [ref=e77]
+      - generic [ref=e64]:
+        - button "Predictable emotions" [active] [ref=e78] [cursor=pointer]: Predictable emotions
+        - button "Flat characters" [ref=e79] [cursor=pointer]: Flat characters
+        - button "Weak prose" [ref=e80] [cursor=pointer]: Weak prose
+        - button "Emotional shallowness" [ref=e81] [cursor=pointer]: Emotional shallowness
+        - button "Slow pacing" [ref=e82] [cursor=pointer]: Slow pacing
+        - button "No emotional tension" [ref=e83] [cursor=pointer]: No emotional tension
+  - button "Open Next.js Dev Tools" [ref=e56] [cursor=pointer]:
+    - img [ref=e57]
+  - alert [ref=e60]

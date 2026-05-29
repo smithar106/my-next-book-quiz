@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { getQuiz, computeResult } from '@/lib/quizzes'
 import { getResultContent } from '@/lib/resultContent'
 import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl, persistResult } from '@/lib/attribution'
@@ -11,7 +11,7 @@ import type { Attribution } from '@/types/quiz'
 
 const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? 'https://apps.apple.com/app/id6763831526'
 
-type Phase = 'landing' | 'quiz' | 'result'
+type Phase = 'landing' | 'quiz' | 'calculating' | 'result'
 
 interface Props { slug: string; rawParams: Record<string, string> }
 
@@ -27,6 +27,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
   const sessionId = useRef(genSessionId())
   const attr = useRef<Attribution>({})
+  const emailFormShownRef = useRef(false)
 
   useEffect(() => {
     if (!config) return
@@ -40,10 +41,20 @@ export function QuizClient({ slug, rawParams }: Props) {
 
   useEffect(() => {
     if (phase !== 'result') return
-    const handleScroll = () => setStickyCta(window.scrollY > 900)
+    const handleScroll = () => {
+      const threshold = document.documentElement.scrollHeight * 0.35
+      setStickyCta(window.scrollY > threshold)
+    }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [phase])
+
+  useEffect(() => {
+    if (phase !== 'result' || emailSent || emailFormShownRef.current || !config) return
+    emailFormShownRef.current = true
+    const r = computeResult(config, answers)
+    trackEvent(sessionId.current, 'email_form_shown', config.id, { archetype: r?.id })
+  }, [phase, emailSent, config, answers])
 
   if (!config) return <div style={{ color: 'var(--text)', padding: 40 }}>Quiz not found.</div>
 
@@ -81,14 +92,14 @@ export function QuizClient({ slug, rawParams }: Props) {
       const rc = getResultContent(result.id)
       persistResult(result.id, rc?.archetypeName ?? result.title, config!.id)
     }
-    setPhase('result')
+    setPhase('calculating')
+    setTimeout(() => setPhase('result'), 1800)
   }
 
   async function submitEmail(e: React.FormEvent) {
     e.preventDefault()
     if (!email || emailLoading) return
     setEmailLoading(true)
-    const result = computeResult(config!, answers)
     if (result) {
       const rc = getResultContent(result.id)
       await captureEmail(sessionId.current, config!.id, email, result.id, attr.current)
@@ -145,7 +156,10 @@ export function QuizClient({ slug, rawParams }: Props) {
     )
   }
 
-  const result = phase === 'result' ? computeResult(config, answers) : null
+  const result = useMemo(
+    () => (phase === 'result' || phase === 'calculating') ? computeResult(config, answers) : null,
+    [phase, config, answers]
+  )
   const content = result ? getResultContent(result.id) : null
   const question = config.questions[currentQ]
   const progress = ((currentQ + 1) / config.questions.length) * 100
@@ -153,7 +167,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   if (phase === 'landing') {
     return (
       <main style={s.page}>
-        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Open the app</a>} />
+        <Nav right={<button onClick={() => handleAppStoreClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
         <div style={s.landingInner}>
           <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
@@ -240,11 +254,15 @@ export function QuizClient({ slug, rawParams }: Props) {
     )
   }
 
+  if (phase === 'calculating') {
+    return <CalculatingScreen />
+  }
+
   if (phase === 'result' && result) {
     const ctaCopy = content?.ctaCopy ?? 'Build My Reading Feed'
     return (
       <main style={s.page}>
-        <Nav right={<a href={APP_STORE_URL} style={s.navCta}>Open the app</a>} />
+        <Nav right={<button onClick={() => handleAppStoreClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
 
         <div style={{ maxWidth: 580, margin: '0 auto 0', padding: '120px 20px 120px' }}>
           {/* Hero result card */}
@@ -327,7 +345,15 @@ export function QuizClient({ slug, rawParams }: Props) {
           )}
 
           <div style={{ textAlign: 'center', marginTop: 32 }}>
-            <a href="/" style={{ color: 'var(--text-dim)', fontSize: 13 }}>Take another quiz →</a>
+            <a
+              href="/"
+              style={{ color: 'var(--text-dim)', fontSize: 13 }}
+              onClick={() => {
+                if (!emailSent) {
+                  trackEvent(sessionId.current, 'email_form_skipped', config!.id, { archetype: result?.id })
+                }
+              }}
+            >Take another quiz →</a>
           </div>
         </div>
 
@@ -342,6 +368,60 @@ export function QuizClient({ slug, rawParams }: Props) {
   }
 
   return null
+}
+
+// ─── Calculating Screen ──────────────────────────────────────────────────────
+
+function CalculatingScreen() {
+  const [label, setLabel] = useState('Reading your answers...')
+  const [opacity, setOpacity] = useState(1)
+
+  useEffect(() => {
+    // Fade out current label, swap text, fade back in
+    const timer = setTimeout(() => {
+      setOpacity(0)
+      setTimeout(() => {
+        setLabel('Something is taking shape...')
+        setOpacity(1)
+      }, 300)
+    }, 900)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <main style={{
+      minHeight: '100vh',
+      background: 'var(--bg)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 32,
+    }}>
+      {/* Breathing dot */}
+      <div style={{
+        width: 14,
+        height: 14,
+        borderRadius: '50%',
+        background: 'var(--purple)',
+        animation: 'pulse 1.6s ease-in-out infinite',
+      }} />
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; transform: scale(0.85); }
+          50% { opacity: 1; transform: scale(1.15); }
+        }
+      `}</style>
+      <p style={{
+        color: 'var(--text-muted)',
+        fontSize: 17,
+        fontWeight: 500,
+        letterSpacing: '0.1px',
+        transition: 'opacity 0.3s ease',
+        opacity,
+      }}>{label}</p>
+    </main>
+  )
 }
 
 // ─── Sub-components ────────────────────────────────────────────────────────
@@ -436,15 +516,22 @@ function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').S
               fontSize: 16,
             }}>
               <span>📖</span>
-              {book.isbn && (
+              {(book.coverUrl || book.isbn) && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={`/api/cover?isbn=${book.isbn}`}
+                  src={book.coverUrl || `/api/cover?isbn=${book.isbn}`}
                   alt={book.title}
                   width={36}
                   height={52}
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                  onError={(e) => {
+                    const img = e.currentTarget as HTMLImageElement
+                    if (book.isbn && img.src !== `/api/cover?isbn=${book.isbn}`) {
+                      img.src = `/api/cover?isbn=${book.isbn}`
+                    } else {
+                      img.style.display = 'none'
+                    }
+                  }}
                 />
               )}
             </div>
@@ -514,6 +601,13 @@ function ShareResultButton({ archetypeName, shareText, resultId, sessionId, quiz
       result_id: resultId,
       archetype_name: archetypeName,
     })
+    // iOS Safari can't do programmatic blob downloads — open in new tab for long-press save
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    if (isIOS) {
+      const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : ''
+      window.open(`${base}/api/og?result=${encodeURIComponent(resultId)}&format=story`, '_blank')
+      return
+    }
     setCardSaving(true)
     try {
       const base = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : ''

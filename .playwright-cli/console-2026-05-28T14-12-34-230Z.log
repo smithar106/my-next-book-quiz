@@ -1,0 +1,21 @@
+[   11753ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3002/favicon.ico:0
+[   11832ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[   14884ms] [WARNING] The resource http://localhost:3002/_next/static/css/app/layout.css?v=1779977565915 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3002/what-should-i-read-next:0
+[   38775ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[   38803ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/quiz_sessions:0
+[   41856ms] [WARNING] The resource http://localhost:3002/_next/static/css/app/layout.css?v=1779977565915 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3002/what-should-i-read-next:0
+[   66653ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[   69706ms] [WARNING] The resource http://localhost:3002/_next/static/css/app/layout.css?v=1779977565915 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3002/what-should-i-read-next:0
+[   81404ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[   88571ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[   88571ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/quiz_sessions:0
+[   99354ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  126856ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  127484ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  160944ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  161509ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  162087ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  162326ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  162326ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/funnel_events:0
+[  162350ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/quiz_results:0
+[  162358ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://dwcmgjbineiinpkpzhvx.supabase.co/rest/v1/quiz_answers:0

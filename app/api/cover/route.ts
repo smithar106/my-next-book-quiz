@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 // Server-side cover proxy — resolves book covers by ISBN.
 // Tries OL book API first, falls back to Google Books CDN thumbnail.
 // Cache-Control: 1 year — covers don't change.
+// Railway env var: GOOGLE_BOOKS_KEY
 
-const GB_KEY = process.env.EXPO_PUBLIC_GOOGLE_BOOKS_KEY || ''
+const GB_KEY = process.env.GOOGLE_BOOKS_KEY || ''
 
 async function fetchOlCover(isbn: string): Promise<string | null> {
   try {
@@ -18,11 +19,15 @@ async function fetchOlCover(isbn: string): Promise<string | null> {
     const cover = data[key]?.cover
     const url: string | undefined = cover?.large || cover?.medium || cover?.small
     if (!url) return null
-    // Validate it's a real image (not the 9-byte "not found" text)
+    // Validate it's a real image (not the 9-byte "not found" placeholder).
+    // OL often omits content-length, so only use it as a disqualifier when
+    // it IS present and clearly too small — never fail on missing header.
     const check = await fetch(url, { method: 'HEAD' })
     const ct = check.headers.get('content-type') || ''
-    const cl = parseInt(check.headers.get('content-length') || '0', 10)
-    if (!ct.startsWith('image/jpeg') || cl < 1000) return null
+    const clHeader = check.headers.get('content-length')
+    const cl = clHeader !== null ? parseInt(clHeader, 10) : null
+    if (!ct.startsWith('image/jpeg')) return null
+    if (cl !== null && cl < 1000) return null
     return url
   } catch {
     return null
@@ -45,7 +50,9 @@ async function fetchGbCover(isbn: string): Promise<string | null> {
 }
 
 export async function GET(req: NextRequest) {
-  const isbn = req.nextUrl.searchParams.get('isbn')
+  const raw = req.nextUrl.searchParams.get('isbn')
+  // Strip dashes/spaces so "978-0-385-53304-0" is accepted
+  const isbn = raw ? raw.replace(/[-\s]/g, '') : ''
   if (!isbn || !/^\d{10,13}$/.test(isbn)) {
     return new NextResponse(null, { status: 400 })
   }
@@ -56,9 +63,16 @@ export async function GET(req: NextRequest) {
     return new NextResponse(null, { status: 404 })
   }
 
-  // Redirect to the resolved URL with a long cache TTL
-  return NextResponse.redirect(url, {
-    status: 302,
-    headers: { 'Cache-Control': 'public, max-age=31536000, immutable' },
+  // Proxy image bytes directly — 200 response ensures Cache-Control is honoured by
+  // browsers and CDNs (302 redirects strip/ignore Cache-Control headers).
+  const imageRes = await fetch(url)
+  if (!imageRes.ok) return new NextResponse(null, { status: 404 })
+  const buffer = await imageRes.arrayBuffer()
+  return new NextResponse(buffer, {
+    status: 200,
+    headers: {
+      'Content-Type': 'image/jpeg',
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    },
   })
 }
