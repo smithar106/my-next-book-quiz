@@ -27,6 +27,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
   const sessionId = useRef(genSessionId())
   const attr = useRef<Attribution>({})
+  const cachedResult = useRef<ReturnType<typeof computeResult>>(null)
   const emailFormShownRef = useRef(false)
 
   useEffect(() => {
@@ -84,6 +85,7 @@ export function QuizClient({ slug, rawParams }: Props) {
 
   function finishQuiz(finalAnswers: Record<string, string>) {
     const result = computeResult(config!, finalAnswers)
+    cachedResult.current = result
     if (result) {
       saveAnswers(sessionId.current, config!.id, finalAnswers)
       saveResult(sessionId.current, config!.id, result.id)
@@ -157,7 +159,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   }
 
   const result = useMemo(
-    () => (phase === 'result' || phase === 'calculating') ? computeResult(config, answers) : null,
+    () => (phase === 'result' || phase === 'calculating') ? (cachedResult.current ?? computeResult(config, answers)) : null,
     [phase, config, answers]
   )
   const content = result ? getResultContent(result.id) : null
@@ -406,12 +408,6 @@ function CalculatingScreen() {
         background: 'var(--purple)',
         animation: 'pulse 1.6s ease-in-out infinite',
       }} />
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 0.3; transform: scale(0.85); }
-          50% { opacity: 1; transform: scale(1.15); }
-        }
-      `}</style>
       <p style={{
         color: 'var(--text-muted)',
         fontSize: 17,

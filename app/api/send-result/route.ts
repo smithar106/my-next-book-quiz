@@ -6,7 +6,37 @@ const getResend = () => new Resend(process.env.RESEND_API_KEY)
 const NOTIFY_EMAIL = 'smithar106@gmail.com'
 const FROM_EMAIL = 'My Next Book <quiz@mynextbook.me>'
 
+// Simple in-memory IP rate limiter — acceptable for a single-instance Railway deploy.
+// Allows max 5 submissions per IP per hour.
+const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000 // 1 hour
+const ipSubmissions = new Map<string, { count: number; windowStart: number }>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = ipSubmissions.get(ip)
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+    ipSubmissions.set(ip, { count: 1, windowStart: now })
+    return false
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return true
+  entry.count++
+  return false
+}
+
 export async function POST(req: NextRequest) {
+  // Rate limit by IP
+  const ip =
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+    req.headers.get('x-real-ip') ??
+    'unknown'
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 },
+    )
+  }
+
   try {
     const { email, archetypeName, archetypeSubtitle, microcopy, similarBooks, quizTitle } = await req.json()
     if (!email) return NextResponse.json({ error: 'No email' }, { status: 400 })

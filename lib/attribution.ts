@@ -53,18 +53,29 @@ export function buildAppStoreUrl(
 
 export function persistResult(resultId: string, archetypeName: string, quizId: string) {
   if (typeof localStorage === 'undefined') return
-  localStorage.setItem('mnb_last_result', JSON.stringify({
+  const entry = JSON.stringify({
     result_id: resultId,
     archetype_name: archetypeName,
     quiz_id: quizId,
     saved_at: new Date().toISOString(),
-  }))
+  })
+  // Store per-quiz so multiple quizzes don't overwrite each other
+  localStorage.setItem(`mnb_quiz_result_${quizId}`, entry)
+  // Also track the latest quiz slug so callers can find the most recent result
+  localStorage.setItem('mnb_quiz_result_latest', quizId)
 }
 
 export function getLastQuizResult(): { result_id: string; archetype_name: string; quiz_id: string; saved_at: string } | null {
   if (typeof localStorage === 'undefined') return null
   try {
-    const raw = localStorage.getItem('mnb_last_result')
-    return raw ? JSON.parse(raw) : null
+    // Read the most-recently-taken quiz result via the latest pointer
+    const latestQuizId = localStorage.getItem('mnb_quiz_result_latest')
+    if (latestQuizId) {
+      const raw = localStorage.getItem(`mnb_quiz_result_${latestQuizId}`)
+      if (raw) return JSON.parse(raw)
+    }
+    // Fallback: legacy key written before this change
+    const legacy = localStorage.getItem('mnb_last_result')
+    return legacy ? JSON.parse(legacy) : null
   } catch { return null }
 }

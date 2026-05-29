@@ -21,7 +21,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const content = resultId ? getResultContent(resultId) : null
 
   const title = content
-    ? `I'm "${content.archetypeName}" — My Next Book Quiz`
+    ? `You're a ${content.archetypeName} — My Next Book`
     : `${config.title} — My Next Book`
   const description = content
     ? content.archetypeSubtitle
