@@ -298,7 +298,7 @@ export function QuizClient({ slug, rawParams }: Props) {
           </div>
 
           {/* Similar books */}
-          {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} />}
+          {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} archetypeId={result.id} />}
 
           {/* App CTA — primary action at emotional peak */}
           <AppCtaSection
@@ -498,10 +498,41 @@ function MoodBoard({ tiles }: { tiles: import('@/lib/resultContent').MoodTile[] 
   )
 }
 
-function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').SimilarBook[] }) {
+const SIMILAR_SECTION_HEADERS: Record<string, string> = {
+  dark_cerebral:        'BOOKS THAT LEAVE DAMAGE BEHIND',
+  momentum:             'BOOKS THAT WON\'T LET YOU STOP',
+  literary_escapist:    'WORLDS WORTH DISAPPEARING INTO',
+  emotional_realist:    'BOOKS THAT GET IT EXACTLY RIGHT',
+  speculative_thinker:  'BOOKS THAT CHANGE HOW YOU SEE',
+  quiet_intellectual:   'BOOKS WORTH READING SLOWLY',
+  chaos:                'BOOKS THAT BREAK THEIR OWN RULES',
+  atmospheric_explorer: 'BOOKS YOU\'LL FEEL FOR DAYS',
+}
+
+const BOOK_ROLE_LABELS: [string, string, string] = [
+  'YOUR ESCAPE',
+  'YOUR OBSESSION',
+  'YOUR GUT PUNCH',
+]
+
+const BOOK_ROLE_LABELS_BY_ARCHETYPE: Record<string, [string, string, string]> = {
+  dark_cerebral:        ['YOUR DESCENT',       'YOUR OBSESSION',   'YOUR GUT PUNCH'],
+  momentum:             ['YOUR ON-RAMP',        'YOUR OBSESSION',   'YOUR GUT PUNCH'],
+  literary_escapist:    ['YOUR DISAPPEARANCE',  'YOUR OBSESSION',   'YOUR GUT PUNCH'],
+  emotional_realist:    ['YOUR MIRROR',         'YOUR OBSESSION',   'YOUR GUT PUNCH'],
+  speculative_thinker:  ['YOUR GATEWAY',        'YOUR OBSESSION',   'YOUR AWAKENING'],
+  quiet_intellectual:   ['YOUR RE-ENTRY',       'YOUR DEEP READ',   'YOUR GUT PUNCH'],
+  chaos:                ['YOUR DISRUPTION',     'YOUR SPIRAL',      'YOUR GUT PUNCH'],
+  atmospheric_explorer: ['YOUR IMMERSION',      'YOUR OBSESSION',   'YOUR GUT PUNCH'],
+}
+
+function SimilarBooksSection({ books, archetypeId }: { books: import('@/lib/resultContent').SimilarBook[]; archetypeId: string }) {
+  const sectionHeader = SIMILAR_SECTION_HEADERS[archetypeId] ?? 'BOOKS THAT STAY WITH READERS LIKE YOU'
+  const roleLabels = BOOK_ROLE_LABELS_BY_ARCHETYPE[archetypeId] ?? BOOK_ROLE_LABELS
+
   return (
     <div style={{ ...s.card, marginBottom: 20 }}>
-      <p style={s.cardLabel}>Books that stay with readers like you</p>
+      <p style={s.cardLabel}>{sectionHeader}</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {books.map((book, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -535,6 +566,11 @@ function SimilarBooksSection({ books }: { books: import('@/lib/resultContent').S
               )}
             </div>
             <div>
+              {i < 3 && (
+                <p style={{ fontSize: 9, fontWeight: 800, color: 'var(--purple)', letterSpacing: '0.7px', marginBottom: 4 }}>
+                  {roleLabels[i]}
+                </p>
+              )}
               <p style={{ fontWeight: 800, fontSize: 14, marginBottom: 2 }}>{book.title}</p>
               <p style={{ color: 'var(--text-dim)', fontSize: 12, marginBottom: 4 }}>{book.author}</p>
               <p style={{ color: 'var(--purple)', fontSize: 12, fontStyle: 'italic' }}>{book.note}</p>
