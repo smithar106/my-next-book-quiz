@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
                   <a href="https://apps.apple.com/us/app/my-next-book-what-to-read/id6763831526" style="display:inline-block;background:#B89AFF;color:#120F1C;font-size:16px;font-weight:800;padding:16px 40px;border-radius:14px;text-decoration:none">
                     Download My Next Book →
                   </a>
-                  <p style="margin:12px 0 0;font-size:12px;color:#A097C0">Free · 7-day Pro trial · No credit card</p>
+                  <p style="margin:12px 0 0;font-size:12px;color:#A097C0">Free · 14-day Pro trial · $4.99/mo or $29.99/yr</p>
                 </td></tr>
 
                 <!-- Footer -->
