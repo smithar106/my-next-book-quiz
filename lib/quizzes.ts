@@ -1,4 +1,4 @@
-import type { QuizConfig, QuizResult } from '@/types/quiz'
+import type { QuizConfig, QuizResult, QuizVector } from '@/types/quiz'
 
 // Score keys for what-should-i-read-next, book-personality, reading-personality:
 // dark_cerebral, momentum, literary_escapist, emotional_realist, speculative_thinker, quiet_intellectual, chaos, atmospheric_explorer
@@ -892,5 +892,49 @@ export function computeResult(config: QuizConfig, answers: Record<string, string
   }
   const resultId = config.resultLogic(scores)
   return config.results.find((r) => r.id === resultId) ?? config.results[0]
+}
+
+const ARCHETYPE_DIM_PROFILES: Record<string, Partial<QuizVector>> = {
+  dark_cerebral:        { tone: 2, intellectualDepth: 9, emotionalIntensity: 8, optimism: 2, comfortVsChallenge: 8, accessibility: 3 },
+  momentum:             { pace: 9, tension: 8, accessibility: 7, plotVsCharacter: 7 },
+  literary_escapist:    { prose: 8, worldbuilding: 7, pace: 4, accessibility: 5, emotionalAmbiguity: 6 },
+  emotional_realist:    { emotionalIntensity: 8, plotVsCharacter: 2, tone: 6, accessibility: 6, optimism: 5 },
+  speculative_thinker:  { intellectualDepth: 8, realismVsSpeculative: 8, worldbuilding: 7, weirdness: 6 },
+  quiet_intellectual:   { intellectualDepth: 9, prose: 8, pace: 3, accessibility: 3, comfortVsChallenge: 7 },
+  chaos:                { weirdness: 9, emotionalAmbiguity: 8, tension: 6, realismVsSpeculative: 6 },
+  atmospheric_explorer: { worldbuilding: 8, prose: 7, pace: 3, tone: 4, emotionalAmbiguity: 7, tension: 5 },
+}
+
+const QUIZ_VECTOR_DIMS = [
+  'pace', 'tone', 'emotionalIntensity', 'intellectualDepth', 'plotVsCharacter',
+  'prose', 'worldbuilding', 'realismVsSpeculative', 'optimism', 'weirdness',
+  'romancePresence', 'tension', 'humor', 'accessibility', 'comfortVsChallenge',
+  'emotionalAmbiguity',
+] as const
+
+export function computeQuizVector(scores: Record<string, number>): QuizVector {
+  const totalScore = Object.values(scores).reduce((s, v) => s + v, 0)
+  if (totalScore === 0) {
+    return Object.fromEntries(QUIZ_VECTOR_DIMS.map(k => [k, 5])) as QuizVector
+  }
+
+  const result: Record<string, number> = {}
+  const weightSum: Record<string, number> = {}
+
+  for (const [archetype, score] of Object.entries(scores)) {
+    if (score <= 0) continue
+    const profile = ARCHETYPE_DIM_PROFILES[archetype]
+    if (!profile) continue
+    const w = score / totalScore
+    for (const dim of QUIZ_VECTOR_DIMS) {
+      const val = (profile as Record<string, number>)[dim] ?? 5
+      result[dim] = (result[dim] ?? 0) + val * w
+      weightSum[dim] = (weightSum[dim] ?? 0) + w
+    }
+  }
+
+  return Object.fromEntries(
+    QUIZ_VECTOR_DIMS.map(dim => [dim, weightSum[dim] ? result[dim] / (weightSum[dim] || 1) : 5])
+  ) as QuizVector
 }
 

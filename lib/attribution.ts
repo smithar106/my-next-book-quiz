@@ -37,7 +37,7 @@ export function getStoredAttribution(): Attribution {
 export function buildAppStoreUrl(
   baseUrl: string,
   attr: Attribution,
-  extras?: { result_id?: string; archetype_name?: string; quiz_id?: string },
+  extras?: { result_id?: string; archetype_name?: string; quiz_id?: string; quiz_vector?: string },
 ): string {
   const url = new URL(baseUrl)
   if (attr.campaign) url.searchParams.set('campaign', attr.campaign)
@@ -48,15 +48,17 @@ export function buildAppStoreUrl(
   if (extras?.result_id) url.searchParams.set('result_id', extras.result_id)
   if (extras?.archetype_name) url.searchParams.set('archetype_name', extras.archetype_name)
   if (extras?.quiz_id) url.searchParams.set('quiz_id', extras.quiz_id)
+  if (extras?.quiz_vector) url.searchParams.set('quiz_vector', extras.quiz_vector)
   return url.toString()
 }
 
-export function persistResult(resultId: string, archetypeName: string, quizId: string) {
+export function persistResult(resultId: string, archetypeName: string, quizId: string, quizVector?: string) {
   if (typeof localStorage === 'undefined') return
   const entry = JSON.stringify({
     result_id: resultId,
     archetype_name: archetypeName,
     quiz_id: quizId,
+    quiz_vector: quizVector ?? null,
     saved_at: new Date().toISOString(),
   })
   // Store per-quiz so multiple quizzes don't overwrite each other

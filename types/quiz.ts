@@ -42,3 +42,23 @@ export interface Attribution {
   utm_campaign?: string
   utm_content?: string
 }
+
+/** 16-dim taste vector derived from quiz archetype scores, keyed by dimension name. */
+export type QuizVector = {
+  pace: number;
+  tone: number;
+  emotionalIntensity: number;
+  intellectualDepth: number;
+  plotVsCharacter: number;
+  prose: number;
+  worldbuilding: number;
+  realismVsSpeculative: number;
+  optimism: number;
+  weirdness: number;
+  romancePresence: number;
+  tension: number;
+  humor: number;
+  accessibility: number;
+  comfortVsChallenge: number;
+  emotionalAmbiguity: number;
+}

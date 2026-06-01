@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { getQuiz, computeResult } from '@/lib/quizzes'
+import { getQuiz, computeResult, computeQuizVector } from '@/lib/quizzes'
 import { getResultContent } from '@/lib/resultContent'
 import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl, persistResult } from '@/lib/attribution'
 import {
@@ -29,6 +29,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const attr = useRef<Attribution>({})
   const cachedResult = useRef<ReturnType<typeof computeResult>>(null)
   const emailFormShownRef = useRef(false)
+  const quizVectorRef = useRef<string | null>(null)
 
   useEffect(() => {
     if (!config) return
@@ -96,7 +97,20 @@ export function QuizClient({ slug, rawParams }: Props) {
       trackEvent(sessionId.current, 'quiz_completed', config!.id, { result_id: result.id })
       trackEvent(sessionId.current, 'result_viewed', config!.id, { result_id: result.id })
       const rc = getResultContent(result.id)
-      persistResult(result.id, rc?.archetypeName ?? result.title, config!.id)
+      const scores: Record<string, number> = {}
+      for (const question of config!.questions) {
+        const selectedId = finalAnswers[question.id]
+        if (!selectedId) continue
+        const option = question.options.find((o: any) => o.id === selectedId)
+        if (!option) continue
+        for (const [key, val] of Object.entries(option.scores as Record<string, number>)) {
+          scores[key] = (scores[key] ?? 0) + val
+        }
+      }
+      const quizVector = computeQuizVector(scores)
+      const quizVectorStr = JSON.stringify(quizVector)
+      quizVectorRef.current = quizVectorStr
+      persistResult(result.id, rc?.archetypeName ?? result.title, config!.id, quizVectorStr)
     }
     setPhase('calculating')
     setTimeout(() => setPhase('result'), 1800)
@@ -140,6 +154,7 @@ export function QuizClient({ slug, rawParams }: Props) {
         result_id: result?.id,
         archetype_name: archetypeName,
         quiz_id: config!.id,
+        quiz_vector: quizVectorRef.current ?? undefined,
       }),
       '_blank', 'noopener',
     )
@@ -157,6 +172,7 @@ export function QuizClient({ slug, rawParams }: Props) {
         result_id: result?.id,
         archetype_name: archetypeName,
         quiz_id: config!.id,
+        quiz_vector: quizVectorRef.current ?? undefined,
       }),
       '_blank', 'noopener',
     )
