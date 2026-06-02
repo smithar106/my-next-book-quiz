@@ -62,5 +62,6 @@ export function generateStaticParams() {
     { quiz: 'booktok-recommendations' },
     { quiz: 'reading-slump' },
     { quiz: 'genre-match' },
+    { quiz: 'reading-personality' },
   ]
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { getQuiz, computeResult, computeQuizVector } from '@/lib/quizzes'
 import { getResultContent } from '@/lib/resultContent'
-import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl, persistResult } from '@/lib/attribution'
+import { parseAttribution, storeAttribution, getStoredAttribution, buildAppStoreUrl, persistResult, mintQuizToken } from '@/lib/attribution'
 import {
   trackEvent, createSession, saveAnswers, saveResult, captureEmail, genSessionId,
 } from '@/lib/tracking'
@@ -141,7 +141,7 @@ export function QuizClient({ slug, rawParams }: Props) {
     setEmailLoading(false)
   }
 
-  function handleAppStoreClick(source = 'result_cta') {
+  async function handleAppStoreClick(source = 'result_cta') {
     const archetypeName = content?.archetypeName ?? result?.title ?? ''
     trackEvent(sessionId.current, 'app_store_clicked', config!.id, {
       source,
@@ -149,30 +149,50 @@ export function QuizClient({ slug, rawParams }: Props) {
       archetype_name: archetypeName,
       ...attr.current,
     })
+    // Mint a server-side token to carry quiz_vector + attribution through the
+    // App Store handoff — Apple strips raw JSON query params from the URL.
+    const token = result?.id
+      ? await mintQuizToken({
+          result_id: result.id,
+          archetype_name: archetypeName,
+          quiz_id: config!.id,
+          quiz_vector: quizVectorRef.current ?? null,
+          attribution: attr.current,
+        })
+      : null
     window.open(
       buildAppStoreUrl(APP_STORE_URL, attr.current, {
         result_id: result?.id,
         archetype_name: archetypeName,
         quiz_id: config!.id,
-        quiz_vector: quizVectorRef.current ?? undefined,
+        token: token ?? undefined,
       }),
       '_blank', 'noopener',
     )
   }
 
-  function handleStickyCtaClick() {
+  async function handleStickyCtaClick() {
     const archetypeName = content?.archetypeName ?? result?.title ?? ''
     trackEvent(sessionId.current, 'sticky_cta_clicked', config!.id, {
       result_id: result?.id,
       archetype_name: archetypeName,
       ...attr.current,
     })
+    const token = result?.id
+      ? await mintQuizToken({
+          result_id: result.id,
+          archetype_name: archetypeName,
+          quiz_id: config!.id,
+          quiz_vector: quizVectorRef.current ?? null,
+          attribution: attr.current,
+        })
+      : null
     window.open(
       buildAppStoreUrl(APP_STORE_URL, attr.current, {
         result_id: result?.id,
         archetype_name: archetypeName,
         quiz_id: config!.id,
-        quiz_vector: quizVectorRef.current ?? undefined,
+        token: token ?? undefined,
       }),
       '_blank', 'noopener',
     )

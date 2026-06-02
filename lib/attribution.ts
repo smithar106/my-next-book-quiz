@@ -34,21 +34,47 @@ export function getStoredAttribution(): Attribution {
   }
 }
 
+// Mint a server-side token that stores quiz_vector + attribution, then
+// pass only ?token= in the App Store URL. Apple strips long query params
+// and JSON blobs — the token is the only reliable carrier across the handoff.
+export async function mintQuizToken(extras: {
+  result_id: string
+  archetype_name: string
+  quiz_id: string
+  quiz_vector?: string | null
+  attribution: Attribution
+}): Promise<string | null> {
+  try {
+    const res = await fetch('/api/quiz-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(extras),
+    })
+    if (!res.ok) return null
+    const { token } = await res.json()
+    return token ?? null
+  } catch {
+    return null
+  }
+}
+
 export function buildAppStoreUrl(
   baseUrl: string,
   attr: Attribution,
-  extras?: { result_id?: string; archetype_name?: string; quiz_id?: string; quiz_vector?: string },
+  extras?: { result_id?: string; archetype_name?: string; quiz_id?: string; token?: string },
 ): string {
   const url = new URL(baseUrl)
+  // UTM params for App Store attribution — these survive the handoff
   if (attr.campaign) url.searchParams.set('campaign', attr.campaign)
   if (attr.creator) url.searchParams.set('pt', attr.creator)
   if (attr.utm_campaign) url.searchParams.set('utm_campaign', attr.utm_campaign)
   if (attr.utm_source) url.searchParams.set('utm_source', attr.utm_source)
   if (attr.utm_medium) url.searchParams.set('utm_medium', attr.utm_medium)
+  // Pass token instead of raw quiz_vector — token survives App Store URL rewriting
+  if (extras?.token) url.searchParams.set('mnb_token', extras.token)
   if (extras?.result_id) url.searchParams.set('result_id', extras.result_id)
   if (extras?.archetype_name) url.searchParams.set('archetype_name', extras.archetype_name)
   if (extras?.quiz_id) url.searchParams.set('quiz_id', extras.quiz_id)
-  if (extras?.quiz_vector) url.searchParams.set('quiz_vector', extras.quiz_vector)
   return url.toString()
 }
 

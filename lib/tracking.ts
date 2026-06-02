@@ -15,19 +15,58 @@ export type EventName =
   | 'email_form_shown'
   | 'email_form_skipped'
 
+const QUEUE_KEY = 'mnb_event_queue'
+
+interface QueuedEvent {
+  table: string
+  data: Record<string, unknown>
+}
+
+function enqueue(event: QueuedEvent) {
+  if (typeof localStorage === 'undefined') return
+  try {
+    const raw = localStorage.getItem(QUEUE_KEY)
+    const queue: QueuedEvent[] = raw ? JSON.parse(raw) : []
+    queue.push(event)
+    localStorage.setItem(QUEUE_KEY, JSON.stringify(queue))
+  } catch {}
+}
+
+async function flushQueue() {
+  if (typeof localStorage === 'undefined') return
+  try {
+    const raw = localStorage.getItem(QUEUE_KEY)
+    if (!raw) return
+    const queue: QueuedEvent[] = JSON.parse(raw)
+    if (!queue.length) return
+    localStorage.removeItem(QUEUE_KEY)
+    await Promise.all(queue.map(e => dbInsert(e.table, e.data)))
+  } catch {}
+}
+
+// Flush on visibility change — catches events that fired just before App Store navigation
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') flushQueue()
+  })
+}
+
 export function trackEvent(
   sessionId: string,
   event: EventName,
   quizId: string,
   properties?: Record<string, unknown>,
 ) {
-  dbInsert('funnel_events', {
+  const data = {
     session_id: sessionId,
     quiz_id: quizId,
     event_name: event,
     properties: properties ?? {},
     created_at: new Date().toISOString(),
-  })
+  }
+  enqueue({ table: 'funnel_events', data })
+  // Also attempt immediate flush — queue is the safety net for navigation
+  dbInsert('funnel_events', data)
 }
 
 export function createSession(sessionId: string, quizId: string, attr: Attribution) {
