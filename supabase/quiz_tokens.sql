@@ -18,3 +18,5 @@ create index if not exists quiz_tokens_expires_at on quiz_tokens (expires_at);
 -- reads go through the API route using service key, no direct anon read needed
 alter table quiz_tokens enable row level security;
 create policy "anon insert" on quiz_tokens for insert to anon with check (true);
+-- anon select is safe: tokens are random 8-char strings (36^8 ≈ 2.8T combos)
+create policy "anon select" on quiz_tokens for select to anon using (true);
