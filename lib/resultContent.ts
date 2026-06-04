@@ -96,7 +96,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks the emotional intensity patterns behind what you save — learning your exact cerebral-dark threshold.',
       'Every book you respond to adds another contour to your reading taste — the app learns the exact shape of what moves you.',
-      'Your reading identity deepens as you use it — the app observes, interprets, and reflects back who you\'re becoming as a reader.',
+      'A reading pattern is emerging —the app observes, interprets, and reflects back who you\'re becoming as a reader.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -146,7 +146,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks the atmospheric and immersive qualities you respond to — building a map of what makes a world feel real to you.',
       'Every book you save or skip reveals more about the kind of place you want to disappear into.',
-      'Your reading identity deepens as you use it — the app learns what kind of world you\'re searching for.',
+      'A reading pattern is emerging —the app learns what kind of world you\'re searching for.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -171,7 +171,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks your sensitivity to emotional truth — learning what kinds of human experience you respond to most.',
       'Every book you save or skip reveals more about the emotional register you\'re looking for.',
-      'Your reading identity deepens as you use it — the app observes the patterns in what moves you.',
+      'A reading pattern is emerging —the app observes the patterns in what moves you.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -196,7 +196,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks your appetite for idea-driven fiction — learning what kinds of premises change how you think.',
       'Every book you respond to sharpens the map of your intellectual instincts.',
-      'Your reading identity deepens as you use it — the app learns which speculative ideas genuinely move you.',
+      'A reading pattern is emerging —the app learns which speculative ideas genuinely move you.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -221,7 +221,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks your preference for depth and deliberate prose — learning what level of density you find rewarding vs. exhausting.',
       'Every book you save or skip reveals more about where your intellectual attention naturally settles.',
-      'Your reading identity deepens as you use it — the app builds a map of the kind of precision you look for.',
+      'A reading pattern is emerging —the app builds a map of the kind of precision you look for.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -246,7 +246,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks your response to the unexpected — learning what kinds of structural surprises feel thrilling vs. cheap.',
       'Every book you dismiss for being predictable refines the map of your appetite for chaos.',
-      'Your reading identity deepens as you use it — the app learns what "surprising" actually means to you.',
+      'A reading pattern is emerging —the app learns what "surprising" actually means to you.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -271,7 +271,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book tracks the atmospheric qualities you respond to — building a map of what kind of feeling you\'re chasing.',
       'Every book you save or skip reveals more about the specific emotional texture you\'re searching for.',
-      'Your reading identity deepens as you use it — the app learns to distinguish mood from plot for you.',
+      'A reading pattern is emerging —the app learns to distinguish mood from plot for you.',
       'The more you interact, the more precisely it reads you.',
     ],
   },
@@ -281,7 +281,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read to feel things you couldn\'t feel otherwise.',
     microcopy: 'You don\'t read for plot alone. You read to feel transformed.',
     shareText: 'I got "The Heartbreak Collector" on My Next Book 📚 Apparently I only want books that emotionally devastate me. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.rose('FELT', 'deeply', '♥'),
       T.purple('STAYED', 'with me', '◆'),
@@ -296,7 +296,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the emotional intensity in every book you respond to — learning exactly what kind of feeling you\'re searching for.',
       'Every save and skip deepens the portrait of your reading taste across dimensions of grief, love, and longing.',
-      'Your identity as a reader is specific. The app learns to see those specifics — and reflects them back.',
+      'Your reading pattern is specific. The app learns to see those specifics — and reflects them back.',
       'The more you encounter, the more precisely it understands what moves you.',
     ],
   },
@@ -306,7 +306,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that feel like a place you never want to leave.',
     microcopy: 'You like stories that linger. Safe but alive. Warm but real.',
     shareText: 'I got "The Atmospheric Dreamer" on My Next Book 📚 I read to escape into worlds that feel like home. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.amber('WARM', 'and still', '○'),
       T.green('SOFT', 'landing', '✦'),
@@ -321,7 +321,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the warmth and atmosphere you respond to — building a portrait of the worlds you want to live in.',
       'Every book you save or skip teaches it more about the specific kind of safe, warm, realized you\'re looking for.',
-      'Your reading identity deepens as you use it — the app learns what genuine comfort means to you, not just genre.',
+      'A reading pattern is emerging —the app learns what genuine comfort means to you, not just genre.',
       'The more you encounter, the more precisely it finds the right kind of shelter.',
     ],
   },
@@ -331,7 +331,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that disturb you in a specific, beautiful way.',
     microcopy: 'You crave books that haunt you beautifully. You want the shadows.',
     shareText: 'I got "The Beautifully Damaged Intellectual" on My Next Book 📚 Apparently I only want beautifully haunted books. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.slate('HAUNTED', 'perfectly', '◆'),
       T.purple('COMPLEX', 'morality', '✦'),
@@ -346,7 +346,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the darkness and moral complexity you respond to — building a portrait of the specific shadow aesthetic you\'re drawn to.',
       'Every save and skip refines the line between your kind of darkness and the kind that goes too far.',
-      'Your reading identity deepens as you use it — the app learns what hauntingly beautiful actually means to you.',
+      'A reading pattern is emerging —the app learns what hauntingly beautiful actually means to you.',
       'The more you encounter, the more precisely it finds the gothic-literary overlap you\'re chasing.',
     ],
   },
@@ -356,7 +356,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You start books at 10pm and finish them at 3am.',
     microcopy: 'You want books that erase time. The kind you finish and blink, confused.',
     shareText: 'I got "The Obsessive Completionist" on My Next Book 📚 I literally cannot put books down. Find your reading type:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.teal('HOOKED', 'instantly', '⚡'),
       T.crimson('RACING', 'pulse', '◈'),
@@ -371,7 +371,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads your pacing instinct — understanding how fast a book needs to move before you\'re hooked.',
       'Every slow opener you put down teaches it something about the propulsive energy you need from page one.',
-      'Your reading identity deepens as you use it — the app learns what "can\'t stop" actually means for you.',
+      'A reading pattern is emerging —the app learns what "can\'t stop" actually means for you.',
       'The more you encounter, the more precisely it finds books that erase time.',
     ],
   },
@@ -381,7 +381,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want all the tension, all the warmth, all the earned feelings.',
     microcopy: 'You read for the slow burn. You want books that make you audibly react.',
     shareText: 'I got "The Morally Grey Romantic" on My Next Book 📚 I need enemies-to-lovers and I\'m not embarrassed. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.rose('LONGING', 'slow burn', '♥'),
       T.purple('ELECTRIC', 'tension', '✦'),
@@ -396,7 +396,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the romantic tension you respond to — learning the difference between slow burn you love and slow burn you abandon.',
       'Every save and skip reveals more about the specific emotional payoff you\'re searching for in a love story.',
-      'Your reading identity deepens as you use it — the app learns what "earned" actually means to you.',
+      'A reading pattern is emerging —the app learns what "earned" actually means to you.',
       'The more you encounter, the more precisely it finds romance that satisfies rather than just trending.',
     ],
   },
@@ -406,7 +406,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You disappear into books completely. The world can wait.',
     microcopy: 'You crave books that leave emotional residue. The kind you miss like a place.',
     shareText: 'I got "The Obsessive Escapist" on My Next Book 📚 I read to completely vanish. Find your reader type:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.purple('LOST', 'in it', '✦'),
       T.rose('LIVED', 'fully', '◆'),
@@ -421,7 +421,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads how completely you disappear into a world — learning the difference between transport and mere absorption.',
       'Every book you save reveals more about what makes a world feel real enough to miss.',
-      'Your reading identity deepens as you use it — the app learns the specific kind of elsewhere you\'re searching for.',
+      'A reading pattern is emerging —the app learns the specific kind of elsewhere you\'re searching for.',
       'The more you encounter, the more precisely it finds worlds that feel like you lived there.',
     ],
   },
@@ -431,7 +431,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You annotate. You reread sentences. You want prose that earns your attention.',
     microcopy: 'You read to think more clearly. Books are where you go to understand things.',
     shareText: 'I got "The Literary Overthinker" on My Next Book 📚 I genuinely annotate fiction and I stand by it. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.gold('PRECISE', 'language', '◎'),
       T.slate('LAYERED', 'meaning', '◆'),
@@ -446,7 +446,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the quality of attention you bring — learning the prose density and intellectual precision you find rewarding rather than exhausting.',
       'Every annotated sentence you return to teaches it something about the kind of writing you\'re drawn to.',
-      'Your reading identity deepens as you use it — the app builds a portrait of your specific literary sensibility.',
+      'A reading pattern is emerging —the app builds a portrait of your specific literary sensibility.',
       'The more you encounter, the more precisely it understands what "good writing" means to you specifically.',
     ],
   },
@@ -456,7 +456,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read thrillers at midnight and pay for it the next day.',
     microcopy: 'You want books that make your heart move. The kind that grip and don\'t apologize.',
     shareText: 'I got "The Tension Addict" on My Next Book 📚 I have read entire books just to find out who did it. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.crimson('SUSPECT', 'everyone', '◈'),
       T.slate('SHADOWS', 'everywhere', '◆'),
@@ -471,7 +471,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the specific tension you crave — learning the difference between the thrillers that grip you and the ones that just rush.',
       'Every twist that genuinely surprised you teaches it something about the quality of suspense you need.',
-      'Your reading identity deepens as you use it — the app learns where the cozy-dark line falls for you.',
+      'A reading pattern is emerging —the app learns where the cozy-dark line falls for you.',
       'The more you encounter, the more precisely it finds thrillers that earn their midnight reading.',
     ],
   },
@@ -481,7 +481,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You fall in love with worlds the way other people fall in love with people.',
     microcopy: 'You want books that leave you mourning a place that never existed.',
     shareText: 'I got "The World-Lost Wanderer" on My Next Book 📚 I miss fictional worlds like real places. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.purple('WORLDS', 'complete', '✦'),
       T.teal('MAGIC', 'systems', '◎'),
@@ -496,7 +496,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the world-building depth you respond to — learning the distinction between immersive world and shallow premise.',
       'Every world you mourn when it ends teaches it something about the kind of place you need to inhabit.',
-      'Your reading identity deepens as you use it — the app learns exactly how much lore, magic, and series commitment feels right for you.',
+      'A reading pattern is emerging —the app learns exactly how much lore, magic, and series commitment feels right for you.',
       'The more you encounter, the more precisely it finds worlds worth disappearing into for weeks.',
     ],
   },
@@ -506,7 +506,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You haven\'t stopped loving books — you just need an easy way back in.',
     microcopy: 'You just need a quick win. The kind that reminds you why you started.',
     shareText: 'I got "The Reluctant Returner" on My Next Book 📚 I\'m in a reading slump and this is my slump-breaker type. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.teal('SHORT', 'and whole', '⚡'),
       T.green('DONE', 'in one sit', '○'),
@@ -531,7 +531,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You need a book that\'s on your side right now.',
     microcopy: 'You need zero pressure and full warmth. This is a valid reading mode.',
     shareText: 'I got "The Cozy Emotionalist" on My Next Book 📚 I\'m in a reading slump and I need safe warm books. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.amber('SAFE', 'here', '○'),
       T.green('WARM', 'always', '✦'),
@@ -546,7 +546,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads how much weight you can carry right now — and knows the difference between comfort you need and books that ask too much.',
       'Every dark twist that made you put a book down teaches it where the edges of your comfort live.',
-      'Your reading identity deepens as you use it — the app learns your specific version of safe, warm, and whole.',
+      'A reading pattern is emerging —the app learns your specific version of safe, warm, and whole.',
       'The more you encounter, the better it understands what rest through reading actually means for you.',
     ],
   },
@@ -556,7 +556,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that see the world more clearly than you do.',
     microcopy: 'You read to understand something. Books change your mind slowly, permanently.',
     shareText: 'I got "The Quiet Depth Seeker" on My Next Book 📚 I want literary fiction that genuinely moves me. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.gold('PRECISE', 'and true', '◎'),
       T.slate('QUIET', 'depth', '◆'),
@@ -571,7 +571,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the depth and precision you respond to — learning what you mean by "good writing" as distinct from what anyone else means.',
       'Every sentence you linger over teaches it something about the literary sensibility that\'s specifically yours.',
-      'Your reading identity deepens as you use it — the app builds a portrait of the quiet literary tradition you belong to.',
+      'A reading pattern is emerging —the app builds a portrait of the quiet literary tradition you belong to.',
       'The more you encounter, the more precisely it finds books that see the world the way you do.',
     ],
   },
@@ -581,7 +581,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You notice things other readers miss. That\'s exactly the point.',
     microcopy: 'You want books that respect your intelligence and reward your attention.',
     shareText: 'I got "The Pattern Hunter" on My Next Book 📚 I\'m a mystery reader who actually figures it out early. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.slate('CLUES', 'scattered', '◈'),
       T.teal('PATTERN', 'found', '✦'),
@@ -596,7 +596,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the kind of puzzle that satisfies you — learning the difference between a mystery that respects your intelligence and one that cheats.',
       'Every reveal you saw coming teaches it something about the complexity and fair-play you need from a crime novel.',
-      'Your reading identity deepens as you use it — the app learns where cozy ends and atmospheric begins for you.',
+      'A reading pattern is emerging —the app learns where cozy ends and atmospheric begins for you.',
       'The more you encounter, the more precisely it finds mysteries that reward the attention you bring.',
     ],
   },
@@ -606,7 +606,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read other people\'s lives to understand your own.',
     microcopy: 'You want books that prove extraordinary things happen to ordinary people paying attention.',
     shareText: 'I got "The Lived-Life Collector" on My Next Book 📚 I\'m a memoir reader who wants real lives that expand mine. Find yours:',
-    ctaCopy: 'Continue building my reading identity',
+    ctaCopy: 'Start building my reading profile',
     moodTiles: [
       T.gold('REAL', 'and earned', '◎'),
       T.amber('LIVED', 'fully', '○'),
@@ -621,7 +621,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     continuationFeatures: [
       'My Next Book reads the kind of real life that moves you — learning what separates the memoir that changes you from the one that leaves you cold.',
       'Every voice you want to spend time in teaches it something about the intimacy, precision, or scope you need from non-fiction.',
-      'Your reading identity deepens as you use it — the app learns whether you read memoir for revelation, companionship, or perspective.',
+      'A reading pattern is emerging —the app learns whether you read memoir for revelation, companionship, or perspective.',
       'The more you encounter, the more precisely it finds lives that genuinely expand yours.',
     ],
   },
