@@ -214,7 +214,7 @@ export function QuizClient({ slug, rawParams }: Props) {
           <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
           <p style={s.subtitle}>{config.description}</p>
-          <button onClick={startQuiz} style={s.primaryBtn}>Discover who you are as a reader →</button>
+          <button onClick={startQuiz} style={s.primaryBtn}>Discover how you read →</button>
           <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Takes two minutes. Stays with you.</p>
           <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>For readers who feel books, not just finish them.</p>
 
@@ -362,9 +362,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
             <div style={s.card}>
-              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Keep your reading identity</p>
+              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your reading profile</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Your archetype, the books that call to it, and what your reading taste reveals — sent to your inbox.
+                Your starting reader type, the books that match it, and what your taste reveals so far — sent to your inbox.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
@@ -378,9 +378,9 @@ export function QuizClient({ slug, rawParams }: Props) {
             </div>
           ) : (
             <div style={{ ...s.card, textAlign: 'center' }}>
-              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Your reading identity, preserved.</p>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Your starting reading profile, saved.</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 8 }}>
-                Open the app and your identity is already waiting. Every book you encounter deepens it.
+                Open the app and your starting profile is already there. Every book you encounter refines it.
               </p>
             </div>
           )}
@@ -482,6 +482,7 @@ function ResultHeroCard({ result, content }: {
       <span style={{ fontSize: 56, display: 'block', marginBottom: 20 }}>{result.emoji}</span>
       {content ? (
         <>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.2, color: 'var(--text-dim)', textTransform: 'uppercase', marginBottom: 8 }}>YOUR QUIZ SUGGESTS</p>
           <h1 style={{ fontSize: 'clamp(26px,5vw,38px)', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.1, marginBottom: 10 }}>
             {content.archetypeName}
           </h1>
