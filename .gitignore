@@ -1,8 +1,7 @@
 .next/
 node_modules/
-.env
-.env.local
-.env.production
+.env*
+!.env.example
 dist/
 out/
 tsconfig.tsbuildinfo

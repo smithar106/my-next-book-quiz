@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createRateLimiter, getClientIp } from '@/lib/rateLimiter'
 
 // Server-side cover proxy — resolves book covers by ISBN.
 // Tries OL book API first, falls back to Google Books CDN thumbnail.
@@ -6,6 +7,9 @@ import { NextRequest, NextResponse } from 'next/server'
 // Railway env var: GOOGLE_BOOKS_KEY
 
 const GB_KEY = process.env.GOOGLE_BOOKS_KEY || ''
+
+// 60 requests per minute per IP — generous for legitimate use, stops abuse
+const isRateLimited = createRateLimiter(60, 60 * 1000)
 
 async function fetchOlCover(isbn: string): Promise<string | null> {
   try {
@@ -50,6 +54,14 @@ async function fetchGbCover(isbn: string): Promise<string | null> {
 }
 
 export async function GET(req: NextRequest) {
+  const ip = getClientIp(req)
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429 },
+    )
+  }
+
   const raw = req.nextUrl.searchParams.get('isbn')
   // Strip dashes/spaces so "978-0-385-53304-0" is accepted
   const isbn = raw ? raw.replace(/[-\s]/g, '') : ''
