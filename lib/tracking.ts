@@ -7,13 +7,17 @@ export type EventName =
   | 'quiz_question_answered'
   | 'quiz_completed'
   | 'result_viewed'
+  | 'quiz_result_viewed'
   | 'email_submitted'
   | 'app_store_clicked'
+  | 'quiz_app_cta_tapped'
   | 'sticky_cta_clicked'
   | 'share_clicked'
   | 'save_card_clicked'
   | 'email_form_shown'
   | 'email_form_skipped'
+  | 'quiz_handoff_success'
+  | 'quiz_handoff_failed'
 
 const QUEUE_KEY = 'mnb_event_queue'
 

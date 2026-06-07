@@ -10,7 +10,7 @@ import { dbInsertServer, dbSelect } from '@/lib/supabase'
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { result_id, archetype_name, quiz_id, quiz_vector, attribution } = body
+    const { result_id, archetype_name, quiz_id, quiz_vector, attribution, dominant_signals, schema_version } = body
 
     if (!result_id || !quiz_id) {
       return NextResponse.json({ error: 'missing fields' }, { status: 400 })
@@ -27,6 +27,8 @@ export async function POST(req: NextRequest) {
       quiz_id,
       quiz_vector: quiz_vector ?? null,
       attribution: attribution ?? {},
+      dominant_signals: dominant_signals ?? null,
+      schema_version: schema_version ?? '1.0',
       expires_at,
       created_at: new Date().toISOString(),
     })
@@ -58,6 +60,8 @@ export async function GET(req: NextRequest) {
       quiz_id: row.quiz_id,
       quiz_vector: row.quiz_vector,
       attribution: row.attribution,
+      dominant_signals: row.dominant_signals ?? null,
+      schema_version: row.schema_version ?? '1.0',
     }, {
       headers: { 'Cache-Control': 'private, no-store' },
     })

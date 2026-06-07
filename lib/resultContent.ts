@@ -29,6 +29,8 @@ export interface ResultContent {
   moodTiles: MoodTile[]
   similarBooks: SimilarBook[]
   continuationFeatures: string[]
+  /** 3 plain-English dominant signals shown in "We noticed…" section */
+  dominantSignalLabels: [string, string, string]
 }
 
 const T = {
@@ -76,6 +78,7 @@ const T = {
 }
 
 const RESULT_CONTENT: Record<string, ResultContent> = {
+
   dark_cerebral: {
     archetypeName: 'The Dark Cerebral Reader',
     archetypeSubtitle: 'You read to feel intellectually alive — dark enough to stay with you, precise enough to trust.',
@@ -98,6 +101,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every book you respond to adds another contour to your reading taste — the app learns the exact shape of what moves you.',
       'A reading pattern is emerging —the app observes, interprets, and reflects back who you\'re becoming as a reader.',
       'The more you interact, the more precisely it reads you.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to emotionally intense stories.",
+      "You prefer intellectual depth over comfort.",
+      "You like morally complex characters.",
     ],
   },
 
@@ -124,6 +132,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Your reading taste deepens as you use it — the app builds a map of how fast you need things to move.',
       'The more you interact, the more precisely it reads you.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to fast-paced, propulsive stories.",
+      "You need a book that hooks you from page one.",
+      "Slow openings lose you — momentum is everything.",
+    ],
   },
 
   literary_escapist: {
@@ -148,6 +161,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every book you save or skip reveals more about the kind of place you want to disappear into.',
       'A reading pattern is emerging —the app learns what kind of world you\'re searching for.',
       'The more you interact, the more precisely it reads you.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to atmospheric, immersive worlds.",
+      "Setting matters as much as story to you.",
+      "You read to disappear, not just to follow a plot.",
     ],
   },
 
@@ -174,6 +192,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app observes the patterns in what moves you.',
       'The more you interact, the more precisely it reads you.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to character-driven stories.",
+      "You like emotional stakes that feel genuinely human.",
+      "You prefer transformation over comfort.",
+    ],
   },
 
   speculative_thinker: {
@@ -198,6 +221,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every book you respond to sharpens the map of your intellectual instincts.',
       'A reading pattern is emerging —the app learns which speculative ideas genuinely move you.',
       'The more you interact, the more precisely it reads you.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to idea-driven, speculative fiction.",
+      "You like books that reframe how you see the real world.",
+      "You prefer challenge over reassurance.",
     ],
   },
 
@@ -224,6 +252,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app builds a map of the kind of precision you look for.',
       'The more you interact, the more precisely it reads you.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to literary prose and dense ideas.",
+      "You read slowly and deliberately — depth over pace.",
+      "You prefer books that reward full attention.",
+    ],
   },
 
   chaos: {
@@ -248,6 +281,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every book you dismiss for being predictable refines the map of your appetite for chaos.',
       'A reading pattern is emerging —the app learns what "surprising" actually means to you.',
       'The more you interact, the more precisely it reads you.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to experimental, genre-defying fiction.",
+      "You need books that genuinely surprise you.",
+      "Predictability is the only thing that loses you.",
     ],
   },
 
@@ -274,6 +312,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns to distinguish mood from plot for you.',
       'The more you interact, the more precisely it reads you.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to mood-driven, atmospheric fiction.",
+      "You read for feeling more than plot.",
+      "The best books leave you with a tone you can't name.",
+    ],
   },
 
   emotional: {
@@ -298,6 +341,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every save and skip deepens the portrait of your reading taste across dimensions of grief, love, and longing.',
       'Your reading pattern is specific. The app learns to see those specifics — and reflects them back.',
       'The more you encounter, the more precisely it understands what moves you.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to emotionally devastating stories.",
+      "You like books that feel genuinely cathartic.",
+      "Character depth matters more than plot to you.",
     ],
   },
 
@@ -324,6 +372,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns what genuine comfort means to you, not just genre.',
       'The more you encounter, the more precisely it finds the right kind of shelter.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to warm, atmospheric worlds.",
+      "You like books that feel like a safe place.",
+      "Low stakes, high feeling — that's your mode.",
+    ],
   },
 
   dark: {
@@ -348,6 +401,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every save and skip refines the line between your kind of darkness and the kind that goes too far.',
       'A reading pattern is emerging —the app learns what hauntingly beautiful actually means to you.',
       'The more you encounter, the more precisely it finds the gothic-literary overlap you\'re chasing.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to dark, haunting literary fiction.",
+      "Moral complexity and gothic atmosphere pull you in.",
+      "You want to be disturbed in a specific, beautiful way.",
     ],
   },
 
@@ -374,6 +432,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns what "can\'t stop" actually means for you.',
       'The more you encounter, the more precisely it finds books that erase time.',
     ],
+    dominantSignalLabels: [
+      "You need a book that erases time.",
+      "Propulsive pacing is non-negotiable for you.",
+      "You start books at 10pm and finish them at 3am.",
+    ],
   },
 
   romance: {
@@ -398,6 +461,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every save and skip reveals more about the specific emotional payoff you\'re searching for in a love story.',
       'A reading pattern is emerging —the app learns what "earned" actually means to you.',
       'The more you encounter, the more precisely it finds romance that satisfies rather than just trending.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to slow-burn romantic tension.",
+      "You need the emotional payoff to feel earned.",
+      "You want to feel things — all of them.",
     ],
   },
 
@@ -424,6 +492,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns the specific kind of elsewhere you\'re searching for.',
       'The more you encounter, the more precisely it finds worlds that feel like you lived there.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to fully immersive worlds.",
+      "You read to disappear completely.",
+      "The best books leave you mourning a place that wasn't real.",
+    ],
   },
 
   thinker: {
@@ -448,6 +521,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every annotated sentence you return to teaches it something about the kind of writing you\'re drawn to.',
       'A reading pattern is emerging —the app builds a portrait of your specific literary sensibility.',
       'The more you encounter, the more precisely it understands what "good writing" means to you specifically.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to precise, deliberate literary prose.",
+      "You annotate. You return to sentences.",
+      "Depth and craft matter more to you than pace.",
     ],
   },
 
@@ -474,6 +552,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns where the cozy-dark line falls for you.',
       'The more you encounter, the more precisely it finds thrillers that earn their midnight reading.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to high-tension suspense.",
+      "You need books that grip you and don't let go.",
+      "You've read entire books just to find out who did it.",
+    ],
   },
 
   fantasy: {
@@ -498,6 +581,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every world you mourn when it ends teaches it something about the kind of place you need to inhabit.',
       'A reading pattern is emerging —the app learns exactly how much lore, magic, and series commitment feels right for you.',
       'The more you encounter, the more precisely it finds worlds worth disappearing into for weeks.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to deep, immersive world-building.",
+      "You fall in love with fictional worlds like real places.",
+      "You miss them when they end.",
     ],
   },
 
@@ -524,6 +612,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Your reading identity deepens even through slumps — every book you encounter teaches it something about the pace and weight you need.',
       'The more you encounter, the better it understands how to bring you back.',
     ],
+    dominantSignalLabels: [
+      "You need a quick win right now.",
+      "Short books that feel complete are what you're after.",
+      "You want to remember what finishing a book feels like.",
+    ],
   },
 
   slump_comfort: {
@@ -548,6 +641,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every dark twist that made you put a book down teaches it where the edges of your comfort live.',
       'A reading pattern is emerging —the app learns your specific version of safe, warm, and whole.',
       'The more you encounter, the better it understands what rest through reading actually means for you.',
+    ],
+    dominantSignalLabels: [
+      "You need warmth and zero pressure right now.",
+      "Gentle pacing and likeable characters — that's the mode.",
+      "You're reading to rest, not to be challenged.",
     ],
   },
 
@@ -574,6 +672,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app builds a portrait of the quiet literary tradition you belong to.',
       'The more you encounter, the more precisely it finds books that see the world the way you do.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to quiet, observational literary fiction.",
+      "You want books that see the world more clearly than you do.",
+      "Depth and truth matter more to you than genre.",
+    ],
   },
 
   mystery: {
@@ -599,6 +702,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'A reading pattern is emerging —the app learns where cozy ends and atmospheric begins for you.',
       'The more you encounter, the more precisely it finds mysteries that reward the attention you bring.',
     ],
+    dominantSignalLabels: [
+      "You're drawn to clever, atmospheric mysteries.",
+      "You notice things other readers miss.",
+      "You need books that respect your intelligence.",
+    ],
   },
 
   memoir: {
@@ -623,6 +731,11 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       'Every voice you want to spend time in teaches it something about the intimacy, precision, or scope you need from non-fiction.',
       'A reading pattern is emerging —the app learns whether you read memoir for revelation, companionship, or perspective.',
       'The more you encounter, the more precisely it finds lives that genuinely expand yours.',
+    ],
+    dominantSignalLabels: [
+      "You're drawn to real lives that expand your own.",
+      "You read memoir for revelation and perspective.",
+      "True stories feel as transporting as the best fiction.",
     ],
   },
 }

@@ -96,6 +96,7 @@ export function QuizClient({ slug, rawParams }: Props) {
       saveResult(sessionId.current, config!.id, result.id)
       trackEvent(sessionId.current, 'quiz_completed', config!.id, { result_id: result.id })
       trackEvent(sessionId.current, 'result_viewed', config!.id, { result_id: result.id })
+      trackEvent(sessionId.current, 'quiz_result_viewed', config!.id, { result_id: result.id })
       const rc = getResultContent(result.id)
       const scores: Record<string, number> = {}
       for (const question of config!.questions) {
@@ -149,17 +150,30 @@ export function QuizClient({ slug, rawParams }: Props) {
       archetype_name: archetypeName,
       ...attr.current,
     })
+    trackEvent(sessionId.current, 'quiz_app_cta_tapped', config!.id, {
+      source,
+      result_id: result?.id,
+      archetype_name: archetypeName,
+    })
     // Mint a server-side token to carry quiz_vector + attribution through the
     // App Store handoff — Apple strips raw JSON query params from the URL.
-    const token = result?.id
-      ? await mintQuizToken({
+    let token: string | null = null
+    if (result?.id) {
+      try {
+        token = await mintQuizToken({
           result_id: result.id,
           archetype_name: archetypeName,
           quiz_id: config!.id,
           quiz_vector: quizVectorRef.current ?? null,
           attribution: attr.current,
+          dominant_signals: content?.dominantSignalLabels ?? null,
+          schema_version: '2.0',
         })
-      : null
+        trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
+      } catch {
+        trackEvent(sessionId.current, 'quiz_handoff_failed', config!.id, { result_id: result.id })
+      }
+    }
     window.open(
       buildAppStoreUrl(APP_STORE_URL, attr.current, {
         result_id: result?.id,
@@ -178,15 +192,28 @@ export function QuizClient({ slug, rawParams }: Props) {
       archetype_name: archetypeName,
       ...attr.current,
     })
-    const token = result?.id
-      ? await mintQuizToken({
+    trackEvent(sessionId.current, 'quiz_app_cta_tapped', config!.id, {
+      source: 'sticky_cta',
+      result_id: result?.id,
+      archetype_name: archetypeName,
+    })
+    let token: string | null = null
+    if (result?.id) {
+      try {
+        token = await mintQuizToken({
           result_id: result.id,
           archetype_name: archetypeName,
           quiz_id: config!.id,
           quiz_vector: quizVectorRef.current ?? null,
           attribution: attr.current,
+          dominant_signals: content?.dominantSignalLabels ?? null,
+          schema_version: '2.0',
         })
-      : null
+        trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
+      } catch {
+        trackEvent(sessionId.current, 'quiz_handoff_failed', config!.id, { result_id: result.id })
+      }
+    }
     window.open(
       buildAppStoreUrl(APP_STORE_URL, attr.current, {
         result_id: result?.id,
@@ -246,8 +273,8 @@ export function QuizClient({ slug, rawParams }: Props) {
             <p style={{ ...s.cardLabel, marginBottom: 14 }}>WHAT YOU DISCOVER</p>
             {[
               'The emotional patterns behind your reading taste',
-              'Books that match how you actually want to feel',
               'A precise name for the kind of reader you already are',
+              'A starting point for your first 10-book playlist in the app',
             ].map((line, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: i < 2 ? 10 : 0 }}>
                 <span style={{ color: 'var(--purple)', fontWeight: 800, fontSize: 13, marginTop: 1 }}>✦</span>
@@ -301,7 +328,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   }
 
   if (phase === 'result' && result) {
-    const ctaCopy = content?.ctaCopy ?? 'Build My Reading Feed'
+    const ctaCopy = content?.ctaCopy ?? 'Build my full playlist'
     return (
       <main style={s.page}>
         <Nav right={<button onClick={() => handleAppStoreClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
@@ -313,6 +340,11 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Microcopy */}
           {content?.microcopy && (
             <p style={s.microcopy}>{content.microcopy}</p>
+          )}
+
+          {/* We noticed... — 3 dominant signals in plain language */}
+          {content?.dominantSignalLabels && (
+            <WeNoticedSection labels={content.dominantSignalLabels} />
           )}
 
           {/* Moodboard */}
@@ -563,13 +595,32 @@ const BOOK_ROLE_LABELS_BY_ARCHETYPE: Record<string, [string, string, string]> = 
   atmospheric_explorer: ['YOUR IMMERSION',      'YOUR OBSESSION',   'YOUR GUT PUNCH'],
 }
 
+function WeNoticedSection({ labels }: { labels: [string, string, string] }) {
+  return (
+    <div style={{ ...s.card, marginBottom: 20 }}>
+      <p style={s.cardLabel}>WE NOTICED</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {labels.map((label, i) => (
+          <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+            <span style={{ color: 'var(--purple)', fontWeight: 800, fontSize: 13, marginTop: 1, flexShrink: 0 }}>✦</span>
+            <span style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.55 }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function SimilarBooksSection({ books, archetypeId }: { books: import('@/lib/resultContent').SimilarBook[]; archetypeId: string }) {
-  const sectionHeader = SIMILAR_SECTION_HEADERS[archetypeId] ?? 'BOOKS THAT STAY WITH READERS LIKE YOU'
+  const sectionHeader = SIMILAR_SECTION_HEADERS[archetypeId] ?? 'YOUR PREVIEW PLAYLIST'
   const roleLabels = BOOK_ROLE_LABELS_BY_ARCHETYPE[archetypeId] ?? BOOK_ROLE_LABELS
 
   return (
     <div style={{ ...s.card, marginBottom: 20 }}>
       <p style={s.cardLabel}>{sectionHeader}</p>
+      <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: -4, marginBottom: 14, fontStyle: 'italic' }}>
+        3 preview picks. The app builds your full 10-book playlist.
+      </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {books.map((book, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -632,10 +683,13 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
       borderRadius: 24, padding: '28px 24px', marginBottom: 20,
     }}>
       <p style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, lineHeight: 1.25, letterSpacing: '-0.5px' }}>
-        The app that keeps reading you.
+        Build your first 10-book playlist.
       </p>
-      <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 24, lineHeight: 1.6 }}>
+      <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16, lineHeight: 1.6 }}>
         {result.whyAppHelps}
+      </p>
+      <p style={{ color: 'var(--text-dim)', fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
+        Open the app to review 10 books, Keep or Replace each one, then Confirm and Name your playlist.
       </p>
       <button onClick={onCtaClick} style={s.downloadBtn}>
         <AppleSvg />
@@ -651,7 +705,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
 function ReadingContinuationSection({ features }: { features: string[] }) {
   return (
     <div style={{ ...s.card, marginBottom: 20 }}>
-      <p style={s.cardLabel}>How the app reads you</p>
+      <p style={s.cardLabel}>HOW THE APP BUILDS YOUR PLAYLISTS</p>
       <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {features.map((f, i) => (
           <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>

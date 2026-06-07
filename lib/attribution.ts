@@ -43,6 +43,8 @@ export async function mintQuizToken(extras: {
   quiz_id: string
   quiz_vector?: string | null
   attribution: Attribution
+  dominant_signals?: [string, string, string] | null
+  schema_version?: string
 }): Promise<string | null> {
   try {
     const res = await fetch('/api/quiz-token', {
