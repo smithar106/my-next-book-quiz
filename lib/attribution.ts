@@ -48,6 +48,11 @@ export async function mintQuizToken(extras: {
   quiz_responses?: Record<string, string> | null
   identity_summary?: string | null
   schema_version?: string
+  // v3 identity continuity assets
+  archetype_subtitle?: string | null
+  mood_tiles?: Array<{ word: string; sub: string }> | null
+  dominant_signal_labels?: [string, string, string] | null
+  similar_books?: Array<{ title: string; author: string; note: string; isbn?: string | null }> | null
 }): Promise<string | null> {
   try {
     const res = await fetch('/api/quiz-token', {

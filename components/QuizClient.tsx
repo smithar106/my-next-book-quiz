@@ -171,7 +171,11 @@ export function QuizClient({ slug, rawParams }: Props) {
           dominant_signals: content?.dominantSignalLabels ?? null,
           quiz_responses: answersRef.current,
           identity_summary: content?.microcopy ?? null,
-          schema_version: '2.0',
+          schema_version: '3.0',
+          archetype_subtitle: content?.archetypeSubtitle ?? null,
+          mood_tiles: content?.moodTiles?.map((t) => ({ word: t.word, sub: t.sub })) ?? null,
+          dominant_signal_labels: content?.dominantSignalLabels ?? null,
+          similar_books: content?.similarBooks?.map((b) => ({ title: b.title, author: b.author, note: b.note, isbn: b.isbn ?? null })) ?? null,
         })
         trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
       } catch {
@@ -213,7 +217,11 @@ export function QuizClient({ slug, rawParams }: Props) {
           dominant_signals: content?.dominantSignalLabels ?? null,
           quiz_responses: answersRef.current,
           identity_summary: content?.microcopy ?? null,
-          schema_version: '2.0',
+          schema_version: '3.0',
+          archetype_subtitle: content?.archetypeSubtitle ?? null,
+          mood_tiles: content?.moodTiles?.map((t) => ({ word: t.word, sub: t.sub })) ?? null,
+          dominant_signal_labels: content?.dominantSignalLabels ?? null,
+          similar_books: content?.similarBooks?.map((b) => ({ title: b.title, author: b.author, note: b.note, isbn: b.isbn ?? null })) ?? null,
         })
         trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
       } catch {

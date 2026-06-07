@@ -10,7 +10,13 @@ import { dbInsertServer, dbSelect } from '@/lib/supabase'
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { result_id, archetype_name, quiz_id, quiz_vector, attribution, dominant_signals, avoided_signals, quiz_responses, identity_summary, schema_version } = body
+    const {
+      result_id, archetype_name, quiz_id, quiz_vector, attribution,
+      dominant_signals, avoided_signals, quiz_responses, identity_summary,
+      schema_version,
+      // v3 identity assets
+      archetype_subtitle, mood_tiles, dominant_signal_labels, similar_books,
+    } = body
 
     if (!result_id || !quiz_id) {
       return NextResponse.json({ error: 'missing fields' }, { status: 400 })
@@ -32,6 +38,10 @@ export async function POST(req: NextRequest) {
       quiz_responses: quiz_responses ?? null,
       identity_summary: identity_summary ?? null,
       schema_version: schema_version ?? '1.0',
+      archetype_subtitle: archetype_subtitle ?? null,
+      mood_tiles: mood_tiles ?? null,
+      dominant_signal_labels: dominant_signal_labels ?? null,
+      similar_books: similar_books ?? null,
       expires_at,
       created_at: new Date().toISOString(),
     })
@@ -68,6 +78,10 @@ export async function GET(req: NextRequest) {
       quiz_responses: row.quiz_responses ?? null,
       identity_summary: row.identity_summary ?? null,
       schema_version: row.schema_version ?? '1.0',
+      archetype_subtitle: row.archetype_subtitle ?? null,
+      mood_tiles: row.mood_tiles ?? null,
+      dominant_signal_labels: row.dominant_signal_labels ?? null,
+      similar_books: row.similar_books ?? null,
     }, {
       headers: { 'Cache-Control': 'private, no-store' },
     })
