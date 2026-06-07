@@ -44,6 +44,9 @@ export async function mintQuizToken(extras: {
   quiz_vector?: string | null
   attribution: Attribution
   dominant_signals?: [string, string, string] | null
+  avoided_signals?: string[] | null
+  quiz_responses?: Record<string, string> | null
+  identity_summary?: string | null
   schema_version?: string
 }): Promise<string | null> {
   try {

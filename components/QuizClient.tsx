@@ -30,6 +30,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   const cachedResult = useRef<ReturnType<typeof computeResult>>(null)
   const emailFormShownRef = useRef(false)
   const quizVectorRef = useRef<string | null>(null)
+  const answersRef = useRef<Record<string, string>>({})
 
   useEffect(() => {
     if (!config) return
@@ -111,6 +112,7 @@ export function QuizClient({ slug, rawParams }: Props) {
       const quizVector = computeQuizVector(scores)
       const quizVectorStr = JSON.stringify(quizVector)
       quizVectorRef.current = quizVectorStr
+      answersRef.current = finalAnswers
       persistResult(result.id, rc?.archetypeName ?? result.title, config!.id, quizVectorStr)
     }
     setPhase('calculating')
@@ -167,6 +169,8 @@ export function QuizClient({ slug, rawParams }: Props) {
           quiz_vector: quizVectorRef.current ?? null,
           attribution: attr.current,
           dominant_signals: content?.dominantSignalLabels ?? null,
+          quiz_responses: answersRef.current,
+          identity_summary: content?.microcopy ?? null,
           schema_version: '2.0',
         })
         trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
@@ -207,6 +211,8 @@ export function QuizClient({ slug, rawParams }: Props) {
           quiz_vector: quizVectorRef.current ?? null,
           attribution: attr.current,
           dominant_signals: content?.dominantSignalLabels ?? null,
+          quiz_responses: answersRef.current,
+          identity_summary: content?.microcopy ?? null,
           schema_version: '2.0',
         })
         trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
