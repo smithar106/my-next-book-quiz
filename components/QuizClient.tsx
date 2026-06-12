@@ -288,7 +288,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             {[
               'The emotional patterns behind your reading taste',
               'A precise name for the kind of reader you already are',
-              'A starting point for your first 10-book playlist in the app',
+              'A starting point for your first 5-book playlist in the app',
             ].map((line, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: i < 2 ? 10 : 0 }}>
                 <span style={{ color: 'var(--purple)', fontWeight: 800, fontSize: 13, marginTop: 1 }}>✦</span>
@@ -633,7 +633,7 @@ function SimilarBooksSection({ books, archetypeId }: { books: import('@/lib/resu
     <div style={{ ...s.card, marginBottom: 20 }}>
       <p style={s.cardLabel}>{sectionHeader}</p>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: -4, marginBottom: 14, fontStyle: 'italic' }}>
-        3 preview picks. The app builds your full 10-book playlist.
+        3 preview picks. The app builds your full 5-book playlist.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {books.map((book, i) => (
@@ -697,13 +697,13 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
       borderRadius: 24, padding: '28px 24px', marginBottom: 20,
     }}>
       <p style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, lineHeight: 1.25, letterSpacing: '-0.5px' }}>
-        Build your first 10-book playlist.
+        Build your first 5-book playlist.
       </p>
       <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16, lineHeight: 1.6 }}>
         {result.whyAppHelps}
       </p>
       <p style={{ color: 'var(--text-dim)', fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
-        Open the app to review 10 books, Keep or Replace each one, then Confirm and Name your playlist.
+        Open the app to review 5 books, Keep or Replace each one, then Confirm and Name your playlist.
       </p>
       <button onClick={onCtaClick} style={s.downloadBtn}>
         <AppleSvg />

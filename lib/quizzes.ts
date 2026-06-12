@@ -108,7 +108,7 @@ const WHAT_NEXT: QuizConfig = {
         'Thrillers where the tension never loosens',
         'Stories that make the outside world disappear',
       ],
-      whyAppHelps: 'My Next Book learns how fast you need a story to move — and builds your 10-book playlist around that propulsive instinct.',
+      whyAppHelps: 'My Next Book learns how fast you need a story to move — and builds your 5-book playlist around that propulsive instinct.',
     },
     {
       id: 'literary_escapist',
@@ -288,7 +288,7 @@ const BOOK_PERSONALITY: QuizConfig = {
         'Thrillers where the tension never loosens',
         'Stories that make the outside world disappear',
       ],
-      whyAppHelps: 'My Next Book learns how fast you need a story to move — and builds your 10-book playlist around that propulsive instinct.',
+      whyAppHelps: 'My Next Book learns how fast you need a story to move — and builds your 5-book playlist around that propulsive instinct.',
     },
     {
       id: 'literary_escapist',
