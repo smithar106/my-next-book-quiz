@@ -390,11 +390,6 @@ export function QuizClient({ slug, rawParams }: Props) {
             onCtaClick={() => handleAppStoreClick('result_main_cta')}
           />
 
-          {/* Continuation features */}
-          {content?.continuationFeatures && (
-            <ReadingContinuationSection features={content.continuationFeatures} />
-          )}
-
           {/* Share */}
           {content && result && (
             <ShareResultButton
@@ -703,7 +698,7 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
         {result.whyAppHelps}
       </p>
       <p style={{ color: 'var(--text-dim)', fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
-        Open the app to review 5 books, Keep or Replace each one, then Confirm and Name your playlist.
+        Open the app to review 5 books, Save or Replace each one, then Confirm and Name your playlist.
       </p>
       <button onClick={onCtaClick} style={s.downloadBtn}>
         <AppleSvg />
@@ -712,22 +707,6 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
       <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12, textAlign: 'center' }}>
         Free to explore · 14 days to go deep · No commitment
       </p>
-    </div>
-  )
-}
-
-function ReadingContinuationSection({ features }: { features: string[] }) {
-  return (
-    <div style={{ ...s.card, marginBottom: 20 }}>
-      <p style={s.cardLabel}>HOW THE APP BUILDS YOUR PLAYLISTS</p>
-      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {features.map((f, i) => (
-          <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-            <span style={{ color: 'var(--purple)', fontSize: 13, marginTop: 1, flexShrink: 0 }}>✦</span>
-            <span style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.5 }}>{f}</span>
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }

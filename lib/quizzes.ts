@@ -794,7 +794,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You gravitate toward books that feel emotionally dangerous but intellectually precise.',
       description: 'You read to feel intellectually alive. You chase books that disturb you in productive ways — dark enough to stay with you, precise enough to trust.',
       readingDirections: ['Literary fiction with psychological depth and dark atmosphere', 'Dark realism that makes you uncomfortable in precise ways', 'Cerebral thrillers where intellect meets emotional intensity'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for emotionally intense, intellectually precise fiction — and builds every playlist around that precision.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for emotionally intense, intellectually precise fiction — and builds every playlist around that precision.',
     },
     {
       id: 'momentum',
@@ -812,7 +812,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read to disappear into worlds so fully realized they feel more real than your own.',
       description: 'You read to disappear. Not into fantasy for its own sake — into worlds so fully realized they feel more real than your own. Atmosphere is everything.',
       readingDirections: ['Immersive fiction with worlds you can vanish into', 'Atmospheric literary fiction where place becomes character', 'Historical fiction that transports completely'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your worldbuilding and atmosphere preferences — and builds a playlist of worlds worth disappearing into.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your worldbuilding and atmosphere preferences — and builds a playlist of worlds worth disappearing into.',
     },
     {
       id: 'emotional_realist',
@@ -821,7 +821,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read to feel understood. The books that stay with you get human experience exactly right.',
       description: 'You read to feel understood. The books that stay with you get human experience exactly right — the mess, the grief, the quietly devastating moments.',
       readingDirections: ['Contemporary fiction with raw emotional honesty', 'Character studies that get human experience exactly right', 'Family drama that finds the extraordinary in ordinary lives'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for emotional truth and character depth — and builds every playlist around it.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for emotional truth and character depth — and builds every playlist around it.',
     },
     {
       id: 'speculative_thinker',
@@ -830,7 +830,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read to have your assumptions challenged. Fiction that extrapolates, questions, and builds new systems of meaning.',
       description: 'You read to have your assumptions challenged. You prefer books that make you think about the real world differently.',
       readingDirections: ['Speculative fiction that extrapolates ideas to their logical extreme', 'Sci-fi that uses the future to illuminate the present', 'Dystopian fiction that builds entirely new systems of meaning'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for idea-driven, assumption-challenging fiction — and sharpens every playlist around it.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for idea-driven, assumption-challenging fiction — and sharpens every playlist around it.',
     },
     {
       id: 'quiet_intellectual',
@@ -839,7 +839,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read slowly and deliberately. Dense prose, layered meaning, ideas that unfold over time.',
       description: 'You read slowly and deliberately. You prefer books that reward attention — dense prose, layered meaning, ideas that unfold over time.',
       readingDirections: ['Dense literary fiction that rewards slow reading', 'Essays that demand and repay full attention', 'Prose-driven novels where every sentence is doing work'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for dense, carefully written literary fiction — and builds playlists that never shortchange your attention.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for dense, carefully written literary fiction — and builds playlists that never shortchange your attention.',
     },
     {
       id: 'chaos',
@@ -848,7 +848,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read to be surprised. Predictability is the only thing that can lose you.',
       description: 'You read to be surprised. You want books that break their own rules, shift beneath your feet, and end somewhere you never expected.',
       readingDirections: ['Experimental fiction that breaks its own rules', 'Surreal narratives that resist easy interpretation', 'Genre-bending books that are impossible to categorize'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for experimental, genre-bending fiction — and builds playlists that never settle into predictability.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for experimental, genre-bending fiction — and builds playlists that never settle into predictability.',
     },
     {
       id: 'atmospheric_explorer',
@@ -857,7 +857,7 @@ const READING_PERSONALITY: QuizConfig = {
       tagline: 'You read for feeling more than plot. The best books leave you with a mood that lingers for days.',
       description: 'You read for feeling more than plot. The best books leave you with a mood that lingers for days — a specific texture of light, a sense of place, a tone you can\'t fully name.',
       readingDirections: ['Atmospheric fiction where mood is the primary experience', 'Gothic fiction with haunted settings and slow dread', 'Slow burn literary novels where feeling accumulates gradually'],
-      whyAppHelps: 'My Next Book\'s Reading DNA tracks your preference for atmospheric, mood-driven fiction — and builds playlists around how books make you feel.',
+      whyAppHelps: 'My Next Book\'s Reading Identity tracks your preference for atmospheric, mood-driven fiction — and builds playlists around how books make you feel.',
     },
   ],
   resultLogic: (scores) => {

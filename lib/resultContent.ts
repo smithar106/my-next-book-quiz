@@ -28,7 +28,6 @@ export interface ResultContent {
   ctaCopy: string
   moodTiles: MoodTile[]
   similarBooks: SimilarBook[]
-  continuationFeatures: string[]
   /** 3 plain-English dominant signals shown in "We noticed…" section */
   dominantSignalLabels: [string, string, string]
 }
@@ -96,12 +95,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Psychologically sharp, morally uncomfortable', isbn: '9780307588364', coverUrl: 'https://covers.openlibrary.org/b/id/12498395-L.jpg' },
       { title: 'The Secret History', author: 'Donna Tartt', note: 'Cerebral, dark, and impossible to shake', isbn: '9781400031702', coverUrl: 'https://covers.openlibrary.org/b/id/7891406-L.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book tracks the emotional intensity patterns behind what you save — learning your exact cerebral-dark threshold.',
-      'Every book you respond to adds another contour to your reading taste — the app learns the exact shape of what moves you.',
-      'A reading pattern is emerging —the app observes, interprets, and reflects back who you\'re becoming as a reader.',
-      'The more you interact, the more precisely it reads you.',
-    ],
     dominantSignalLabels: [
       "You're drawn to emotionally intense stories.",
       "You prefer intellectual depth over comfort.",
@@ -125,12 +118,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Propulsive from page one', isbn: '9780307588364', coverUrl: 'https://covers.openlibrary.org/b/id/12498395-L.jpg' },
       { title: 'The Girl with the Dragon Tattoo', author: 'Stieg Larsson', note: 'Can\'t-stop-reading energy', isbn: '9780307949486', coverUrl: 'https://covers.openlibrary.org/b/id/9274740-M.jpg' },
       { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Fast, sharp, addictive', isbn: '9780399167065', coverUrl: 'https://covers.openlibrary.org/b/id/7352410-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book tracks your pacing instincts — and filters out books that lose momentum before they find it.',
-      'Every time you dismiss a slow opener, the app notes it and adjusts.',
-      'Your reading taste deepens as you use it — the app builds a map of how fast you need things to move.',
-      'The more you interact, the more precisely it reads you.',
     ],
     dominantSignalLabels: [
       "You're drawn to fast-paced, propulsive stories.",
@@ -156,12 +143,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Pachinko', author: 'Min Jin Lee', note: 'Immersive across decades and generations', isbn: '9781455563906', coverUrl: 'https://covers.openlibrary.org/b/id/8044605-M.jpg' },
       { title: 'A Gentleman in Moscow', author: 'Amor Towles', note: 'Atmospheric and deeply realized', isbn: '9780670026190', coverUrl: 'https://covers.openlibrary.org/b/id/11326818-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book tracks the atmospheric and immersive qualities you respond to — building a map of what makes a world feel real to you.',
-      'Every book you save or skip reveals more about the kind of place you want to disappear into.',
-      'A reading pattern is emerging —the app learns what kind of world you\'re searching for.',
-      'The more you interact, the more precisely it reads you.',
-    ],
     dominantSignalLabels: [
       "You're drawn to atmospheric, immersive worlds.",
       "Setting matters as much as story to you.",
@@ -185,12 +166,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Normal People', author: 'Sally Rooney', note: 'Painfully, precisely human', isbn: '9781984822185', coverUrl: 'https://covers.openlibrary.org/b/id/9854488-L.jpg' },
       { title: 'A Little Life', author: 'Hanya Yanagihara', note: 'Emotionally devastating and true', isbn: '9780804172448', coverUrl: 'https://covers.openlibrary.org/b/id/7369961-L.jpg' },
       { title: 'Shuggie Bain', author: 'Douglas Stuart', note: 'Love and grief rendered exactly right', isbn: '9780802148506', coverUrl: 'https://covers.openlibrary.org/b/id/10583497-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book tracks your sensitivity to emotional truth — learning what kinds of human experience you respond to most.',
-      'Every book you save or skip reveals more about the emotional register you\'re looking for.',
-      'A reading pattern is emerging —the app observes the patterns in what moves you.',
-      'The more you interact, the more precisely it reads you.',
     ],
     dominantSignalLabels: [
       "You're drawn to character-driven stories.",
@@ -216,12 +191,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Station Eleven', author: 'Emily St. John Mandel', note: 'Speculative and deeply human', isbn: '9780385353304', coverUrl: 'https://covers.openlibrary.org/b/id/9352504-L.jpg' },
       { title: 'Never Let Me Go', author: 'Kazuo Ishiguro', note: 'Assumptions dismantled slowly and precisely', isbn: '9781400078776', coverUrl: 'https://covers.openlibrary.org/b/id/13160732-L.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book tracks your appetite for idea-driven fiction — learning what kinds of premises change how you think.',
-      'Every book you respond to sharpens the map of your intellectual instincts.',
-      'A reading pattern is emerging —the app learns which speculative ideas genuinely move you.',
-      'The more you interact, the more precisely it reads you.',
-    ],
     dominantSignalLabels: [
       "You're drawn to idea-driven, speculative fiction.",
       "You like books that reframe how you see the real world.",
@@ -245,12 +214,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Dense, rewarding, worth every page', isbn: '9780063251984', coverUrl: 'https://covers.openlibrary.org/b/id/13141227-M.jpg' },
       { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Layered and intellectually precise', isbn: '9780812995343', coverUrl: 'https://covers.openlibrary.org/b/id/7909378-L.jpg' },
       { title: 'The Remains of the Day', author: 'Kazuo Ishiguro', note: 'Slow, deliberate, devastating', isbn: '9780679731726', coverUrl: 'https://covers.openlibrary.org/b/id/95742-M.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book tracks your preference for depth and deliberate prose — learning what level of density you find rewarding vs. exhausting.',
-      'Every book you save or skip reveals more about where your intellectual attention naturally settles.',
-      'A reading pattern is emerging —the app builds a map of the kind of precision you look for.',
-      'The more you interact, the more precisely it reads you.',
     ],
     dominantSignalLabels: [
       "You're drawn to literary prose and dense ideas.",
@@ -276,12 +239,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'Strange, surprising, unforgettable', isbn: '9781635575637', coverUrl: 'https://covers.openlibrary.org/b/id/10226290-M.jpg' },
       { title: 'If on a winter\'s night a traveler', author: 'Italo Calvino', note: 'Rules broken from page one', isbn: '9780156439619', coverUrl: 'https://covers.openlibrary.org/b/id/12455054-L.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book tracks your response to the unexpected — learning what kinds of structural surprises feel thrilling vs. cheap.',
-      'Every book you dismiss for being predictable refines the map of your appetite for chaos.',
-      'A reading pattern is emerging —the app learns what "surprising" actually means to you.',
-      'The more you interact, the more precisely it reads you.',
-    ],
     dominantSignalLabels: [
       "You're drawn to experimental, genre-defying fiction.",
       "You need books that genuinely surprise you.",
@@ -305,12 +262,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Rebecca', author: 'Daphne du Maurier', note: 'Atmospheric and unforgettable', isbn: '9780380730407', coverUrl: 'https://covers.openlibrary.org/b/id/8765889-L.jpg' },
       { title: 'The Haunting of Hill House', author: 'Shirley Jackson', note: 'Mood as architecture', isbn: '9780143039983', coverUrl: 'https://covers.openlibrary.org/b/id/13147201-L.jpg' },
       { title: 'Mexican Gothic', author: 'Silvia Moreno-Garcia', note: 'Gothic atmosphere, lingers for days', isbn: '9780525620785', coverUrl: 'https://covers.openlibrary.org/b/id/10239163-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book tracks the atmospheric qualities you respond to — building a map of what kind of feeling you\'re chasing.',
-      'Every book you save or skip reveals more about the specific emotional texture you\'re searching for.',
-      'A reading pattern is emerging —the app learns to distinguish mood from plot for you.',
-      'The more you interact, the more precisely it reads you.',
     ],
     dominantSignalLabels: [
       "You're drawn to mood-driven, atmospheric fiction.",
@@ -336,12 +287,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin', note: 'Hits differently.', isbn: '9780593321201', coverUrl: 'https://covers.openlibrary.org/b/id/12816990-L.jpg' },
       { title: 'Lessons in Chemistry', author: 'Bonnie Garmus', note: 'Emotionally precise.', isbn: '9780385547353', coverUrl: 'https://covers.openlibrary.org/b/id/12725772-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the emotional intensity in every book you respond to — learning exactly what kind of feeling you\'re searching for.',
-      'Every save and skip deepens the portrait of your reading taste across dimensions of grief, love, and longing.',
-      'Your reading pattern is specific. The app learns to see those specifics — and reflects them back.',
-      'The more you encounter, the more precisely it understands what moves you.',
-    ],
     dominantSignalLabels: [
       "You're drawn to emotionally devastating stories.",
       "You like books that feel genuinely cathartic.",
@@ -365,12 +310,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'The Thursday Murder Club', author: 'Richard Osman', note: 'Clever and warm.', isbn: '9781984880963', coverUrl: 'https://covers.openlibrary.org/b/id/10201431-L.jpg' },
       { title: 'Remarkably Bright Creatures', author: 'Shelby Van Pelt', note: 'Exactly this vibe.', isbn: '9780778386261', coverUrl: 'https://covers.openlibrary.org/b/id/12019989-M.jpg' },
       { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906', coverUrl: 'https://covers.openlibrary.org/b/id/95718-M.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads the warmth and atmosphere you respond to — building a portrait of the worlds you want to live in.',
-      'Every book you save or skip teaches it more about the specific kind of safe, warm, realized you\'re looking for.',
-      'A reading pattern is emerging —the app learns what genuine comfort means to you, not just genre.',
-      'The more you encounter, the more precisely it finds the right kind of shelter.',
     ],
     dominantSignalLabels: [
       "You're drawn to warm, atmospheric worlds.",
@@ -396,12 +335,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'Beautifully strange.', isbn: '9781635575637', coverUrl: 'https://covers.openlibrary.org/b/id/10226290-M.jpg' },
       { title: 'My Year of Rest and Relaxation', author: 'Ottessa Moshfegh', note: 'Unapologetically dark.', isbn: '9780525522133', coverUrl: 'https://covers.openlibrary.org/b/id/10286313-L.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the darkness and moral complexity you respond to — building a portrait of the specific shadow aesthetic you\'re drawn to.',
-      'Every save and skip refines the line between your kind of darkness and the kind that goes too far.',
-      'A reading pattern is emerging —the app learns what hauntingly beautiful actually means to you.',
-      'The more you encounter, the more precisely it finds the gothic-literary overlap you\'re chasing.',
-    ],
     dominantSignalLabels: [
       "You're drawn to dark, haunting literary fiction.",
       "Moral complexity and gothic atmosphere pull you in.",
@@ -425,12 +358,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Gone Girl', author: 'Gillian Flynn', note: 'Set the standard.', isbn: '9780307588371', coverUrl: 'https://covers.openlibrary.org/b/id/11568078-L.jpg' },
       { title: 'Verity', author: 'Colleen Hoover', note: 'Couldn\'t look away.', isbn: '9781538724736', coverUrl: 'https://covers.openlibrary.org/b/id/15128483-L.jpg' },
       { title: 'The Silent Patient', author: 'Alex Michaelides', note: 'Finished in a day.', isbn: '9781250301697', coverUrl: 'https://covers.openlibrary.org/b/id/8415060-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads your pacing instinct — understanding how fast a book needs to move before you\'re hooked.',
-      'Every slow opener you put down teaches it something about the propulsive energy you need from page one.',
-      'A reading pattern is emerging —the app learns what "can\'t stop" actually means for you.',
-      'The more you encounter, the more precisely it finds books that erase time.',
     ],
     dominantSignalLabels: [
       "You need a book that erases time.",
@@ -456,12 +383,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'The Hating Game', author: 'Sally Thorne', note: 'Slow burn perfection.', isbn: '9780062439598', coverUrl: 'https://covers.openlibrary.org/b/id/15206889-L.jpg' },
       { title: 'People We Meet on Vacation', author: 'Emily Henry', note: 'Earned every page.', isbn: '9781250776181', coverUrl: 'https://covers.openlibrary.org/b/id/10476782-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the romantic tension you respond to — learning the difference between slow burn you love and slow burn you abandon.',
-      'Every save and skip reveals more about the specific emotional payoff you\'re searching for in a love story.',
-      'A reading pattern is emerging —the app learns what "earned" actually means to you.',
-      'The more you encounter, the more precisely it finds romance that satisfies rather than just trending.',
-    ],
     dominantSignalLabels: [
       "You're drawn to slow-burn romantic tension.",
       "You need the emotional payoff to feel earned.",
@@ -485,12 +406,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'The God of Small Things', author: 'Arundhati Roy', note: 'Never leaves you.', isbn: '9780812979657', coverUrl: 'https://covers.openlibrary.org/b/id/10585967-L.jpg' },
       { title: 'Normal People', author: 'Sally Rooney', note: 'Completely transported.', isbn: '9780571334650', coverUrl: 'https://covers.openlibrary.org/b/id/12804580-L.jpg' },
       { title: 'Intermezzo', author: 'Sally Rooney', note: 'Fully lived in.', isbn: '9780374614997', coverUrl: 'https://covers.openlibrary.org/b/id/14836043-M.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads how completely you disappear into a world — learning the difference between transport and mere absorption.',
-      'Every book you save reveals more about what makes a world feel real enough to miss.',
-      'A reading pattern is emerging —the app learns the specific kind of elsewhere you\'re searching for.',
-      'The more you encounter, the more precisely it finds worlds that feel like you lived there.',
     ],
     dominantSignalLabels: [
       "You're drawn to fully immersive worlds.",
@@ -516,12 +431,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Dept. of Speculation', author: 'Jenny Offill', note: 'Precise and devastating.', isbn: '9780385350570', coverUrl: 'https://covers.openlibrary.org/b/id/14570516-L.jpg' },
       { title: 'Stoner', author: 'John Williams', note: 'Quietly shattering.', isbn: '9781590171714', coverUrl: 'https://covers.openlibrary.org/b/id/859193-L.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the quality of attention you bring — learning the prose density and intellectual precision you find rewarding rather than exhausting.',
-      'Every annotated sentence you return to teaches it something about the kind of writing you\'re drawn to.',
-      'A reading pattern is emerging —the app builds a portrait of your specific literary sensibility.',
-      'The more you encounter, the more precisely it understands what "good writing" means to you specifically.',
-    ],
     dominantSignalLabels: [
       "You're drawn to precise, deliberate literary prose.",
       "You annotate. You return to sentences.",
@@ -545,12 +454,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Behind Closed Doors', author: 'B.A. Paris', note: 'Can\'t breathe reading it.', isbn: '9781250122940', coverUrl: 'https://covers.openlibrary.org/b/id/10318311-L.jpg' },
       { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492', coverUrl: 'https://covers.openlibrary.org/b/id/6458460-L.jpg' },
       { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734', coverUrl: 'https://covers.openlibrary.org/b/id/7352410-M.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads the specific tension you crave — learning the difference between the thrillers that grip you and the ones that just rush.',
-      'Every twist that genuinely surprised you teaches it something about the quality of suspense you need.',
-      'A reading pattern is emerging —the app learns where the cozy-dark line falls for you.',
-      'The more you encounter, the more precisely it finds thrillers that earn their midnight reading.',
     ],
     dominantSignalLabels: [
       "You're drawn to high-tension suspense.",
@@ -576,12 +479,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Ninth House', author: 'Leigh Bardugo', note: 'Dark academia meets fantasy.', isbn: '9781250313072', coverUrl: 'https://covers.openlibrary.org/b/id/12667414-L.jpg' },
       { title: 'Piranesi', author: 'Susanna Clarke', note: 'A world unlike any other.', isbn: '9781635575637', coverUrl: 'https://covers.openlibrary.org/b/id/10226290-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the world-building depth you respond to — learning the distinction between immersive world and shallow premise.',
-      'Every world you mourn when it ends teaches it something about the kind of place you need to inhabit.',
-      'A reading pattern is emerging —the app learns exactly how much lore, magic, and series commitment feels right for you.',
-      'The more you encounter, the more precisely it finds worlds worth disappearing into for weeks.',
-    ],
     dominantSignalLabels: [
       "You're drawn to deep, immersive world-building.",
       "You fall in love with fictional worlds like real places.",
@@ -605,12 +502,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Giovanni\'s Room', author: 'James Baldwin', note: '88 pages. Unforgettable.', isbn: '9780385333573', coverUrl: 'https://covers.openlibrary.org/b/id/4610740-L.jpg' },
       { title: 'The Vegetarian', author: 'Han Kang', note: 'Short, strange, stays with you.', isbn: '9781101906118', coverUrl: 'https://covers.openlibrary.org/b/id/10226571-L.jpg' },
       { title: 'Of Mice and Men', author: 'John Steinbeck', note: 'Read it in one sitting.', isbn: '9780140177398', coverUrl: 'https://covers.openlibrary.org/b/id/15153601-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads where you are as a reader right now — not just what you love in theory, but what you can actually finish.',
-      'A short book completed is worth more than a long book abandoned. The app learns to meet you where you are.',
-      'Your reading identity deepens even through slumps — every book you encounter teaches it something about the pace and weight you need.',
-      'The more you encounter, the better it understands how to bring you back.',
     ],
     dominantSignalLabels: [
       "You need a quick win right now.",
@@ -636,12 +527,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'The Rosie Project', author: 'Graeme Simsion', note: 'Zero stress, full heart.', isbn: '9781476729084', coverUrl: 'https://covers.openlibrary.org/b/id/12602975-L.jpg' },
       { title: '84, Charing Cross Road', author: 'Helene Hanff', note: 'The coziest book written.', isbn: '9780143122906', coverUrl: 'https://covers.openlibrary.org/b/id/95718-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads how much weight you can carry right now — and knows the difference between comfort you need and books that ask too much.',
-      'Every dark twist that made you put a book down teaches it where the edges of your comfort live.',
-      'A reading pattern is emerging —the app learns your specific version of safe, warm, and whole.',
-      'The more you encounter, the better it understands what rest through reading actually means for you.',
-    ],
     dominantSignalLabels: [
       "You need warmth and zero pressure right now.",
       "Gentle pacing and likeable characters — that's the mode.",
@@ -665,12 +550,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Olive Kitteridge', author: 'Elizabeth Strout', note: 'Quietly extraordinary.', isbn: '9780812971835', coverUrl: 'https://covers.openlibrary.org/b/id/6455275-L.jpg' },
       { title: 'Demon Copperhead', author: 'Barbara Kingsolver', note: 'Demands full attention.', isbn: '9780063251311', coverUrl: 'https://covers.openlibrary.org/b/id/13141227-M.jpg' },
       { title: 'Lincoln in the Bardo', author: 'George Saunders', note: 'Like nothing else.', isbn: '9780812985405', coverUrl: 'https://covers.openlibrary.org/b/id/7909378-M.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads the depth and precision you respond to — learning what you mean by "good writing" as distinct from what anyone else means.',
-      'Every sentence you linger over teaches it something about the literary sensibility that\'s specifically yours.',
-      'A reading pattern is emerging —the app builds a portrait of the quiet literary tradition you belong to.',
-      'The more you encounter, the more precisely it finds books that see the world the way you do.',
     ],
     dominantSignalLabels: [
       "You're drawn to quiet, observational literary fiction.",
@@ -696,12 +575,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'In the Woods', author: 'Tana French', note: 'Atmospheric and clever.', isbn: '9780143113492', coverUrl: 'https://covers.openlibrary.org/b/id/6458460-L.jpg' },
       { title: 'Big Little Lies', author: 'Liane Moriarty', note: 'Puzzle perfection.', isbn: '9780399184734', coverUrl: 'https://covers.openlibrary.org/b/id/7352410-M.jpg' },
     ],
-    continuationFeatures: [
-      'My Next Book reads the kind of puzzle that satisfies you — learning the difference between a mystery that respects your intelligence and one that cheats.',
-      'Every reveal you saw coming teaches it something about the complexity and fair-play you need from a crime novel.',
-      'A reading pattern is emerging —the app learns where cozy ends and atmospheric begins for you.',
-      'The more you encounter, the more precisely it finds mysteries that reward the attention you bring.',
-    ],
     dominantSignalLabels: [
       "You're drawn to clever, atmospheric mysteries.",
       "You notice things other readers miss.",
@@ -725,12 +598,6 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
       { title: 'Educated', author: 'Tara Westover', note: 'Jaw-dropping real life.', isbn: '9780399590504', coverUrl: 'https://covers.openlibrary.org/b/id/14832082-L.jpg' },
       { title: 'The Anthropocene Reviewed', author: 'John Green', note: 'Essays that expand you.', isbn: '9780525555216', coverUrl: 'https://covers.openlibrary.org/b/id/11896674-L.jpg' },
       { title: 'Know My Name', author: 'Chanel Miller', note: 'Important. Beautiful.', isbn: '9780735223707', coverUrl: 'https://covers.openlibrary.org/b/id/8999829-L.jpg' },
-    ],
-    continuationFeatures: [
-      'My Next Book reads the kind of real life that moves you — learning what separates the memoir that changes you from the one that leaves you cold.',
-      'Every voice you want to spend time in teaches it something about the intimacy, precision, or scope you need from non-fiction.',
-      'A reading pattern is emerging —the app learns whether you read memoir for revelation, companionship, or perspective.',
-      'The more you encounter, the more precisely it finds lives that genuinely expand yours.',
     ],
     dominantSignalLabels: [
       "You're drawn to real lives that expand your own.",

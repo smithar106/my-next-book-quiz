@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                 <!-- Header -->
                 <tr><td style="padding-bottom:32px;text-align:center">
                   <p style="margin:0 0 4px;font-size:11px;font-weight:800;letter-spacing:2px;color:#D4BCFF;text-transform:uppercase">MY NEXT BOOK</p>
-                  <p style="margin:0;font-size:12px;color:#A097C0">Your Reading DNA</p>
+                  <p style="margin:0;font-size:12px;color:#A097C0">Your Reading Identity</p>
                 </td></tr>
 
                 <!-- Result card -->
