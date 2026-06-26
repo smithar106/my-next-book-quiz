@@ -254,9 +254,12 @@ export function QuizClient({ slug, rawParams }: Props) {
         <div style={s.landingInner}>
           <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
-          <p style={s.subtitle}>{config.description}</p>
+          <p style={s.subtitle}>
+            React to a few things. We&apos;ll read the emotional
+            patterns you don&apos;t see yet.
+          </p>
           <button onClick={startQuiz} style={s.primaryBtn}>Discover how you read →</button>
-          <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Takes two minutes. Stays with you.</p>
+          <p style={{ color: 'var(--text-dim)', fontSize: 13, marginTop: 16 }}>Two minutes. No thinking required.</p>
           <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 8, fontStyle: 'italic' }}>For readers who feel books, not just finish them.</p>
 
           {/* Identity preview grid */}
@@ -309,8 +312,31 @@ export function QuizClient({ slug, rawParams }: Props) {
           <div style={s.progressBar}>
             <div style={{ ...s.progressFill, width: `${progress}%` }} />
           </div>
-          <p style={s.quizLabel}>Question {currentQ + 1} of {config.questions.length}</p>
-          <p style={s.quizTagline}>{getProgressTagline(currentQ, config.questions.length)}</p>
+          {/* Progress dots */}
+          <div style={{
+            display: 'flex',
+            gap: 8,
+            justifyContent: 'center',
+            marginBottom: 32,
+          }}>
+            {config.questions.map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  width: i === currentQ ? 20 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  background: i === currentQ
+                    ? 'var(--purple)'
+                    : i < currentQ
+                    ? 'rgba(200,176,255,0.4)'
+                    : 'var(--surface2)',
+                  transition: 'width 0.3s ease, background 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
+
           <h2 style={s.questionText}>{question.text}</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {question.options.map((opt) => {
@@ -1011,7 +1037,7 @@ const s: Record<string, React.CSSProperties> = {
   progressFill: { height: '100%', background: 'var(--purple)', borderRadius: 4, transition: 'width 0.3s ease' },
   quizLabel: { color: 'var(--text)', fontSize: 22, fontWeight: 900, letterSpacing: '-0.5px', marginBottom: 4 },
   quizTagline: { color: 'var(--text-muted)', fontSize: 15, fontWeight: 500, marginBottom: 28 },
-  questionText: { fontSize: 'clamp(22px,4vw,30px)', fontWeight: 800, letterSpacing: '-0.5px', lineHeight: 1.25, marginBottom: 28 },
+  questionText: { fontSize: 'clamp(24px,4vw,32px)', fontWeight: 900, letterSpacing: '-0.8px', lineHeight: 1.2, marginBottom: 32 },
   optionBtn: {
     width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)',
     borderRadius: 16, padding: '18px 20px', textAlign: 'left', fontSize: 16, fontWeight: 600,
