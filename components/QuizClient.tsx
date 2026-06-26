@@ -379,6 +379,15 @@ export function QuizClient({ slug, rawParams }: Props) {
             </ul>
           </div>
 
+          {/* Blurred book reveal */}
+          {content && result && (
+            <BlurredBookReveal
+              result={result}
+              content={content}
+              onCtaClick={() => handleAppStoreClick('blurred_reveal_cta')}
+            />
+          )}
+
           {/* Similar books */}
           {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} archetypeId={result.id} />}
 
@@ -616,6 +625,108 @@ function WeNoticedSection({ labels }: { labels: [string, string, string] }) {
           </div>
         ))}
       </div>
+    </div>
+  )
+}
+
+function BlurredBookReveal({ result, content, onCtaClick }: {
+  result: NonNullable<ReturnType<typeof computeResult>>
+  content: ReturnType<typeof getResultContent>
+  onCtaClick: () => void
+}) {
+  const firstBook = content?.similarBooks?.[0]
+  const coverSrc = firstBook?.coverUrl || (firstBook?.isbn ? `/api/cover?isbn=${firstBook.isbn}` : null)
+  const archetypeName = content?.archetypeName ?? result.title
+
+  return (
+    <div style={{
+      background: 'linear-gradient(160deg, rgba(200,176,255,0.10) 0%, rgba(100,80,180,0.06) 100%)',
+      border: '1.5px solid rgba(200,176,255,0.30)',
+      borderRadius: 24,
+      padding: '28px 24px',
+      marginBottom: 20,
+      textAlign: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* ambient glow */}
+      <div style={{
+        position: 'absolute', top: -40, left: '50%', transform: 'translateX(-50%)',
+        width: 200, height: 120,
+        background: 'radial-gradient(ellipse, rgba(200,176,255,0.10) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <p style={{
+        fontSize: 10, fontWeight: 800, letterSpacing: '2px',
+        color: 'var(--purple)', textTransform: 'uppercase', marginBottom: 16,
+      }}>
+        YOUR FIRST RECOMMENDATION
+      </p>
+
+      {/* Blurred cover */}
+      <div style={{
+        width: 80, height: 120, borderRadius: 8, margin: '0 auto 20px',
+        overflow: 'hidden', position: 'relative',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+      }}>
+        {coverSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={coverSrc}
+            alt="Your recommendation"
+            width={80}
+            height={120}
+            style={{
+              width: '100%', height: '100%', objectFit: 'cover',
+              filter: 'blur(8px)', transform: 'scale(1.1)',
+            }}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = 'none'
+            }}
+          />
+        ) : (
+          <div style={{
+            width: '100%', height: '100%',
+            background: 'linear-gradient(135deg, rgba(200,176,255,0.3) 0%, rgba(100,80,180,0.2) 100%)',
+            filter: 'blur(4px)',
+          }} />
+        )}
+        {/* Lock overlay */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: 'rgba(0,0,0,0.35)',
+        }}>
+          <span style={{ fontSize: 20 }}>🔒</span>
+        </div>
+      </div>
+
+      <p style={{
+        fontSize: 20, fontWeight: 900, letterSpacing: '-0.5px',
+        lineHeight: 1.2, marginBottom: 8,
+      }}>
+        Your first recommendation is waiting.
+      </p>
+      <p style={{
+        color: 'var(--text-muted)', fontSize: 14,
+        lineHeight: 1.55, marginBottom: 20,
+      }}>
+        We found the exact book for <strong style={{ color: 'var(--text)' }}>{archetypeName}</strong>.{' '}
+        Unlock it free.
+      </p>
+
+      <button onClick={onCtaClick} style={{
+        ...s.downloadBtn,
+        boxShadow: '0 4px 24px rgba(169,138,255,0.30)',
+      }}>
+        <AppleSvg />
+        See my book — free
+      </button>
+
+      <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12 }}>
+        Free to explore · No commitment
+      </p>
     </div>
   )
 }
