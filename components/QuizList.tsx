@@ -8,6 +8,7 @@ const QUIZ_META: Record<string, { emoji: string; color: string; title: string; h
   'booktok-recommendations': { emoji: '🎵', color: '#FF6B9B', title: 'BookTok Recommendation Quiz', hook: 'Find the BookTok book that will actually stay with you.' },
   'reading-slump': { emoji: '🌿', color: '#6BCFB0', title: 'Reading Slump Fixer', hook: 'Find the book that remembers what reading feels like.' },
   'genre-match': { emoji: '🌙', color: '#FFB86C', title: 'Genre Match Quiz', hook: 'Discover which emotional territory you\'re actually drawn to.' },
+  'reading-personality': { emoji: '✨', color: '#B69CFF', title: 'Reading Personality Quiz', hook: 'You don\'t read for plot alone.' },
 }
 
 export function QuizList() {

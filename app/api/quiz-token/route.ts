@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbInsertServer, dbSelect } from '@/lib/supabase'
+import { createRateLimiter, getClientIp } from '@/lib/rateLimiter'
 
 // POST /api/quiz-token — store quiz result + vector, return a short token
 // GET  /api/quiz-token?token=xxx — retrieve stored data by token
@@ -7,7 +8,15 @@ import { dbInsertServer, dbSelect } from '@/lib/supabase'
 // The app reads ?token= from the deep link on first launch, fetches here,
 // and gets the full quiz_vector + result_id without needing URL-safe JSON.
 
+// 10 token creations per IP per hour, 60 lookups per IP per hour
+const isCreateRl = createRateLimiter(10, 60 * 60 * 1000)
+const isLookupRl = createRateLimiter(60, 60 * 60 * 1000)
+
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req)
+  if (isCreateRl(ip)) {
+    return NextResponse.json({ error: 'rate limited' }, { status: 429 })
+  }
   try {
     const body = await req.json()
     const {
@@ -53,6 +62,11 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const ip = getClientIp(req)
+  if (isLookupRl(ip)) {
+    return NextResponse.json({ error: 'rate limited' }, { status: 429 })
+  }
+
   const token = req.nextUrl.searchParams.get('token')
   if (!token || !/^[a-z0-9]{6,12}$/.test(token)) {
     return NextResponse.json({ error: 'invalid token' }, { status: 400 })

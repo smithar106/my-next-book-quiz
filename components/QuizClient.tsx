@@ -144,64 +144,15 @@ export function QuizClient({ slug, rawParams }: Props) {
     setEmailLoading(false)
   }
 
-  async function handleAppStoreClick(source = 'result_cta') {
+  async function handleCtaClick(source: string) {
     const archetypeName = content?.archetypeName ?? result?.title ?? ''
-    trackEvent(sessionId.current, 'app_store_clicked', config!.id, {
-      source,
+    trackEvent(sessionId.current, source === 'sticky_cta' ? 'sticky_cta_clicked' : 'app_store_clicked', config!.id, {
       result_id: result?.id,
       archetype_name: archetypeName,
       ...attr.current,
     })
     trackEvent(sessionId.current, 'quiz_app_cta_tapped', config!.id, {
       source,
-      result_id: result?.id,
-      archetype_name: archetypeName,
-    })
-    // Mint a server-side token to carry quiz_vector + attribution through the
-    // App Store handoff — Apple strips raw JSON query params from the URL.
-    let token: string | null = null
-    if (result?.id) {
-      try {
-        token = await mintQuizToken({
-          result_id: result.id,
-          archetype_name: archetypeName,
-          quiz_id: config!.id,
-          quiz_vector: quizVectorRef.current ?? null,
-          attribution: attr.current,
-          dominant_signals: content?.dominantSignalLabels ?? null,
-          quiz_responses: answersRef.current,
-          identity_summary: content?.microcopy ?? null,
-          schema_version: '3.0',
-          archetype_subtitle: content?.archetypeSubtitle ?? null,
-          mood_tiles: content?.moodTiles?.map((t) => ({ word: t.word, sub: t.sub })) ?? null,
-          dominant_signal_labels: content?.dominantSignalLabels ?? null,
-          similar_books: content?.similarBooks?.map((b) => ({ title: b.title, author: b.author, note: b.note, isbn: b.isbn ?? null })) ?? null,
-        })
-        trackEvent(sessionId.current, 'quiz_handoff_success', config!.id, { result_id: result.id })
-      } catch {
-        trackEvent(sessionId.current, 'quiz_handoff_failed', config!.id, { result_id: result.id })
-      }
-    }
-    window.open(
-      buildAppStoreUrl(APP_STORE_URL, attr.current, {
-        result_id: result?.id,
-        archetype_name: archetypeName,
-        quiz_id: config!.id,
-        token: token ?? undefined,
-      }),
-      '_blank', 'noopener',
-    )
-  }
-
-  async function handleStickyCtaClick() {
-    const archetypeName = content?.archetypeName ?? result?.title ?? ''
-    trackEvent(sessionId.current, 'sticky_cta_clicked', config!.id, {
-      result_id: result?.id,
-      archetype_name: archetypeName,
-      ...attr.current,
-    })
-    trackEvent(sessionId.current, 'quiz_app_cta_tapped', config!.id, {
-      source: 'sticky_cta',
       result_id: result?.id,
       archetype_name: archetypeName,
     })
@@ -250,7 +201,7 @@ export function QuizClient({ slug, rawParams }: Props) {
   if (phase === 'landing') {
     return (
       <main style={s.page}>
-        <Nav right={<button onClick={() => handleAppStoreClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
+        <Nav right={<button onClick={() => handleCtaClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
         <div style={s.landingInner}>
           <div style={s.badge}>Reading Identity</div>
           <h1 style={s.h1}>{config.hook}</h1>
@@ -371,7 +322,7 @@ export function QuizClient({ slug, rawParams }: Props) {
     const ctaCopy = content?.ctaCopy ?? 'Build my full playlist'
     return (
       <main style={s.page}>
-        <Nav right={<button onClick={() => handleAppStoreClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
+        <Nav right={<button onClick={() => handleCtaClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
 
         <div style={{ maxWidth: 580, margin: '0 auto 0', padding: '120px 20px 120px' }}>
           {/* Hero result card */}
@@ -410,7 +361,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             <BlurredBookReveal
               result={result}
               content={content}
-              onCtaClick={() => handleAppStoreClick('blurred_reveal_cta')}
+              onCtaClick={() => handleCtaClick('blurred_reveal_cta')}
             />
           )}
 
@@ -422,7 +373,7 @@ export function QuizClient({ slug, rawParams }: Props) {
             result={result}
             content={content}
             ctaCopy={ctaCopy}
-            onCtaClick={() => handleAppStoreClick('result_main_cta')}
+            onCtaClick={() => handleCtaClick('result_main_cta')}
           />
 
           {/* Share */}
@@ -478,7 +429,7 @@ export function QuizClient({ slug, rawParams }: Props) {
         <StickyCTA
           visible={stickyCta}
           ctaCopy={ctaCopy}
-          onClick={handleStickyCtaClick}
+          onClick={() => handleCtaClick('sticky_cta')}
         />
       </main>
     )
@@ -970,14 +921,6 @@ function StickyCTA({ visible, ctaCopy, onClick }: { visible: boolean; ctaCopy: s
   )
 }
 
-function getProgressTagline(index: number, total: number): string {
-  const pct = index / total
-  if (pct < 0.25) return 'Reading your emotional instincts...'
-  if (pct < 0.5) return 'Something is taking shape...'
-  if (pct < 0.75) return 'The portrait is forming...'
-  return 'Almost complete...'
-}
-
 const ARCHETYPE_PREVIEWS = [
   { name: 'Dark Cerebral Reader', emoji: '🖤', from: '#141824', to: '#0C1018', color: '#9090C8', border: 'rgba(144,144,200,0.22)' },
   { name: 'Momentum Reader', emoji: '⚡', from: '#0E1E22', to: '#081418', color: '#80D8D0', border: 'rgba(128,216,208,0.22)' },
@@ -1035,8 +978,6 @@ const s: Record<string, React.CSSProperties> = {
   },
   progressBar: { height: 4, background: 'var(--surface2)', borderRadius: 4, marginBottom: 32, overflow: 'hidden' },
   progressFill: { height: '100%', background: 'var(--purple)', borderRadius: 4, transition: 'width 0.3s ease' },
-  quizLabel: { color: 'var(--text)', fontSize: 22, fontWeight: 900, letterSpacing: '-0.5px', marginBottom: 4 },
-  quizTagline: { color: 'var(--text-muted)', fontSize: 15, fontWeight: 500, marginBottom: 28 },
   questionText: { fontSize: 'clamp(24px,4vw,32px)', fontWeight: 900, letterSpacing: '-0.8px', lineHeight: 1.2, marginBottom: 32 },
   optionBtn: {
     width: '100%', background: 'var(--surface)', border: '1.5px solid var(--border)',

@@ -2,7 +2,19 @@ import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 import { createRateLimiter, getClientIp } from '@/lib/rateLimiter'
 
-const getResend = () => new Resend(process.env.RESEND_API_KEY)
+let _resend: Resend | null = null
+function getResend(): Resend {
+  if (!_resend) {
+    const key = process.env.RESEND_API_KEY
+    if (!key) console.error('RESEND_API_KEY is not set')
+    _resend = new Resend(key)
+  }
+  return _resend
+}
+
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
 
 const NOTIFY_EMAIL = 'smithar106@gmail.com'
 const FROM_EMAIL = 'My Next Book <quiz@mynextbook.me>'
@@ -23,12 +35,18 @@ export async function POST(req: NextRequest) {
     const { email, archetypeName, archetypeSubtitle, microcopy, similarBooks, quizTitle } = await req.json()
     if (!email) return NextResponse.json({ error: 'No email' }, { status: 400 })
 
+    const safeEmail = escapeHtml(email)
+    const safeArchetype = escapeHtml(archetypeName ?? '')
+    const safeSubtitle = escapeHtml(archetypeSubtitle ?? '')
+    const safeMicrocopy = escapeHtml(microcopy ?? '')
+    const safeQuizTitle = escapeHtml(quizTitle ?? '')
+
     const booksHtml = similarBooks?.map((b: { title: string; author: string; note: string }) => `
       <tr>
         <td style="padding:12px 0;border-bottom:1px solid rgba(212,188,255,0.12)">
-          <p style="margin:0 0 2px;font-weight:700;font-size:15px;color:#ffffff">${b.title}</p>
-          <p style="margin:0 0 4px;font-size:13px;color:#A097C0">${b.author}</p>
-          <p style="margin:0;font-size:13px;color:#D4BCFF;font-style:italic">${b.note}</p>
+          <p style="margin:0 0 2px;font-weight:700;font-size:15px;color:#ffffff">${escapeHtml(b.title)}</p>
+          <p style="margin:0 0 4px;font-size:13px;color:#A097C0">${escapeHtml(b.author)}</p>
+          <p style="margin:0;font-size:13px;color:#D4BCFF;font-style:italic">${escapeHtml(b.note)}</p>
         </td>
       </tr>
     `).join('') ?? ''
@@ -37,7 +55,7 @@ export async function POST(req: NextRequest) {
     await getResend().emails.send({
       from: FROM_EMAIL,
       to: email,
-      subject: `Your reading identity: ${archetypeName}`,
+      subject: `Your reading identity: ${safeArchetype}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -56,9 +74,9 @@ export async function POST(req: NextRequest) {
                 <!-- Result card -->
                 <tr><td style="background:linear-gradient(160deg,rgba(200,176,255,0.12) 0%,rgba(18,16,30,0.9) 100%);border:1.5px solid rgba(200,176,255,0.35);border-radius:24px;padding:36px 28px;text-align:center;margin-bottom:24px">
                   <p style="font-size:10px;font-weight:800;letter-spacing:2px;color:#D4BCFF;text-transform:uppercase;margin:0 0 20px">YOUR READER TYPE</p>
-                  <h1 style="margin:0 0 10px;font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1.1;color:#ffffff">${archetypeName}</h1>
-                  <p style="margin:0 0 20px;font-size:15px;font-weight:700;color:#D4BCFF;line-height:1.4">${archetypeSubtitle}</p>
-                  <p style="margin:0;font-size:15px;color:#DDD4F8;line-height:1.65;font-style:italic">${microcopy}</p>
+                  <h1 style="margin:0 0 10px;font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1.1;color:#ffffff">${safeArchetype}</h1>
+                  <p style="margin:0 0 20px;font-size:15px;font-weight:700;color:#D4BCFF;line-height:1.4">${safeSubtitle}</p>
+                  <p style="margin:0;font-size:15px;color:#DDD4F8;line-height:1.65;font-style:italic">${safeMicrocopy}</p>
                 </td></tr>
 
                 <!-- Books -->
@@ -79,7 +97,7 @@ export async function POST(req: NextRequest) {
 
                 <!-- Footer -->
                 <tr><td style="padding-top:40px;text-align:center;border-top:1px solid rgba(212,188,255,0.12);margin-top:32px">
-                  <p style="margin:0;font-size:12px;color:#A097C0">You took the ${quizTitle} on My Next Book Quiz.<br>
+                  <p style="margin:0;font-size:12px;color:#A097C0">You took the ${safeQuizTitle} on My Next Book Quiz.<br>
                   <a href="https://quiz.mynextbook.me" style="color:#D4BCFF">quiz.mynextbook.me</a></p>
                 </td></tr>
 
@@ -95,13 +113,13 @@ export async function POST(req: NextRequest) {
     await getResend().emails.send({
       from: FROM_EMAIL,
       to: NOTIFY_EMAIL,
-      subject: `New quiz result: ${archetypeName}`,
+      subject: `New quiz result: ${safeArchetype}`,
       html: `
         <p style="font-family:sans-serif;font-size:15px">
           New signup on My Next Book Quiz:<br><br>
-          <strong>Email:</strong> ${email}<br>
-          <strong>Reading identity:</strong> ${archetypeName}<br>
-          <strong>Quiz:</strong> ${quizTitle}<br>
+          <strong>Email:</strong> ${safeEmail}<br>
+          <strong>Reading identity:</strong> ${safeArchetype}<br>
+          <strong>Quiz:</strong> ${safeQuizTitle}<br>
         </p>
       `,
     })
