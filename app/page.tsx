@@ -2,37 +2,37 @@ import { QuizList } from '@/components/QuizList'
 
 export default function Home() {
   return (
-    <main style={{ minHeight: '100vh', padding: '60px 20px' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(200,176,255,0.16)',
-            border: '1px solid rgba(200,176,255,0.42)',
-            color: 'var(--purple)',
-            fontSize: 11,
-            fontWeight: 800,
-            letterSpacing: '1.5px',
-            padding: '6px 14px',
-            borderRadius: 100,
-            marginBottom: 24,
-            textTransform: 'uppercase',
-          }}>
-            Reading Identity
-          </div>
-          <h1 style={{ fontSize: 'clamp(32px,7vw,52px)', fontWeight: 900, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16 }}>
-            The books you love<br /><span style={{ color: 'var(--purple)' }}>aren't random.</span>
+    <main style={{ minHeight: '100vh', background: '#0B0A12', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 24px' }}>
+      <div style={{ width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 32 }}>
+        
+        {/* Icon */}
+        <div style={{ width: 64, height: 64, borderRadius: 16, background: 'rgba(182,156,255,0.12)', border: '1px solid rgba(182,156,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
+          📚
+        </div>
+
+        {/* Copy */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <p style={{ color: '#B69CFF', fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            My Next Book
+          </p>
+          <h1 style={{ fontSize: 'clamp(32px, 8vw, 48px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.1, letterSpacing: '-1px' }}>
+            The books you love<br /><span style={{ color: '#B69CFF' }}>aren&apos;t random.</span>
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: 17, lineHeight: 1.6 }}>
-            Pick a quiz below. Discover who you are as a reader.
+          <p style={{ color: '#666', fontSize: 16, lineHeight: 1.65, maxWidth: 360, margin: '0 auto' }}>
+            Discover your reading identity. Get a personalised playlist of books you&apos;ll actually finish.
           </p>
         </div>
 
+        {/* Quiz list */}
         <QuizList />
 
-        <div style={{ textAlign: 'center', marginTop: 56, color: 'var(--text-dim)', fontSize: 13 }}>
-          © 2026 My Next Book
+        {/* Legal */}
+        <div style={{ display: 'flex', gap: 16, fontSize: 12, color: '#444' }}>
+          <a href="/privacy" style={{ color: '#444', textDecoration: 'none' }}>Privacy</a>
+          <a href="/terms" style={{ color: '#444', textDecoration: 'none' }}>Terms</a>
         </div>
+
+        <p style={{ color: '#333', fontSize: 12 }}>© 2026 My Next Book · Red Derby Ventures LLC</p>
       </div>
     </main>
   )
