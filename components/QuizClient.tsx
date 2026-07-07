@@ -329,9 +329,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           <ResultHeroCard result={result} content={content} />
 
           {/* Microcopy */}
-          {content?.microcopy && (
+          {/* {content?.microcopy && (
             <p style={s.microcopy}>{content.microcopy}</p>
-          )}
+          )} */}
 
           {/* We noticed... — 3 dominant signals in plain language */}
           {/* {content?.dominantSignalLabels && (
