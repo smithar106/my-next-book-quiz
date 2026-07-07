@@ -357,13 +357,13 @@ export function QuizClient({ slug, rawParams }: Props) {
           </div>
 
           {/* Blurred book reveal */}
-          {false && content && result && (
+          {/* {content && result && (
             <BlurredBookReveal
               result={result}
               content={content}
               onCtaClick={() => handleCtaClick('blurred_reveal_cta')}
             />
-          )}
+          )} */}
 
           {/* Similar books */}
           {content?.similarBooks && <SimilarBooksSection books={content.similarBooks} archetypeId={result.id} />}
@@ -377,14 +377,14 @@ export function QuizClient({ slug, rawParams }: Props) {
           />
 
           {/* Share */}
-          {false && content && result && (
+          {/* {content && result && (
             <ShareResultButton
               archetypeName={content.archetypeName}
               resultId={result.id}
               sessionId={sessionId.current}
               quizId={config!.id}
             />
-          )}
+          )} */}
 
           {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
