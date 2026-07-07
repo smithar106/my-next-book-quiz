@@ -322,7 +322,7 @@ export function QuizClient({ slug, rawParams }: Props) {
     const ctaCopy = content?.ctaCopy ?? 'Build my full playlist'
     return (
       <main style={s.page}>
-        <Nav right={<button onClick={() => handleCtaClick('nav_cta')} style={{ ...s.navCta, border: 'none', cursor: 'pointer' }}>Open the app</button>} />
+        <Nav right={null} />
 
         <div style={{ maxWidth: 580, margin: '0 auto 0', padding: '120px 20px 120px' }}>
           {/* Hero result card */}
@@ -357,7 +357,7 @@ export function QuizClient({ slug, rawParams }: Props) {
           </div>
 
           {/* Blurred book reveal */}
-          {content && result && (
+          {false && content && result && (
             <BlurredBookReveal
               result={result}
               content={content}
@@ -377,7 +377,7 @@ export function QuizClient({ slug, rawParams }: Props) {
           />
 
           {/* Share */}
-          {content && result && (
+          {false && content && result && (
             <ShareResultButton
               archetypeName={content.archetypeName}
               resultId={result.id}
@@ -427,7 +427,7 @@ export function QuizClient({ slug, rawParams }: Props) {
 
         {/* Sticky CTA */}
         <StickyCTA
-          visible={stickyCta}
+          visible={false}
           ctaCopy={ctaCopy}
           onClick={() => handleCtaClick('sticky_cta')}
         />
