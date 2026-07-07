@@ -334,9 +334,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           )}
 
           {/* We noticed... — 3 dominant signals in plain language */}
-          {content?.dominantSignalLabels && (
+          {/* {content?.dominantSignalLabels && (
             <WeNoticedSection labels={content.dominantSignalLabels} />
-          )}
+          )} */}
 
           {/* Moodboard */}
           {content?.moodTiles && content.moodTiles.length > 0 && (
@@ -344,7 +344,7 @@ export function QuizClient({ slug, rawParams }: Props) {
           )}
 
           {/* Reading directions */}
-          <div style={s.card}>
+          {/* <div style={s.card}>
             <p style={s.cardLabel}>Books that call to you</p>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
               {result.readingDirections.map((dir, i) => (
@@ -354,7 +354,7 @@ export function QuizClient({ slug, rawParams }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Blurred book reveal */}
           {/* {content && result && (
