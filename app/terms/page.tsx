@@ -51,7 +51,7 @@ export default function TermsPage() {
           <h2 style={s.h2}>4. Subscriptions</h2>
           <p style={s.p}>
             The My Next Book iOS app offers a 14-day free trial, followed by an auto-renewing
-            subscription at $4.99/month or $29.99/year, billed through the App Store. You may
+            subscription at $4.99/month, $1.99/week, or $29.99/year, billed through the App Store. You may
             cancel your subscription at any time in your iOS Settings under{' '}
             <em>Apple ID &gt; Subscriptions</em>. Cancellation takes effect at the end of the
             current billing period. We do not offer refunds for partial subscription periods.
