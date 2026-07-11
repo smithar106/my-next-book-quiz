@@ -328,6 +328,26 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Hero result card */}
           <ResultHeroCard result={result} content={content} />
 
+          {/* What this means — value explainer */}
+          <div style={{
+            background: 'rgba(182,156,255,0.06)',
+            border: '1px solid rgba(182,156,255,0.14)',
+            borderRadius: 16,
+            padding: '20px 22px',
+            marginBottom: 20,
+            textAlign: 'center',
+          }}>
+            <p style={{
+              color: 'var(--text)', fontSize: 14, fontWeight: 600,
+              lineHeight: 1.6, marginBottom: 6,
+            }}>
+              This isn&apos;t just a label. It&apos;s a <strong style={{ color: 'var(--purple)' }}>filter</strong>.
+            </p>
+            <p style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.6 }}>
+              Every book you&apos;ve abandoned had a mismatch your reading identity can now detect — before you waste $20 and two evenings on it. The app reads this for you. Every time. In seconds.
+            </p>
+          </div>
+
           {/* Microcopy */}
           {/* {content?.microcopy && (
             <p style={s.microcopy}>{content.microcopy}</p>
@@ -389,9 +409,9 @@ export function QuizClient({ slug, rawParams }: Props) {
           {/* Email — secondary capture after primary CTA */}
           {!emailSent ? (
             <div style={s.card}>
-              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Save your reading profile</p>
+              <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>Get your 5-book playlist in your inbox</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginBottom: 16 }}>
-                Your starting reader type, the books that match it, and what your taste reveals so far — sent to your inbox.
+                Your reader type, the books that match it, and what your taste reveals — sent now. Open the app and your taste profile picks up where the quiz left off.
               </p>
               <form onSubmit={submitEmail} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <input
@@ -405,9 +425,9 @@ export function QuizClient({ slug, rawParams }: Props) {
             </div>
           ) : (
             <div style={{ ...s.card, textAlign: 'center' }}>
-              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ On its way. Your starting reading profile, saved.</p>
+              <p style={{ fontWeight: 700, fontSize: 15, color: 'var(--purple)' }}>✓ Your 5-book playlist is in your inbox.</p>
               <p style={{ color: 'var(--text-muted)', fontSize: 13, marginTop: 8 }}>
-                Open the app and your starting profile is already there. Every book you encounter refines it.
+                Open the app and your taste profile picks up where the quiz left off — every book you rate makes the next one sharper.
               </p>
             </div>
           )}
@@ -716,7 +736,7 @@ function SimilarBooksSection({ books, archetypeId }: { books: import('@/lib/resu
     <div style={{ ...s.card, marginBottom: 20 }}>
       <p style={s.cardLabel}>{sectionHeader}</p>
       <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: -4, marginBottom: 14, fontStyle: 'italic' }}>
-        3 preview picks. The app builds your full 5-book playlist.
+        These 3 books match your identity. The app builds a 5-book playlist this specific — and refines it every time you rate a book.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {books.map((book, i) => (
@@ -780,19 +800,19 @@ function AppCtaSection({ result, content, ctaCopy, onCtaClick }: {
       borderRadius: 24, padding: '28px 24px', marginBottom: 20,
     }}>
       <p style={{ fontWeight: 900, fontSize: 20, marginBottom: 8, lineHeight: 1.25, letterSpacing: '-0.5px' }}>
-        Build your first 5-book playlist.
+        Stop buying books you won&apos;t finish.
       </p>
       <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16, lineHeight: 1.6 }}>
-        {result.whyAppHelps}
-      </p>
-      <p style={{ color: 'var(--text-dim)', fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
-        Open the app to review 5 books, Save or Replace each one, then Confirm and Name your playlist.
+        Your reading identity finds the ones you will.
       </p>
       <button onClick={onCtaClick} style={s.downloadBtn}>
         <AppleSvg />
         {ctaCopy}
       </button>
-      <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12, textAlign: 'center' }}>
+      <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 12, marginBottom: 4, textAlign: 'center' }}>
+        Skip two hardcovers you won&apos;t finish and you&apos;ve covered a year. The right book in seconds, every time.
+      </p>
+      <p style={{ color: 'var(--text-dim)', fontSize: 12, marginTop: 0, textAlign: 'center' }}>
         Free to explore · 14 days to go deep · No commitment
       </p>
     </div>

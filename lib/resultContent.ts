@@ -275,9 +275,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read to feel things you couldn\'t feel otherwise.',
     microcopy: 'You don\'t read for plot alone. You read to feel transformed.',
     shareText: 'I got "The Heartbreak Collector" on My Next Book 📚 Apparently I only want books that emotionally devastate me. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that earn the tears you want to cry',
     moodTiles: [
-      T.rose('FELT', 'deeply', '♥'),
       T.purple('STAYED', 'with me', '◆'),
       T.rose('ACHED', 'beautifully', '♥'),
       T.purple('TRUE', 'and hard', '◆'),
@@ -299,9 +298,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that feel like a place you never want to leave.',
     microcopy: 'You like stories that linger. Safe but alive. Warm but real.',
     shareText: 'I got "The Atmospheric Dreamer" on My Next Book 📚 I read to escape into worlds that feel like home. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that feel like coming home',
     moodTiles: [
-      T.amber('WARM', 'and still', '○'),
       T.green('SOFT', 'landing', '✦'),
       T.amber('SAFE', 'worlds', '○'),
       T.green('LINGER', 'here', '✦'),
@@ -323,9 +321,8 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that disturb you in a specific, beautiful way.',
     microcopy: 'You crave books that haunt you beautifully. You want the shadows.',
     shareText: 'I got "The Beautifully Damaged Intellectual" on My Next Book 📚 Apparently I only want beautifully haunted books. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that haunt you exactly right',
     moodTiles: [
-      T.slate('HAUNTED', 'perfectly', '◆'),
       T.purple('COMPLEX', 'morality', '✦'),
       T.slate('SHADOW', 'beautiful', '◆'),
       T.purple('GOTHIC', 'depth', '✦'),
@@ -347,7 +344,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You start books at 10pm and finish them at 3am.',
     microcopy: 'You want books that erase time. The kind you finish and blink, confused.',
     shareText: 'I got "The Obsessive Completionist" on My Next Book 📚 I literally cannot put books down. Find your reading type:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that erase the clock',
     moodTiles: [
       T.teal('HOOKED', 'instantly', '⚡'),
       T.crimson('RACING', 'pulse', '◈'),
@@ -371,7 +368,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want all the tension, all the warmth, all the earned feelings.',
     microcopy: 'You read for the slow burn. You want books that make you audibly react.',
     shareText: 'I got "The Morally Grey Romantic" on My Next Book 📚 I need enemies-to-lovers and I\'m not embarrassed. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that make you believe in it again',
     moodTiles: [
       T.rose('LONGING', 'slow burn', '♥'),
       T.purple('ELECTRIC', 'tension', '✦'),
@@ -395,7 +392,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You disappear into books completely. The world can wait.',
     microcopy: 'You crave books that leave emotional residue. The kind you miss like a place.',
     shareText: 'I got "The Obsessive Escapist" on My Next Book 📚 I read to completely vanish. Find your reader type:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find worlds you\'ll miss like real places',
     moodTiles: [
       T.purple('LOST', 'in it', '✦'),
       T.rose('LIVED', 'fully', '◆'),
@@ -419,7 +416,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You annotate. You reread sentences. You want prose that earns your attention.',
     microcopy: 'You read to think more clearly. Books are where you go to understand things.',
     shareText: 'I got "The Literary Overthinker" on My Next Book 📚 I genuinely annotate fiction and I stand by it. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that earn your full attention',
     moodTiles: [
       T.gold('PRECISE', 'language', '◎'),
       T.slate('LAYERED', 'meaning', '◆'),
@@ -443,7 +440,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read thrillers at midnight and pay for it the next day.',
     microcopy: 'You want books that make your heart move. The kind that grip and don\'t apologize.',
     shareText: 'I got "The Tension Addict" on My Next Book 📚 I have read entire books just to find out who did it. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that make you miss sleep',
     moodTiles: [
       T.crimson('SUSPECT', 'everyone', '◈'),
       T.slate('SHADOWS', 'everywhere', '◆'),
@@ -467,7 +464,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You fall in love with worlds the way other people fall in love with people.',
     microcopy: 'You want books that leave you mourning a place that never existed.',
     shareText: 'I got "The World-Lost Wanderer" on My Next Book 📚 I miss fictional worlds like real places. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find worlds worth getting lost in',
     moodTiles: [
       T.purple('WORLDS', 'complete', '✦'),
       T.teal('MAGIC', 'systems', '◎'),
@@ -491,7 +488,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You haven\'t stopped loving books — you just need an easy way back in.',
     microcopy: 'You just need a quick win. The kind that reminds you why you started.',
     shareText: 'I got "The Reluctant Returner" on My Next Book 📚 I\'m in a reading slump and this is my slump-breaker type. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find the book that breaks the slump',
     moodTiles: [
       T.teal('SHORT', 'and whole', '⚡'),
       T.green('DONE', 'in one sit', '○'),
@@ -515,7 +512,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You need a book that\'s on your side right now.',
     microcopy: 'You need zero pressure and full warmth. This is a valid reading mode.',
     shareText: 'I got "The Cozy Emotionalist" on My Next Book 📚 I\'m in a reading slump and I need safe warm books. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that meet you where you are',
     moodTiles: [
       T.amber('SAFE', 'here', '○'),
       T.green('WARM', 'always', '✦'),
@@ -539,7 +536,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You want books that see the world more clearly than you do.',
     microcopy: 'You read to understand something. Books change your mind slowly, permanently.',
     shareText: 'I got "The Quiet Depth Seeker" on My Next Book 📚 I want literary fiction that genuinely moves me. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that see more clearly than you do',
     moodTiles: [
       T.gold('PRECISE', 'and true', '◎'),
       T.slate('QUIET', 'depth', '◆'),
@@ -563,7 +560,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You notice things other readers miss. That\'s exactly the point.',
     microcopy: 'You want books that respect your intelligence and reward your attention.',
     shareText: 'I got "The Pattern Hunter" on My Next Book 📚 I\'m a mystery reader who actually figures it out early. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find books that make you feel clever',
     moodTiles: [
       T.slate('CLUES', 'scattered', '◈'),
       T.teal('PATTERN', 'found', '✦'),
@@ -587,7 +584,7 @@ const RESULT_CONTENT: Record<string, ResultContent> = {
     archetypeSubtitle: 'You read other people\'s lives to understand your own.',
     microcopy: 'You want books that prove extraordinary things happen to ordinary people paying attention.',
     shareText: 'I got "The Lived-Life Collector" on My Next Book 📚 I\'m a memoir reader who wants real lives that expand mine. Find yours:',
-    ctaCopy: 'Start building my reading profile',
+    ctaCopy: 'Find real lives that expand yours',
     moodTiles: [
       T.gold('REAL', 'and earned', '◎'),
       T.amber('LIVED', 'fully', '○'),
